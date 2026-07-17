@@ -1,1 +1,29 @@
-jshdbehsjdn
+<svg width="260" height="70" viewBox="0 0 260 70" xmlns="http://www.w3.org/2000/svg">
+
+<rect width="260" height="70" rx="12" fill="#020617"/>
+
+<circle cx="35" cy="35" r="22" fill="#38bdf8"/>
+
+<path d="M22 42L35 20L48 42H40L35 33L30 42H22Z" fill="#020617"/>
+
+<text x="70" y="43"
+font-family="Arial, sans-serif"
+font-size="30"
+font-weight="700"
+fill="#ffffff">
+
+NorthSky
+
+</text>
+
+<text x="190" y="43"
+font-family="Arial, sans-serif"
+font-size="30"
+font-weight="700"
+fill="#38bdf8">
+
+Reviews
+
+</text>
+
+</svg>
