@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 
 export const metadata: Metadata = {
@@ -7,7 +8,7 @@ export const metadata: Metadata = {
     "Best Tech Deals 2026 | VPNs, eSIMs, AI Tools & Software Offers",
 
   description:
-    "Find the best technology deals, discounts, and recommendations from NorthSky Reviews including VPNs, travel eSIMs, AI tools, and software.",
+    "Find trusted technology deals, discounts, and recommendations from NorthSky Reviews including VPNs, travel eSIMs, AI tools, and software.",
 
   keywords: [
     "tech deals 2026",
@@ -32,7 +33,7 @@ category:
 "Privacy & Security",
 
 description:
-"Protect your online privacy with one of the leading VPN services.",
+"Protect your online privacy with advanced security features, fast speeds, and reliable VPN protection.",
 
 button:
 "Get NordVPN Deal",
@@ -51,7 +52,7 @@ category:
 "Travel Technology",
 
 description:
-"Stay connected while traveling with affordable international mobile data.",
+"Stay connected worldwide with affordable mobile data plans designed for travelers.",
 
 button:
 "Get Saily eSIM",
@@ -70,7 +71,7 @@ category:
 "Artificial Intelligence",
 
 description:
-"Discover powerful AI software for productivity, business, and creativity.",
+"Discover AI software for productivity, automation, business, and creative workflows.",
 
 button:
 "Explore AI Tools",
@@ -84,6 +85,8 @@ link:
 
 
 
+
+
 export default function DealsPage(){
 
 
@@ -93,11 +96,14 @@ return (
 
 
 
-{/* Schema */}
+{/* SEO Schema */}
 
 <script
+
 type="application/ld+json"
+
 dangerouslySetInnerHTML={{
+
 __html: JSON.stringify({
 
 "@context":
@@ -110,10 +116,37 @@ __html: JSON.stringify({
 "NorthSky Reviews Deals",
 
 "description":
-"Technology deals and recommended products from NorthSky Reviews."
+"Technology deals and recommended products from NorthSky Reviews.",
+
+
+"mainEntity":
+
+{
+
+"@type":
+"ItemList",
+
+"itemListElement":
+
+deals.map((deal,index)=>({
+
+"@type":
+"ListItem",
+
+"position":
+index + 1,
+
+"name":
+deal.title
+
+}))
+
+}
 
 })
+
 }}
+
 />
 
 
@@ -134,8 +167,9 @@ Best Tech Deals 2026
 
 <p className="mx-auto mt-6 max-w-3xl text-xl text-slate-300">
 
-Save time finding trusted technology
-offers, discounts, and recommended tools.
+Save money on trusted technology products,
+software, and digital services recommended
+by NorthSky Reviews.
 
 </p>
 
@@ -154,7 +188,7 @@ offers, discounts, and recommended tools.
 
 <h2 className="mb-10 text-4xl font-bold">
 
-Featured Deals
+Featured Technology Deals
 
 </h2>
 
@@ -167,8 +201,11 @@ Featured Deals
 
 
 <div
+
 key={deal.title}
-className="rounded-2xl border p-8 shadow-sm"
+
+className="rounded-2xl border p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl"
+
 >
 
 
@@ -198,10 +235,17 @@ className="rounded-2xl border p-8 shadow-sm"
 
 
 <a
+
 href={deal.link}
+
 target={deal.link.startsWith("http") ? "_blank" : undefined}
-rel="nofollow sponsored"
-className="mt-8 block rounded-xl bg-blue-600 px-5 py-4 text-center font-bold text-white"
+
+rel={deal.link.startsWith("http") ? "nofollow sponsored noopener noreferrer" : undefined}
+
+aria-label={`${deal.button} for ${deal.title}`}
+
+className="mt-8 block rounded-xl bg-blue-600 px-5 py-4 text-center font-bold text-white transition hover:bg-blue-700"
+
 >
 
 {deal.button}
@@ -243,17 +287,16 @@ Why Trust NorthSky Deals?
 <div className="mt-8 grid gap-6 md:grid-cols-3">
 
 
-<div className="rounded-xl bg-white border p-6">
+<div className="rounded-xl border bg-white p-6">
 
 <h3 className="font-bold">
-
 Independent Research
-
 </h3>
 
 <p className="mt-3 text-slate-600">
 
-We compare features, usability, and value.
+We compare features, pricing,
+security, and overall value.
 
 </p>
 
@@ -262,17 +305,16 @@ We compare features, usability, and value.
 
 
 
-<div className="rounded-xl bg-white border p-6">
+<div className="rounded-xl border bg-white p-6">
 
 <h3 className="font-bold">
-
-Updated Recommendations
-
+Updated Guides
 </h3>
 
 <p className="mt-3 text-slate-600">
 
-Technology changes quickly. We update our guides.
+We keep recommendations updated as
+technology changes.
 
 </p>
 
@@ -281,17 +323,16 @@ Technology changes quickly. We update our guides.
 
 
 
-<div className="rounded-xl bg-white border p-6">
+<div className="rounded-xl border bg-white p-6">
 
 <h3 className="font-bold">
-
 Affiliate Transparency
-
 </h3>
 
 <p className="mt-3 text-slate-600">
 
-Some links may earn us a commission at no extra cost.
+Some links are affiliate links and may
+earn us a commission at no extra cost.
 
 </p>
 
@@ -317,27 +358,30 @@ Some links may earn us a commission at no extra cost.
 
 <h2 className="text-4xl font-bold">
 
-Explore More Reviews
+Compare Before You Buy
 
 </h2>
 
 
 <p className="mt-5 text-lg">
 
-Find detailed comparisons before buying.
+Read our detailed reviews and comparison guides.
 
 </p>
 
 
 
-<a
+<Link
+
 href="/reviews"
+
 className="mt-8 inline-block rounded-xl bg-white px-8 py-4 font-bold text-blue-600"
+
 >
 
 Read Reviews →
 
-</a>
+</Link>
 
 
 </section>
