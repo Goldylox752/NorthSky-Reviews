@@ -8,15 +8,17 @@ export const metadata: Metadata = {
     "Technology Reviews 2026 | VPNs, AI Tools, Travel Tech & Software",
 
   description:
-    "Read independent technology reviews covering VPNs, AI tools, travel technology, software, and digital products.",
+    "Read trusted technology reviews and comparisons covering VPNs, AI tools, travel technology, software, cybersecurity, and digital products.",
 
   keywords: [
     "technology reviews",
     "VPN reviews",
     "NordVPN review",
     "Saily eSIM review",
+    "best VPN Canada",
     "AI tool reviews",
-    "software reviews",
+    "software comparisons",
+    "travel tech reviews",
   ],
 
 };
@@ -33,7 +35,7 @@ category:
 "VPN",
 
 description:
-"Complete review covering NordVPN security, speed, privacy features, and value.",
+"Complete NordVPN review covering privacy, security features, speed, pricing, and overall value.",
 
 link:
 "/reviews/nordvpn"
@@ -49,7 +51,7 @@ category:
 "Travel Tech",
 
 description:
-"Review of Saily eSIM features, setup, coverage, and international travel performance.",
+"Complete Saily eSIM review covering setup, coverage, pricing, and international travel use.",
 
 link:
 "/reviews/saily"
@@ -65,7 +67,7 @@ category:
 "Comparison",
 
 description:
-"Compare leading VPN providers for Canadian users based on security, speed, and value.",
+"Compare the best VPN providers available in Canada for privacy, speed, and security.",
 
 link:
 "/comparisons/best-vpns-canada"
@@ -81,7 +83,7 @@ category:
 "Comparison",
 
 description:
-"See how two leading VPN providers compare across features, privacy, and performance.",
+"A detailed comparison of two leading VPN services across features, privacy, performance, and pricing.",
 
 link:
 "/comparisons/nordvpn-vs-expressvpn"
@@ -97,7 +99,7 @@ category:
 "Travel",
 
 description:
-"Find the best travel eSIM options for affordable international connectivity.",
+"Compare the best eSIM providers for affordable international mobile data.",
 
 link:
 "/travel/best-esim-canada"
@@ -113,7 +115,7 @@ category:
 "Artificial Intelligence",
 
 description:
-"Discover the top AI tools for productivity, business, and creativity.",
+"Explore AI tools for productivity, business automation, creativity, and workflow improvements.",
 
 link:
 "/ai/best-ai-tools-2026"
@@ -121,6 +123,8 @@ link:
 }
 
 ];
+
+
 
 
 
@@ -133,7 +137,7 @@ return (
 
 
 
-{/* Schema */}
+{/* SEO Schema */}
 
 <script
 type="application/ld+json"
@@ -150,7 +154,34 @@ __html: JSON.stringify({
 "NorthSky Reviews",
 
 "description":
-"Technology reviews, comparisons, and buying guides."
+"Technology reviews, comparisons, and buying guides.",
+
+
+"mainEntity":
+{
+
+"@type":
+"ItemList",
+
+"itemListElement":
+
+reviews.map((review,index)=>({
+
+"@type":
+"ListItem",
+
+"position":
+index + 1,
+
+"name":
+review.title,
+
+"url":
+`https://northsky-reviews.vercel.app${review.link}`
+
+}))
+
+}
 
 })
 }}
@@ -174,8 +205,9 @@ NorthSky Reviews
 
 <p className="mx-auto mt-6 max-w-3xl text-xl text-slate-300">
 
-Independent reviews and comparisons helping
-you make smarter technology decisions.
+Independent technology reviews,
+comparisons, and buying guides helping
+you make smarter purchasing decisions.
 
 </p>
 
@@ -206,9 +238,13 @@ Latest Reviews & Comparisons
 
 
 <Link
+
 key={review.title}
+
 href={review.link}
-className="rounded-2xl border p-8 transition hover:-translate-y-2 hover:shadow-lg"
+
+className="group rounded-2xl border p-8 transition hover:-translate-y-2 hover:shadow-xl"
+
 >
 
 
@@ -219,7 +255,7 @@ className="rounded-2xl border p-8 transition hover:-translate-y-2 hover:shadow-l
 </p>
 
 
-<h3 className="mt-3 text-2xl font-bold">
+<h3 className="mt-3 text-2xl font-bold group-hover:text-blue-600">
 
 {review.title}
 
@@ -235,7 +271,7 @@ className="rounded-2xl border p-8 transition hover:-translate-y-2 hover:shadow-l
 
 <span className="mt-6 block font-bold text-blue-600">
 
-Read Review →
+Read Full Review →
 
 </span>
 
@@ -257,6 +293,7 @@ Read Review →
 
 
 
+
 <section className="bg-slate-50 px-6 py-20">
 
 
@@ -265,26 +302,27 @@ Read Review →
 
 <h2 className="text-4xl font-bold">
 
-How We Review Products
+How We Review Technology
 
 </h2>
 
 
-
 <p className="mt-6 text-lg text-slate-600">
 
-NorthSky Reviews evaluates technology products
-based on features, performance, usability,
-security, pricing, and overall value.
+NorthSky Reviews evaluates products based on
+features, security, performance, usability,
+pricing, customer value, and real-world use.
 
 </p>
+
 
 
 
 <div className="mt-10 grid gap-6 md:grid-cols-3">
 
 
-<div className="rounded-xl bg-white border p-6">
+
+<div className="rounded-xl border bg-white p-6">
 
 <h3 className="font-bold">
 Research
@@ -292,7 +330,8 @@ Research
 
 <p className="mt-3 text-slate-600">
 
-We analyze products and compare alternatives.
+We analyze products, competitors,
+features, and available information.
 
 </p>
 
@@ -300,15 +339,17 @@ We analyze products and compare alternatives.
 
 
 
-<div className="rounded-xl bg-white border p-6">
+
+<div className="rounded-xl border bg-white p-6">
 
 <h3 className="font-bold">
-Testing
+Evaluation
 </h3>
 
 <p className="mt-3 text-slate-600">
 
-We focus on real-world usability and features.
+We compare performance, pricing,
+security, and usability.
 
 </p>
 
@@ -316,7 +357,8 @@ We focus on real-world usability and features.
 
 
 
-<div className="rounded-xl bg-white border p-6">
+
+<div className="rounded-xl border bg-white p-6">
 
 <h3 className="font-bold">
 Recommendations
@@ -324,11 +366,13 @@ Recommendations
 
 <p className="mt-3 text-slate-600">
 
-We highlight products that provide strong value.
+We highlight technology that offers
+strong overall value.
 
 </p>
 
 </div>
+
 
 
 </div>
@@ -350,27 +394,40 @@ We highlight products that provide strong value.
 
 <h2 className="text-4xl font-bold">
 
-Find The Right Technology
+Choose Better Technology
 
 </h2>
 
 
-<p className="mt-5 text-lg">
+<p className="mx-auto mt-5 max-w-3xl">
 
-Explore our guides, comparisons, and recommendations.
+Browse our comparisons, guides, and reviews
+to find the right products and services.
 
 </p>
 
 
 
 <Link
-href="/deals"
+
+href="/comparisons"
+
 className="mt-8 inline-block rounded-xl bg-white px-8 py-4 font-bold text-blue-600"
+
 >
 
-View Deals →
+Explore Comparisons →
 
 </Link>
+
+
+
+<p className="mx-auto mt-8 max-w-2xl text-sm text-blue-100">
+
+Some links may be affiliate links. We may earn
+a commission at no extra cost to you.
+
+</p>
 
 
 </section>
