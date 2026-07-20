@@ -9,14 +9,18 @@ const siteUrl = "https://northsky-reviews.vercel.app";
 
 export const metadata: Metadata = {
 
+  metadataBase: new URL(siteUrl),
+
+
   title:
     "NorthSky Reviews | Best VPNs, AI Tools, Travel Tech & Buying Guides",
 
+
   description:
-    "Independent reviews, comparisons, and buying guides covering VPNs, AI tools, travel technology, software, cybersecurity, and gadgets.",
+    "Independent technology reviews, comparisons, and buying guides covering VPNs, AI tools, travel technology, software, cybersecurity, and gadgets.",
 
 
-  keywords: [
+  keywords:[
     "VPN reviews",
     "NordVPN review",
     "Saily eSIM review",
@@ -25,15 +29,16 @@ export const metadata: Metadata = {
     "technology reviews",
     "software comparisons",
     "travel technology",
+    "cybersecurity tools",
     "buying guides",
-    "NorthSky Reviews",
+    "NorthSky Reviews"
   ],
 
 
-  authors: [
+  authors:[
     {
-      name: "NorthSky Reviews",
-    },
+      name:"NorthSky Reviews"
+    }
   ],
 
 
@@ -41,18 +46,18 @@ export const metadata: Metadata = {
     "NorthSky Reviews",
 
 
-  metadataBase:
-    new URL(siteUrl),
+  publisher:
+    "NorthSky Reviews",
 
 
 
-  openGraph: {
+  openGraph:{
 
     title:
       "NorthSky Reviews | Smart Technology Recommendations",
 
     description:
-      "Find the best VPNs, AI tools, travel technology, and software with expert comparisons.",
+      "Expert reviews and comparisons for VPNs, AI tools, travel technology, software, and digital products.",
 
     url:
       siteUrl,
@@ -63,11 +68,20 @@ export const metadata: Metadata = {
     type:
       "website",
 
+    images:[
+      {
+        url:"/opengraph-image.png",
+        width:1200,
+        height:630,
+        alt:"NorthSky Reviews Technology Guides"
+      }
+    ]
+
   },
 
 
 
-  twitter: {
+  twitter:{
 
     card:
       "summary_large_image",
@@ -76,20 +90,23 @@ export const metadata: Metadata = {
       "NorthSky Reviews | Best Tech Recommendations",
 
     description:
-      "Independent technology reviews and buying guides.",
+      "Independent technology reviews, comparisons, and buying guides.",
+
+    images:[
+      "/opengraph-image.png"
+    ]
 
   },
 
 
-  robots: {
 
-    index:
-      true,
+  robots:{
 
-    follow:
-      true,
+    index:true,
+    follow:true,
 
   },
+
 
 };
 
@@ -103,9 +120,10 @@ children,
 
 }: Readonly<{
 
-children: React.ReactNode;
+children:React.ReactNode;
 
 }>) {
+
 
 
 return (
@@ -119,12 +137,13 @@ return (
 
 
 
-{/* Google Analytics 4 */}
+{/* Google Analytics */}
 
 <Script
 src="https://www.googletagmanager.com/gtag/js?id=G-528699336"
 strategy="afterInteractive"
 />
+
 
 
 <Script
@@ -151,7 +170,7 @@ gtag(
 "config",
 "G-528699336",
 {
-page_path: window.location.pathname
+page_path:window.location.pathname
 }
 );
 
@@ -165,122 +184,70 @@ page_path: window.location.pathname
 
 
 
-{/* SEO Schema */}
+{/* Structured Data */}
 
 
 <script
 type="application/ld+json"
 dangerouslySetInnerHTML={{
-__html: JSON.stringify([
+__html:JSON.stringify([
 
 
 {
+
+
 "@context":"https://schema.org",
+
 "@type":"Organization",
 
-"name":
-"NorthSky Reviews",
+"name":"NorthSky Reviews",
 
-"url":
-siteUrl,
+"url":siteUrl,
 
 "logo":
 `${siteUrl}/icon.png`,
 
+
 "description":
-"Technology reviews, comparisons, and buying guides for VPNs, AI tools, travel technology, software, and gadgets."
+"Independent technology reviews, comparisons, and buying guides."
 
 },
 
 
 
 {
+
+
 "@context":"https://schema.org",
+
 "@type":"WebSite",
 
-"name":
-"NorthSky Reviews",
+"name":"NorthSky Reviews",
 
-"url":
-siteUrl
-
-},
+"url":siteUrl,
 
 
+"potentialAction":{
 
-{
-"@context":"https://schema.org",
-"@type":"Review",
+"@type":"SearchAction",
 
-"itemReviewed":
-{
-"@type":"Product",
+"target":{
 
-"name":
-"NordVPN"
+"@type":"EntryPoint",
 
-},
-
-"author":
-{
-"@type":"Organization",
-
-"name":
-"NorthSky Reviews"
-
-},
-
-"reviewRating":
-{
-"@type":"Rating",
-
-"ratingValue":
-"5",
-
-"bestRating":
-"5"
-
-}
+"urlTemplate":
+`${siteUrl}/search?q={search_term_string}`
 
 },
 
 
-
-{
-"@context":"https://schema.org",
-"@type":"Review",
-
-"itemReviewed":
-{
-"@type":"Product",
-
-"name":
-"Saily eSIM"
-
-},
-
-"author":
-{
-"@type":"Organization",
-
-"name":
-"NorthSky Reviews"
-
-},
-
-"reviewRating":
-{
-"@type":"Rating",
-
-"ratingValue":
-"5",
-
-"bestRating":
-"5"
+"query-input":
+"required name=search_term_string"
 
 }
 
 }
+
 
 
 ])
@@ -292,7 +259,10 @@ siteUrl
 
 
 
-{/* Header */}
+
+
+
+{/* Navigation */}
 
 
 <header className="sticky top-0 z-50 border-b bg-white/90 backdrop-blur">
@@ -312,6 +282,7 @@ NorthSky
 Reviews
 </span>
 
+
 </Link>
 
 
@@ -320,32 +291,33 @@ Reviews
 <div className="hidden gap-8 text-sm font-semibold md:flex">
 
 
-<Link href="/" className="hover:text-blue-600">
+<Link href="/">
 Home
 </Link>
 
 
-<Link href="/reviews" className="hover:text-blue-600">
+<Link href="/reviews">
 Reviews
 </Link>
 
 
-<Link href="/categories" className="hover:text-blue-600">
+<Link href="/categories">
 Categories
 </Link>
 
 
-<Link href="/comparisons" className="hover:text-blue-600">
+<Link href="/comparisons">
 Comparisons
 </Link>
 
 
-<Link href="/deals" className="hover:text-blue-600">
+<Link href="/deals">
 Deals
 </Link>
 
 
 </div>
+
 
 
 </nav>
@@ -357,7 +329,12 @@ Deals
 
 
 
+
+
+
 {children}
+
+
 
 
 
@@ -382,6 +359,7 @@ Deals
 
 <div>
 
+
 <h3 className="text-xl font-black">
 
 NorthSky
@@ -393,11 +371,12 @@ Reviews
 </h3>
 
 
-<p className="mt-4 text-sm text-slate-600">
 
-Independent technology reviews,
-comparisons, and buying guides
-helping you make smarter decisions.
+<p className="mt-4 text-sm leading-6 text-slate-600">
+
+Independent reviews, comparisons,
+and buying guides helping you make
+smarter technology decisions.
 
 </p>
 
@@ -410,11 +389,15 @@ helping you make smarter decisions.
 
 
 
+
+
 <div>
+
 
 <h4 className="font-bold">
 Explore
 </h4>
+
 
 
 <div className="mt-4 flex flex-col gap-3 text-sm text-slate-600">
@@ -452,7 +435,9 @@ Deals
 
 
 
+
 <div>
+
 
 <h4 className="font-bold">
 Legal
@@ -493,18 +478,22 @@ Contact
 
 
 
+
 <div>
+
 
 <h4 className="font-bold">
 Affiliate Disclosure
 </h4>
 
 
+
 <p className="mt-4 text-sm leading-6 text-slate-600">
 
-Some links on NorthSky Reviews are affiliate links.
-We may earn a commission if you purchase through
-these links at no additional cost to you.
+Some links on NorthSky Reviews are
+affiliate links. We may earn a commission
+when you purchase through them at no
+extra cost to you.
 
 </p>
 
@@ -515,7 +504,12 @@ these links at no additional cost to you.
 
 
 
+
+
 </div>
+
+
+
 
 
 
@@ -523,10 +517,13 @@ these links at no additional cost to you.
 
 <div className="mt-10 border-t pt-6 text-center text-sm text-slate-500">
 
+
 © {new Date().getFullYear()} NorthSky Reviews.
 All rights reserved.
 
+
 </div>
+
 
 
 
