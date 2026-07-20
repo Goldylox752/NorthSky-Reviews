@@ -13,7 +13,8 @@ export const metadata: Metadata = {
     "NorthSky Reviews | Best VPNs, AI Tools, Travel Tech & Buying Guides",
 
   description:
-    "NorthSky Reviews provides independent technology reviews, comparisons, and buying guides covering VPNs, AI tools, travel technology, software, cybersecurity, hosting, and gadgets.",
+    "Independent reviews, comparisons, and buying guides covering VPNs, AI tools, travel technology, software, cybersecurity, and gadgets.",
+
 
   keywords: [
     "VPN reviews",
@@ -24,10 +25,10 @@ export const metadata: Metadata = {
     "technology reviews",
     "software comparisons",
     "travel technology",
-    "cybersecurity tools",
     "buying guides",
     "NorthSky Reviews",
   ],
+
 
   authors: [
     {
@@ -35,11 +36,14 @@ export const metadata: Metadata = {
     },
   ],
 
+
   creator:
     "NorthSky Reviews",
 
+
   metadataBase:
     new URL(siteUrl),
+
 
 
   openGraph: {
@@ -48,7 +52,7 @@ export const metadata: Metadata = {
       "NorthSky Reviews | Smart Technology Recommendations",
 
     description:
-      "Expert reviews and comparisons for VPNs, AI tools, travel technology, and software.",
+      "Find the best VPNs, AI tools, travel technology, and software with expert comparisons.",
 
     url:
       siteUrl,
@@ -60,6 +64,7 @@ export const metadata: Metadata = {
       "website",
 
   },
+
 
 
   twitter: {
@@ -90,13 +95,15 @@ export const metadata: Metadata = {
 
 
 
+
+
 export default function RootLayout({
 
-  children,
+children,
 
 }: Readonly<{
 
-  children: React.ReactNode;
+children: React.ReactNode;
 
 }>) {
 
@@ -110,7 +117,9 @@ return (
 
 
 
-{/* Google Analytics */}
+
+
+{/* Google Analytics 4 */}
 
 <Script
 src="https://www.googletagmanager.com/gtag/js?id=G-528699336"
@@ -130,6 +139,7 @@ window.dataLayer = window.dataLayer || [];
 function gtag(){
 window.dataLayer.push(arguments);
 }
+
 
 gtag(
 "js",
@@ -152,7 +162,10 @@ page_path: window.location.pathname
 
 
 
-{/* SEO Structured Data */}
+
+
+
+{/* SEO Schema */}
 
 
 <script
@@ -175,7 +188,8 @@ siteUrl,
 `${siteUrl}/icon.png`,
 
 "description":
-"Technology reviews, comparisons, and buying guides covering VPNs, AI tools, travel technology, software, cybersecurity, and gadgets."
+"Technology reviews, comparisons, and buying guides for VPNs, AI tools, travel technology, software, and gadgets."
+
 },
 
 
@@ -188,22 +202,43 @@ siteUrl,
 "NorthSky Reviews",
 
 "url":
-siteUrl,
+siteUrl
 
-"potentialAction":
-{
-"@type":"SearchAction",
-
-"target":
-{
-"@type":"EntryPoint",
-
-"urlTemplate":
-`${siteUrl}/search?q={search_term_string}`
 },
 
-"query-input":
-"required name=search_term_string"
+
+
+{
+"@context":"https://schema.org",
+"@type":"Review",
+
+"itemReviewed":
+{
+"@type":"Product",
+
+"name":
+"NordVPN"
+
+},
+
+"author":
+{
+"@type":"Organization",
+
+"name":
+"NorthSky Reviews"
+
+},
+
+"reviewRating":
+{
+"@type":"Rating",
+
+"ratingValue":
+"5",
+
+"bestRating":
+"5"
 
 }
 
@@ -219,74 +254,39 @@ siteUrl,
 {
 "@type":"Product",
 
-"name":"NordVPN",
-
-"brand":
-{
-"@type":"Brand",
-"name":"NordVPN"
-}
+"name":
+"Saily eSIM"
 
 },
 
 "author":
 {
 "@type":"Organization",
-"name":"NorthSky Reviews"
+
+"name":
+"NorthSky Reviews"
+
 },
 
 "reviewRating":
 {
 "@type":"Rating",
-"ratingValue":"5",
-"bestRating":"5"
-},
 
-"reviewBody":
-"NordVPN offers strong privacy protection, fast speeds, advanced security features, and reliable performance."
-},
+"ratingValue":
+"5",
 
+"bestRating":
+"5"
 
-
-{
-"@context":"https://schema.org",
-"@type":"Review",
-
-"itemReviewed":
-{
-"@type":"Product",
-
-"name":"Saily eSIM",
-
-"brand":
-{
-"@type":"Brand",
-"name":"Saily"
 }
 
-},
-
-"author":
-{
-"@type":"Organization",
-"name":"NorthSky Reviews"
-},
-
-"reviewRating":
-{
-"@type":"Rating",
-"ratingValue":"5",
-"bestRating":"5"
-},
-
-"reviewBody":
-"Saily eSIM provides affordable international mobile data plans with simple setup for travelers."
 }
 
 
 ])
 }}
 />
+
 
 
 
@@ -307,11 +307,13 @@ className="text-2xl font-black tracking-tight"
 >
 
 NorthSky
+
 <span className="text-blue-600">
 Reviews
 </span>
 
 </Link>
+
 
 
 
@@ -362,13 +364,19 @@ Deals
 
 
 
+
+{/* Footer */}
+
+
 <footer className="mt-20 border-t bg-slate-50">
 
 
 <div className="mx-auto max-w-7xl px-6 py-12">
 
 
-<div className="grid gap-10 md:grid-cols-3">
+<div className="grid gap-10 md:grid-cols-4">
+
+
 
 
 
@@ -385,16 +393,19 @@ Reviews
 </h3>
 
 
-<p className="mt-4 text-sm leading-6 text-slate-600">
+<p className="mt-4 text-sm text-slate-600">
 
 Independent technology reviews,
 comparisons, and buying guides
-helping you make smarter purchasing
-decisions.
+helping you make smarter decisions.
 
 </p>
 
+
 </div>
+
+
+
 
 
 
@@ -408,26 +419,76 @@ Explore
 
 <div className="mt-4 flex flex-col gap-3 text-sm text-slate-600">
 
+
 <Link href="/reviews">
 Reviews
 </Link>
+
 
 <Link href="/categories">
 Categories
 </Link>
 
+
 <Link href="/comparisons">
 Comparisons
 </Link>
+
 
 <Link href="/deals">
 Deals
 </Link>
 
+
 </div>
 
 
 </div>
+
+
+
+
+
+
+
+
+<div>
+
+<h4 className="font-bold">
+Legal
+</h4>
+
+
+<div className="mt-4 flex flex-col gap-3 text-sm text-slate-600">
+
+
+<Link href="/privacy-policy">
+Privacy Policy
+</Link>
+
+
+<Link href="/affiliate-disclosure">
+Affiliate Disclosure
+</Link>
+
+
+<Link href="/editorial-policy">
+Editorial Policy
+</Link>
+
+
+<Link href="/contact">
+Contact
+</Link>
+
+
+</div>
+
+
+</div>
+
+
+
 
 
 
@@ -442,8 +503,8 @@ Affiliate Disclosure
 <p className="mt-4 text-sm leading-6 text-slate-600">
 
 Some links on NorthSky Reviews are affiliate links.
-We may earn a commission when you purchase through
-these links at no extra cost to you.
+We may earn a commission if you purchase through
+these links at no additional cost to you.
 
 </p>
 
@@ -451,7 +512,11 @@ these links at no extra cost to you.
 </div>
 
 
+
+
+
 </div>
+
 
 
 
@@ -465,10 +530,13 @@ All rights reserved.
 
 
 
+
 </div>
 
 
 </footer>
+
+
 
 
 
