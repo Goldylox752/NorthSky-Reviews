@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Newsletter from "@/components/Newsletter";
+import { tools, categories } from "@/app/data/tools";
+import { comparisons } from "@/app/data/comparisons";
 
 export const metadata = {
   title:
@@ -30,79 +32,12 @@ export const metadata = {
   },
 };
 
-const tools = [
-  {
-    name: "ChatGPT",
-    category: "AI Assistant",
-    best: "Best Overall AI Tool",
-    description:
-      "Powerful AI assistant for writing, research, coding, brainstorming, business tasks, and everyday productivity.",
-    link: "https://chat.openai.com",
-    button: "Try ChatGPT →",
-    rating: "4.8",
-  },
-  {
-    name: "Claude AI",
-    category: "AI Assistant",
-    best: "Best For Writing",
-    description:
-      "Advanced AI assistant designed for long documents, analysis, reasoning, and professional writing.",
-    link: "https://claude.ai",
-    button: "Try Claude →",
-    rating: "4.7",
-  },
-  {
-    name: "Midjourney",
-    category: "AI Images",
-    best: "Best AI Image Generator",
-    description:
-      "Create stunning AI artwork, marketing images, designs, and creative visuals.",
-    link: "https://www.midjourney.com",
-    button: "Explore Midjourney →",
-    rating: "4.9",
-  },
-  {
-    name: "GitHub Copilot",
-    category: "AI Coding",
-    best: "Best For Developers",
-    description:
-      "AI coding assistant that helps developers write, debug, and understand software faster.",
-    link: "https://github.com/features/copilot",
-    button: "Get Copilot →",
-    rating: "4.6",
-  },
-  {
-    name: "Jasper AI",
-    category: "AI Marketing",
-    best: "Best Marketing AI",
-    description:
-      "AI writing platform built for businesses, marketing teams, and content creation.",
-    link: "https://www.jasper.ai",
-    button: "Visit Jasper →",
-    rating: "4.5",
-  },
-  {
-    name: "Perplexity AI",
-    category: "AI Search",
-    best: "Best AI Research Tool",
-    description:
-      "AI-powered search engine for research, answers, and information discovery.",
-    link: "https://www.perplexity.ai",
-    button: "Try Perplexity →",
-    rating: "4.7",
-  },
-];
+// Get top 6 tools by rating
+const topTools = [...tools]
+  .sort((a, b) => b.rating - a.rating)
+  .slice(0, 6);
 
-const categories = [
-  { icon: "✍️", name: "AI Writing", slug: "ai-writing" },
-  { icon: "💻", name: "AI Coding", slug: "ai-coding" },
-  { icon: "🎨", name: "AI Images", slug: "ai-images" },
-  { icon: "📈", name: "AI Business", slug: "ai-business" },
-  { icon: "⚡", name: "AI Automation", slug: "ai-automation" },
-  { icon: "🔍", name: "AI Research", slug: "ai-research" },
-];
-
-export default function AIToolsPage() {
+export default function HomePage() {
   return (
     <main className="min-h-screen bg-white text-slate-900">
       {/* Schema Markup */}
@@ -111,13 +46,13 @@ export default function AIToolsPage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            name: "Best AI Tools 2026",
-            description: "AI software reviews and comparisons.",
+            "@type": "WebSite",
+            name: "NorthSky Reviews",
             url: "https://northsky-reviews.vercel.app",
-            about: {
-              "@type": "Thing",
-              name: "Artificial Intelligence Tools",
+            potentialAction: {
+              "@type": "SearchAction",
+              target: "https://northsky-reviews.vercel.app/all-tools?search={search_term_string}",
+              "query-input": "required name=search_term_string",
             },
           }),
         }}
@@ -147,15 +82,27 @@ export default function AIToolsPage() {
               Browse Tools ↓
             </Link>
             <Link
-              href="/reviews"
+              href="/comparisons"
               className="rounded-xl border border-white/30 px-8 py-4 font-bold text-white transition hover:bg-white/10"
             >
-              Read Reviews →
+              Compare Tools →
             </Link>
           </div>
-          <p className="mt-6 text-sm text-slate-400">
-            ⭐ 100+ tools reviewed • 50+ detailed comparisons • Updated weekly
-          </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-6 text-sm text-slate-400">
+            <span>⭐ {tools.length}+ tools reviewed</span>
+            <span>📊 {comparisons.length}+ comparisons</span>
+            <span>🔄 Updated weekly</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Trust Badges ──────────────────────────────────────── */}
+      <section className="bg-white px-6 py-8 border-b">
+        <div className="mx-auto flex max-w-6xl flex-wrap justify-center gap-8 text-sm text-slate-600">
+          <span>🔬 Hands-on testing</span>
+          <span>📝 Honest reviews</span>
+          <span>🔒 No AI-generated content</span>
+          <span>💰 Independent recommendations</span>
         </div>
       </section>
 
@@ -183,27 +130,27 @@ export default function AIToolsPage() {
         </div>
       </section>
 
-      {/* ─── Tools Grid ─────────────────────────────────────────── */}
+      {/* ─── Top Tools ─────────────────────────────────────────── */}
       <section id="tools" className="mx-auto max-w-7xl px-6 py-20">
         <div className="mb-12 flex items-end justify-between">
           <div>
             <h2 className="text-4xl font-black">Top AI Recommendations</h2>
             <p className="mt-2 text-slate-600">
-              Hand-picked by our team of AI experts
+              Hand‑picked by our team of AI experts
             </p>
           </div>
           <Link
             href="/all-tools"
-            className="hidden font-bold text-blue-600 hover:underline sm:block"
+            className="font-bold text-blue-600 hover:underline"
           >
             View All →
           </Link>
         </div>
 
         <div className="grid gap-8 md:grid-cols-3">
-          {tools.map((tool) => (
+          {topTools.map((tool) => (
             <div
-              key={tool.name}
+              key={tool.slug}
               className="group rounded-3xl border p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl"
             >
               <div className="flex items-start justify-between">
@@ -214,29 +161,69 @@ export default function AIToolsPage() {
                   ⭐ {tool.rating}
                 </span>
               </div>
-
               <h3 className="mt-4 text-2xl font-black">{tool.name}</h3>
-              <p className="mt-2 font-bold text-green-600">{tool.best}</p>
+              <p className="mt-2 font-bold text-green-600">{tool.best || "Top Pick"}</p>
               <p className="mt-5 text-slate-600">{tool.description}</p>
-
-              <a
-                href={tool.link}
-                target="_blank"
-                rel="noopener noreferrer sponsored"
-                className="mt-8 inline-block w-full rounded-xl bg-blue-600 px-6 py-3 text-center font-bold text-white transition hover:bg-blue-700"
-              >
-                {tool.button}
-              </a>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {tool.reviewPath && (
+                  <Link
+                    href={tool.reviewPath}
+                    className="text-sm font-bold text-blue-600 hover:underline"
+                  >
+                    Full Review →
+                  </Link>
+                )}
+                <a
+                  href={tool.link}
+                  target="_blank"
+                  rel="noopener noreferrer sponsored"
+                  className="mt-4 inline-block w-full rounded-xl bg-blue-600 px-6 py-3 text-center font-bold text-white transition hover:bg-blue-700"
+                >
+                  Try {tool.name} →
+                </a>
+              </div>
             </div>
           ))}
         </div>
       </section>
 
+      {/* ─── Featured Comparisons ──────────────────────────────── */}
+      {comparisons.length > 0 && (
+        <section className="bg-slate-50 px-6 py-16">
+          <div className="mx-auto max-w-6xl">
+            <div className="flex items-end justify-between">
+              <h2 className="text-3xl font-black">⚖️ Compare Tools</h2>
+              <Link
+                href="/comparisons"
+                className="font-bold text-blue-600 hover:underline"
+              >
+                See All →
+              </Link>
+            </div>
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
+              {comparisons.slice(0, 2).map((c) => (
+                <Link
+                  key={c.slug}
+                  href={`/comparisons/${c.slug}`}
+                  className="rounded-2xl bg-white p-6 shadow transition hover:shadow-lg"
+                >
+                  <h3 className="text-xl font-bold">{c.title}</h3>
+                  <p className="mt-2 text-slate-600 line-clamp-2">{c.description}</p>
+                  <span className="mt-4 inline-block font-bold text-blue-600">
+                    Compare Now →
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ─── Newsletter ─────────────────────────────────────────── */}
       <Newsletter variant="hero" />
 
       {/* ─── How We Review ──────────────────────────────────────── */}
-      <section className="bg-slate-50 px-6 py-20">
+      <section className="px-6 py-20">
         <div className="mx-auto max-w-4xl">
           <h2 className="text-center text-4xl font-black">
             How We Review AI Tools
@@ -264,7 +251,7 @@ export default function AIToolsPage() {
             ].map((item) => (
               <div
                 key={item.title}
-                className="rounded-2xl bg-white p-8 text-center shadow"
+                className="rounded-2xl bg-slate-50 p-8 text-center"
               >
                 <div className="text-4xl">{item.icon}</div>
                 <h3 className="mt-4 text-xl font-bold">{item.title}</h3>
