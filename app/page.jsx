@@ -1,94 +1,154 @@
 import Link from "next/link";
 import Newsletter from "@/components/Newsletter";
+import SearchBar from "@/components/SearchBar";
+
 import { tools, categories } from "@/app/data/tools";
 import { comparisons } from "@/app/data/comparisons";
 
+
 export const metadata = {
+
   title:
     "NorthSky Reviews | Best AI Tools, Software & Tech Reviews 2026",
+
   description:
     "Find the best AI tools, software, VPNs, laptops, hosting, and technology products. Expert reviews, comparisons, and buying guides from NorthSky Reviews.",
-  keywords: [
-    "best AI tools 2026",
+
+  keywords:[
+    "AI tools 2026",
     "AI software reviews",
     "technology reviews",
     "VPN reviews",
     "software comparisons",
-    "best productivity tools",
+    "productivity tools",
     "AI automation tools",
+    "best software"
   ],
-  openGraph: {
-    title: "NorthSky Reviews | Best AI Tools & Tech Reviews 2026",
+
+  openGraph:{
+
+    title:
+      "NorthSky Reviews | Best AI Tools & Technology Reviews",
+
     description:
-      "Independent reviews and comparisons to help you choose the best technology products.",
-    url: "https://northsky-reviews.vercel.app",
-    siteName: "NorthSky Reviews",
-    images: [
+      "Independent technology reviews, comparisons, and buying guides.",
+
+    url:
+      "https://northsky-reviews.vercel.app",
+
+    siteName:
+      "NorthSky Reviews",
+
+    images:[
       {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "NorthSky Reviews",
-      },
-    ],
-  },
+        url:"/og-image.jpg",
+        width:1200,
+        height:630,
+        alt:"NorthSky Reviews"
+      }
+    ]
+
+  }
+
 };
 
-const topTools = [...tools]
-  .sort((a, b) => b.rating - a.rating)
-  .slice(0, 6);
 
 
-const trendingTools = tools.slice(0,6);
+const topTools =
+[
+...tools
+]
+.sort(
+(a,b)=>
+b.rating-a.rating
+)
+.slice(0,6);
+
+
+
+const trendingTools =
+tools.slice(0,6);
+
+
+
 
 
 export default function HomePage(){
+
 
 return (
 
 <main className="min-h-screen bg-white text-slate-900">
 
 
+
+{/* SEO Schema */}
+
 <script
+
 type="application/ld+json"
+
 dangerouslySetInnerHTML={{
+
 __html:JSON.stringify({
-"@context":"https://schema.org",
-"@type":"WebSite",
-"name":"NorthSky Reviews",
-"url":"https://northsky-reviews.vercel.app",
+
+"@context":
+"https://schema.org",
+
+
+"@type":
+"Organization",
+
+
+"name":
+"NorthSky Reviews",
+
+
+"url":
+"https://northsky-reviews.vercel.app",
+
+
 "description":
-"AI tools, software, and technology reviews.",
-potentialAction:{
-"@type":"SearchAction",
-target:
-"https://northsky-reviews.vercel.app/all-tools?search={search_term_string}",
-"query-input":
-"required name=search_term_string"
-}
+"Independent reviews and comparisons for AI tools, software, and technology products."
+
+
 })
+
 }}
+
 />
+
+
 
 
 
 {/* HERO */}
 
+
 <section className="bg-gradient-to-br from-slate-950 via-slate-800 to-blue-900 px-6 py-24 text-center text-white">
+
 
 <div className="mx-auto max-w-5xl">
 
 
+
 <div className="inline-flex rounded-full bg-blue-500/20 px-5 py-2 text-sm font-bold text-blue-300">
+
 🚀 Updated Weekly For 2026
+
 </div>
+
+
 
 
 <h1 className="mt-6 text-5xl font-black md:text-7xl">
 
+
 Find The Best
 
+
 <br/>
+
 
 <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
 
@@ -96,58 +156,51 @@ AI Tools & Technology
 
 </span>
 
+
 </h1>
+
+
+
 
 
 <p className="mx-auto mt-6 max-w-3xl text-xl text-slate-300">
 
+
 Expert reviews, comparisons, and buying guides for AI software,
 business tools, laptops, VPNs, hosting, and emerging technology.
+
 
 </p>
 
 
 
-{/* SEARCH */}
-
-<form
-action="/all-tools"
-className="mx-auto mt-10 flex max-w-3xl"
->
-
-<input
-
-name="search"
-
-placeholder="Search AI tools, software, VPNs, laptops..."
-
-className="w-full rounded-l-xl px-6 py-4 text-slate-900 outline-none"
-
-/>
 
 
-<button
 
-className="rounded-r-xl bg-blue-600 px-8 font-bold hover:bg-blue-700"
-
->
-
-Search
-
-</button>
+{/* LIVE SEARCH */}
 
 
-</form>
+<div className="mx-auto mt-10 flex max-w-3xl justify-center">
+
+
+<SearchBar />
+
+
+</div>
+
+
+
 
 
 
 <div className="mt-10 flex flex-wrap justify-center gap-4">
 
+
 <Link
 
 href="#tools"
 
-className="rounded-xl bg-blue-600 px-8 py-4 font-bold"
+className="rounded-xl bg-blue-600 px-8 py-4 font-bold hover:bg-blue-700"
 
 >
 
@@ -156,11 +209,13 @@ Browse Reviews ↓
 </Link>
 
 
+
+
 <Link
 
 href="/comparisons"
 
-className="rounded-xl border border-white/30 px-8 py-4 font-bold"
+className="rounded-xl border border-white/30 px-8 py-4 font-bold hover:bg-white/10"
 
 >
 
@@ -168,72 +223,129 @@ Compare Products →
 
 </Link>
 
-</div>
-
-
 
 </div>
+
+
+
+
+</div>
+
 
 </section>
+
+
+
 
 
 
 
 {/* STATS */}
 
+
 <section className="border-b bg-white px-6 py-10">
+
 
 <div className="mx-auto grid max-w-5xl gap-6 text-center md:grid-cols-4">
 
 
+
 <div>
+
 <h3 className="text-3xl font-black">
+
 {tools.length}+
+
 </h3>
+
+
 <p className="text-slate-600">
+
 Reviews
+
 </p>
+
+
 </div>
 
 
+
+
+
 <div>
+
 <h3 className="text-3xl font-black">
+
 {comparisons.length}+
+
 </h3>
+
+
 <p className="text-slate-600">
+
 Comparisons
+
 </p>
+
+
 </div>
 
 
+
+
+
 <div>
+
 <h3 className="text-3xl font-black">
+
 50+
+
 </h3>
+
+
 <p className="text-slate-600">
+
 Buying Guides
+
 </p>
+
+
 </div>
+
+
+
 
 
 <div>
+
 <h3 className="text-3xl font-black">
+
 Weekly
+
 </h3>
+
+
 <p className="text-slate-600">
+
 Updates
+
 </p>
-</div>
 
 
 </div>
+
+
+
+</div>
+
 
 </section>
-{/* BEST OF 2026 */}
+{/* BEST TECHNOLOGY PICKS */}
 
 <section className="bg-slate-50 px-6 py-20">
 
 <div className="mx-auto max-w-6xl">
+
 
 <div className="text-center">
 
@@ -242,96 +354,115 @@ Updates
 </h2>
 
 <p className="mt-3 text-slate-600">
-Our top recommendations across the most popular categories.
+Our top recommendations across the most popular technology categories.
 </p>
 
 </div>
+
+
 
 
 <div className="mt-10 grid gap-6 md:grid-cols-3">
 
 
 {[
+
 {
 icon:"🤖",
-title:"Best AI Assistant",
-desc:"Top AI tools for productivity, research, and business."
+title:"Best AI Assistants",
+desc:"Chatbots, AI agents, and productivity assistants for work and business.",
+link:"/categories/ai"
 },
 
 {
 icon:"💻",
 title:"Best Coding AI",
-desc:"AI-powered development tools for programmers."
+desc:"AI-powered development tools for programmers and engineers.",
+link:"/categories/coding"
 },
 
 {
 icon:"🎨",
 title:"Best Creative AI",
-desc:"Image, video, and design tools for creators."
+desc:"Image, video, design, and content creation tools.",
+link:"/categories/creative-ai"
 },
 
 {
 icon:"🔒",
-title:"Best VPN",
-desc:"Privacy, security, and streaming recommendations."
+title:"Best VPN Services",
+desc:"Privacy, security, and streaming VPN recommendations.",
+link:"/categories/vpn"
 },
 
 {
 icon:"🌐",
 title:"Best Web Tools",
-desc:"Hosting, website builders, and online services."
+desc:"Hosting, website builders, and online business tools.",
+link:"/categories/web-tools"
 },
 
 {
 icon:"📱",
 title:"Best Tech Gear",
-desc:"Laptops, accessories, and smart devices."
+desc:"Laptops, accessories, and smart technology.",
+link:"/categories/laptops"
 }
 
 ].map((item)=>(
 
-<div
+
+<Link
 
 key={item.title}
+
+href={item.link}
 
 className="rounded-3xl bg-white p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl"
 
 >
 
+
 <div className="text-4xl">
+
 {item.icon}
+
 </div>
 
 
-<h3 className="mt-4 text-xl font-black">
+
+<h3 className="mt-5 text-xl font-black">
+
 {item.title}
+
 </h3>
 
 
+
 <p className="mt-3 text-slate-600">
+
 {item.desc}
+
 </p>
 
 
-<Link
 
-href="/all-tools"
-
-className="mt-5 inline-block font-bold text-blue-600 hover:underline"
-
->
+<span className="mt-5 inline-block font-bold text-blue-600">
 
 Explore →
 
+</span>
+
+
+
 </Link>
 
-
-</div>
 
 ))}
 
 
 </div>
+
 
 </div>
 
@@ -341,20 +472,29 @@ Explore →
 
 
 
+
 {/* TRENDING TOOLS */}
 
-<section className="px-6 py-20">
+
+<section
+id="tools"
+className="px-6 py-20"
+>
+
 
 <div className="mx-auto max-w-7xl">
 
 
+
 <div className="flex items-center justify-between">
+
 
 <div>
 
+
 <h2 className="text-4xl font-black">
 
-🔥 Trending Right Now
+🔥 Trending AI Tools
 
 </h2>
 
@@ -365,14 +505,16 @@ Popular tools readers are exploring this week.
 
 </p>
 
+
 </div>
+
 
 
 <Link
 
 href="/all-tools"
 
-className="font-bold text-blue-600"
+className="font-bold text-blue-600 hover:underline"
 
 >
 
@@ -381,7 +523,12 @@ View All →
 </Link>
 
 
+
 </div>
+
+
+
+
 
 
 
@@ -395,20 +542,23 @@ View All →
 
 key={tool.slug}
 
-href={tool.reviewPath || "/all-tools"}
+href={`/reviews/${tool.slug}`}
 
-className="rounded-2xl border bg-white p-6 transition hover:-translate-y-1 hover:shadow-lg"
+className="rounded-3xl border bg-white p-7 transition hover:-translate-y-2 hover:shadow-xl"
 
 >
 
 
+
 <div className="flex justify-between">
+
 
 <span className="rounded-full bg-blue-50 px-3 py-1 text-sm font-bold text-blue-600">
 
 {tool.category}
 
 </span>
+
 
 
 <span className="font-bold text-green-600">
@@ -418,28 +568,36 @@ className="rounded-2xl border bg-white p-6 transition hover:-translate-y-1 hover
 </span>
 
 
+
 </div>
 
 
-<h3 className="mt-5 text-xl font-black">
+
+
+<h3 className="mt-5 text-2xl font-black">
 
 {tool.name}
 
 </h3>
 
 
-<p className="mt-2 text-slate-600 line-clamp-2">
+
+
+<p className="mt-3 line-clamp-3 text-slate-600">
 
 {tool.description}
 
 </p>
 
 
-<span className="mt-4 inline-block font-bold text-blue-600">
 
-Read Review →
 
-</span>
+<div className="mt-5 font-bold text-blue-600">
+
+Read Full Review →
+
+</div>
+
 
 
 </Link>
@@ -453,13 +611,17 @@ Read Review →
 
 </div>
 
+
 </section>
 
 
 
 
 
+
+
 {/* CATEGORIES */}
+
 
 <section className="bg-slate-50 px-6 py-20">
 
@@ -476,45 +638,17 @@ Explore Categories
 
 <p className="mt-3 text-center text-slate-600">
 
-Find technology solutions for every need.
+Find the right technology for your needs.
 
 </p>
+
 
 
 
 <div className="mt-10 grid gap-5 sm:grid-cols-2 md:grid-cols-4">
 
 
-{[
-
-...categories,
-
-{
-name:"VPNs",
-slug:"vpn",
-icon:"🔒"
-},
-
-{
-name:"Laptops",
-slug:"laptops",
-icon:"💻"
-},
-
-{
-name:"Hosting",
-slug:"hosting",
-icon:"🌐"
-},
-
-{
-name:"Finance",
-slug:"finance",
-icon:"💳"
-}
-
-
-].map((category)=>(
+{categories.map((category)=>(
 
 
 <Link
@@ -528,7 +662,7 @@ className="rounded-2xl bg-white p-6 text-center font-bold shadow-sm transition h
 >
 
 
-<div className="text-3xl">
+<div className="text-4xl">
 
 {category.icon}
 
@@ -542,10 +676,12 @@ className="rounded-2xl bg-white p-6 text-center font-bold shadow-sm transition h
 </div>
 
 
+
 </Link>
 
 
 ))}
+
 
 
 </div>
@@ -559,22 +695,32 @@ className="rounded-2xl bg-white p-6 text-center font-bold shadow-sm transition h
 
 <section className="px-6 py-20">
 
+
 <div className="mx-auto max-w-7xl">
+
 
 
 <div className="flex items-end justify-between">
 
+
 <div>
 
 <h2 className="text-4xl font-black">
+
 📝 Latest Reviews
+
 </h2>
 
+
 <p className="mt-2 text-slate-600">
+
 New technology reviews and expert recommendations.
+
 </p>
 
+
 </div>
+
 
 
 <Link
@@ -590,7 +736,11 @@ View All Reviews →
 </Link>
 
 
+
 </div>
+
+
+
 
 
 
@@ -604,11 +754,12 @@ View All Reviews →
 
 key={tool.slug}
 
-href={tool.reviewPath || "/all-tools"}
+href={`/reviews/${tool.slug}`}
 
 className="rounded-3xl border bg-white p-8 transition hover:-translate-y-2 hover:shadow-xl"
 
 >
+
 
 
 <div className="text-sm font-bold text-blue-600">
@@ -618,11 +769,15 @@ LATEST REVIEW
 </div>
 
 
+
+
 <h3 className="mt-4 text-2xl font-black">
 
 {tool.name}
 
 </h3>
+
+
 
 
 <p className="mt-3 text-slate-600">
@@ -632,13 +787,17 @@ LATEST REVIEW
 </p>
 
 
-<div className="mt-5 flex items-center justify-between">
+
+
+<div className="mt-6 flex items-center justify-between">
+
 
 <span className="font-bold">
 
-Score
+Rating
 
 </span>
+
 
 
 <span className="rounded-full bg-green-50 px-4 py-2 font-black text-green-600">
@@ -649,6 +808,7 @@ Score
 
 
 </div>
+
 
 
 </Link>
@@ -662,7 +822,116 @@ Score
 
 </div>
 
+
 </section>
+
+
+
+
+
+
+
+
+{/* FEATURED COMPARISONS */}
+
+
+<section className="bg-slate-50 px-6 py-20">
+
+
+<div className="mx-auto max-w-6xl">
+
+
+<div className="flex items-center justify-between">
+
+
+<h2 className="text-4xl font-black">
+
+⚖️ Compare Technology
+
+</h2>
+
+
+
+<Link
+
+href="/comparisons"
+
+className="font-bold text-blue-600"
+
+>
+
+View All →
+
+</Link>
+
+
+</div>
+
+
+
+
+
+<div className="mt-10 grid gap-6 md:grid-cols-2">
+
+
+{comparisons.slice(0,4).map((item)=>(
+
+
+<Link
+
+key={item.slug}
+
+href={`/comparisons/${item.slug}`}
+
+className="rounded-3xl bg-white p-8 shadow-sm transition hover:shadow-xl"
+
+>
+
+
+
+<h3 className="text-2xl font-black">
+
+{item.title}
+
+</h3>
+
+
+
+
+<p className="mt-3 text-slate-600">
+
+{item.description}
+
+</p>
+
+
+
+
+<span className="mt-5 inline-block font-bold text-blue-600">
+
+Compare Now →
+
+</span>
+
+
+
+</Link>
+
+
+))}
+
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
 
 
 
@@ -670,7 +939,8 @@ Score
 
 {/* BUYING GUIDES */}
 
-<section className="bg-slate-50 px-6 py-20">
+
+<section className="px-6 py-20">
 
 
 <div className="mx-auto max-w-6xl">
@@ -683,7 +953,19 @@ Score
 </h2>
 
 
+
+<p className="mt-3 text-center text-slate-600">
+
+Expert guides to help you choose better technology.
+
+</p>
+
+
+
+
+
 <div className="mt-10 grid gap-6 md:grid-cols-3">
+
 
 
 {[
@@ -700,6 +982,7 @@ Score
 
 "Best Cloud Storage Services"
 
+
 ].map((guide)=>(
 
 
@@ -709,17 +992,27 @@ key={guide}
 
 href="/guides"
 
-className="rounded-2xl bg-white p-6 font-bold shadow-sm transition hover:shadow-lg"
+className="rounded-2xl bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
 
 >
 
+
+
+<h3 className="font-black">
+
 {guide}
 
-<span className="mt-3 block text-blue-600">
+</h3>
+
+
+
+<span className="mt-4 block font-bold text-blue-600">
 
 Read Guide →
 
 </span>
+
+
 
 </Link>
 
@@ -727,6 +1020,7 @@ Read Guide →
 ))}
 
 
+
 </div>
 
 
@@ -734,88 +1028,112 @@ Read Guide →
 
 
 </section>
-
-
-
-
-
 {/* EDITORIAL AUTHORITY */}
 
 <section className="px-6 py-20">
 
 
-<div className="mx-auto max-w-4xl rounded-3xl bg-slate-900 p-10 text-center text-white">
+<div className="mx-auto max-w-5xl rounded-3xl bg-slate-950 p-12 text-center text-white">
 
 
 <div className="text-5xl">
+
 🔬
+
 </div>
 
 
-<h2 className="mt-5 text-3xl font-black">
+
+
+<h2 className="mt-6 text-4xl font-black">
 
 How NorthSky Reviews Works
 
 </h2>
 
 
-<p className="mt-5 text-lg text-slate-300">
 
-We research, compare, and analyze technology products
-to help you make smarter buying decisions.
+
+<p className="mx-auto mt-5 max-w-3xl text-lg text-slate-300">
+
+We research, test, and compare AI tools, software,
+and technology products to help you make smarter
+buying decisions.
 
 </p>
 
 
 
-<div className="mt-10 grid gap-6 md:grid-cols-3">
+
+
+
+<div className="mt-10 grid gap-8 md:grid-cols-3">
 
 
 <div>
 
-<h3 className="font-black">
-Testing
+<h3 className="text-xl font-black">
+
+Hands-On Testing
+
 </h3>
 
-<p className="mt-2 text-sm text-slate-400">
 
-Hands-on evaluation of features and performance.
+<p className="mt-3 text-sm text-slate-400">
+
+We analyze features, performance, usability,
+and real-world results.
 
 </p>
+
 
 </div>
 
 
 
+
 <div>
 
-<h3 className="font-black">
-Comparison
+<h3 className="text-xl font-black">
+
+Data Comparison
+
 </h3>
 
-<p className="mt-2 text-sm text-slate-400">
 
-Pricing, features, and real-world value analysis.
+<p className="mt-3 text-sm text-slate-400">
+
+We compare pricing, features, and value
+across competing products.
 
 </p>
+
 
 </div>
 
 
 
+
+
 <div>
 
-<h3 className="font-black">
+<h3 className="text-xl font-black">
+
 Transparency
+
 </h3>
 
-<p className="mt-2 text-sm text-slate-400">
 
-Clear affiliate disclosures and honest opinions.
+<p className="mt-3 text-sm text-slate-400">
+
+We clearly disclose affiliate relationships
+and maintain honest recommendations.
 
 </p>
 
+
 </div>
+
 
 
 </div>
@@ -830,69 +1148,62 @@ Clear affiliate disclosures and honest opinions.
 
 
 
-{/* FINAL CTA */}
+
+
+
+{/* NEWSLETTER */}
+
 
 <section className="px-6 py-20">
 
 
-<div className="mx-auto max-w-5xl rounded-3xl bg-gradient-to-r from-blue-600 to-purple-600 p-12 text-center text-white">
+<div className="mx-auto max-w-5xl">
 
 
-<h2 className="text-4xl font-black">
-
-Find The Right Technology Faster
-
-</h2>
-
-
-<p className="mx-auto mt-4 max-w-2xl text-lg text-blue-100">
-
-Join NorthSky Reviews for weekly technology recommendations,
-deals, and expert comparisons.
-
-</p>
-
-
-<Link
-
-href="/newsletter"
-
-className="mt-8 inline-block rounded-xl bg-white px-8 py-4 font-black text-blue-600"
-
->
-
-Join Free Newsletter →
-
-</Link>
+<Newsletter variant="hero" />
 
 
 </div>
 
 
 </section>
-{/* TRUST & SEO FOOTER */}
-
-<footer className="border-t bg-slate-950 px-6 py-16 text-white">
-
-<div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-4">
 
 
-{/* Brand */}
-
-<div>
-
-<h2 className="text-3xl font-black">
-
-NorthSky
-<span className="text-blue-400">.</span>
-
-</h2>
 
 
-<p className="mt-4 text-sm text-slate-400">
 
-Independent reviews, comparisons, and buying guides
-for AI tools, software, and technology products.
+
+
+
+{/* AFFILIATE DISCLOSURE */}
+
+
+<section className="px-6 pb-20">
+
+
+<div className="mx-auto max-w-4xl rounded-3xl bg-slate-100 p-8 text-center">
+
+
+<h3 className="text-xl font-black">
+
+Affiliate Disclosure
+
+</h3>
+
+
+<p className="mt-3 text-sm text-slate-600">
+
+Some links on NorthSky Reviews are affiliate links.
+If you purchase through these links, we may earn a commission
+at no extra cost to you.
+
+</p>
+
+
+<p className="mt-2 text-sm text-slate-500">
+
+Our recommendations are based on research,
+testing, and product value.
 
 </p>
 
@@ -900,11 +1211,72 @@ for AI tools, software, and technology products.
 </div>
 
 
+</section>
 
 
-{/* Reviews */}
+
+
+
+
+
+
+{/* FOOTER */}
+
+
+<footer className="border-t bg-slate-950 px-6 py-16 text-white">
+
+
+<div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-4">
+
+
+
+
+
+{/* BRAND */}
+
 
 <div>
+
+
+<h2 className="text-3xl font-black">
+
+NorthSky
+
+<span className="text-blue-400">
+
+.
+
+</span>
+
+
+</h2>
+
+
+
+
+<p className="mt-4 text-sm text-slate-400">
+
+Independent AI, software, and technology
+reviews helping people choose better tools.
+
+</p>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+{/* REVIEWS */}
+
+
+<div>
+
 
 <h3 className="font-black">
 
@@ -915,29 +1287,50 @@ Reviews
 
 <ul className="mt-4 space-y-3 text-sm text-slate-400">
 
+
 <li>
+
 <Link href="/reviews">
+
 Latest Reviews
+
 </Link>
+
 </li>
 
+
 <li>
+
 <Link href="/comparisons">
+
 Comparisons
+
 </Link>
+
 </li>
 
+
 <li>
+
 <Link href="/guides">
+
 Buying Guides
+
 </Link>
+
 </li>
 
+
 <li>
+
 <Link href="/all-tools">
+
 All Tools
+
 </Link>
+
 </li>
+
 
 </ul>
 
@@ -947,9 +1340,15 @@ All Tools
 
 
 
-{/* Categories */}
+
+
+
+
+{/* CATEGORIES */}
+
 
 <div>
+
 
 <h3 className="font-black">
 
@@ -958,31 +1357,53 @@ Categories
 </h3>
 
 
+
 <ul className="mt-4 space-y-3 text-sm text-slate-400">
 
+
 <li>
+
 <Link href="/categories/ai">
+
 AI Tools
+
 </Link>
+
 </li>
 
-<li>
-<Link href="/categories/vpn">
-VPNs
-</Link>
-</li>
 
 <li>
+
 <Link href="/categories/software">
+
 Software
+
 </Link>
+
 </li>
 
+
 <li>
-<Link href="/categories/laptops">
-Technology
+
+<Link href="/categories/vpn">
+
+VPNs
+
 </Link>
+
 </li>
+
+
+<li>
+
+<Link href="/categories/laptops">
+
+Technology
+
+</Link>
+
+</li>
+
 
 </ul>
 
@@ -992,9 +1413,15 @@ Technology
 
 
 
-{/* Company */}
+
+
+
+
+{/* COMPANY */}
+
 
 <div>
+
 
 <h3 className="font-black">
 
@@ -1003,30 +1430,51 @@ Company
 </h3>
 
 
+
 <ul className="mt-4 space-y-3 text-sm text-slate-400">
 
+
 <li>
+
 <Link href="/about">
+
 About
+
 </Link>
+
 </li>
 
+
 <li>
+
 <Link href="/methodology">
-Review Methodology
+
+Methodology
+
 </Link>
+
 </li>
 
+
 <li>
+
 <Link href="/affiliate-disclosure">
+
 Affiliate Disclosure
+
 </Link>
+
 </li>
 
+
 <li>
+
 <Link href="/contact">
+
 Contact
+
 </Link>
+
 </li>
 
 
@@ -1036,11 +1484,18 @@ Contact
 </div>
 
 
+
+
+
+
 </div>
 
 
 
-{/* Bottom */}
+
+
+
+
 
 <div className="mx-auto mt-12 max-w-7xl border-t border-white/10 pt-8">
 
@@ -1049,13 +1504,17 @@ Contact
 
 
 <p>
+
 © 2026 NorthSky Reviews. All rights reserved.
+
 </p>
 
 
 <p>
+
 Some links may be affiliate links. We may earn commissions
-at no additional cost to you.
+without additional cost to you.
+
 </p>
 
 
@@ -1065,4 +1524,15 @@ at no additional cost to you.
 </div>
 
 
+
 </footer>
+
+
+
+
+
+</main>
+
+);
+
+}
