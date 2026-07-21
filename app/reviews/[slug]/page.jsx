@@ -2,88 +2,168 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { tools } from "@/app/data/tools";
 
-export async function generateStaticParams() {
-  return tools.map((tool) => ({
+
+const siteUrl =
+  "https://northsky-reviews.vercel.app";
+
+
+
+export async function generateStaticParams(){
+
+  return tools.map((tool)=>({
+
     slug: tool.slug,
+
   }));
-}
 
-
-export async function generateMetadata({ params }) {
-
-  const { slug } = await params;
-
-  const tool = tools.find(
-    (item) => item.slug === slug
-  );
-
-  if (!tool) {
-    return {
-      title: "Review Not Found | NorthSky Reviews",
-    };
-  }
-
-
-  return {
-    title: `${tool.name} Review 2026 | NorthSky Reviews`,
-    description:
-      `${tool.name} review, pricing, features, pros, cons, and alternatives. See if ${tool.name} is worth it.`,
-    openGraph:{
-      title:`${tool.name} Review 2026`,
-      description:
-      `Expert analysis of ${tool.name}.`,
-      url:
-      `https://northsky-reviews.vercel.app/reviews/${tool.slug}`
-    }
-  };
 }
 
 
 
-export default async function ReviewPage({ params }) {
 
-  const { slug } = await params;
-
-
-  const tool = tools.find(
-    (item) => item.slug === slug
-  );
+export async function generateMetadata({params}){
 
 
-  if (!tool) {
-    notFound();
-  }
+const {slug}=await params;
 
 
-  return (
+const tool = tools.find(
+(item)=>item.slug === slug
+);
+
+
+
+if(!tool){
+
+return {
+
+title:"Review Not Found | NorthSky Reviews"
+
+};
+
+}
+
+
+
+return {
+
+title:
+`${tool.name} Review 2026 | NorthSky Reviews`,
+
+
+description:
+`${tool.name} review covering features, pricing, pros, cons, alternatives, and whether it is worth using.`,
+
+
+alternates:{
+
+canonical:
+`${siteUrl}/reviews/${tool.slug}`
+
+},
+
+
+openGraph:{
+
+title:
+`${tool.name} Review 2026`,
+
+
+description:
+`Expert ${tool.name} review by NorthSky Reviews.`,
+
+
+url:
+`${siteUrl}/reviews/${tool.slug}`
+
+}
+
+};
+
+
+}
+
+
+
+
+
+export default async function ReviewPage({params}){
+
+
+const {slug}=await params;
+
+
+const tool = tools.find(
+(item)=>item.slug === slug
+);
+
+
+
+if(!tool){
+
+notFound();
+
+}
+
+
+
+
+return (
 
 <main className="min-h-screen bg-white text-slate-900">
 
 
-{/* Review Schema */}
+
+
+
+{/* SEO REVIEW SCHEMA */}
 
 <script
 
 type="application/ld+json"
 
 dangerouslySetInnerHTML={{
+
 __html:JSON.stringify({
 
 "@context":"https://schema.org",
 
 "@type":"Review",
 
-name:`${tool.name} Review`,
+"name":
+`${tool.name} Review 2026`,
 
-reviewRating:{
-"@type":"Rating",
-ratingValue:tool.rating,
-bestRating:"10"
+
+"url":
+`${siteUrl}/reviews/${tool.slug}`,
+
+
+"author":{
+
+"@type":"Organization",
+
+"name":"NorthSky Reviews"
+
 },
 
-itemReviewed:{
+
+"reviewRating":{
+
+"@type":"Rating",
+
+"ratingValue":tool.rating,
+
+"bestRating":"10"
+
+},
+
+
+"itemReviewed":{
+
 "@type":"SoftwareApplication",
-name:tool.name
+
+"name":tool.name
+
 }
 
 })
@@ -95,46 +175,84 @@ name:tool.name
 
 
 
-{/* Hero */}
-
-<section className="bg-slate-950 px-6 py-20 text-white">
-
-<div className="mx-auto max-w-5xl">
 
 
-<div className="text-sm font-bold text-blue-400">
+{/* BREADCRUMBS */}
 
-{tool.category}
+<div className="mx-auto max-w-5xl px-6 pt-8 text-sm text-slate-500">
+
+<Link href="/" className="hover:text-blue-600">
+
+Home
+
+</Link>
+
+{" / "}
+
+<Link href="/reviews" className="hover:text-blue-600">
+
+Reviews
+
+</Link>
+
+{" / "}
+
+<span>
+
+{tool.name}
+
+</span>
+
 
 </div>
 
 
-<h1 className="mt-4 text-5xl font-black">
+
+
+
+
+
+{/* HERO */}
+
+<section className="bg-slate-950 px-6 py-20 text-white">
+
+
+<div className="mx-auto max-w-5xl">
+
+
+<p className="font-bold text-blue-400">
+
+{tool.category}
+
+</p>
+
+
+
+
+<h1 className="mt-5 text-5xl font-black md:text-6xl">
 
 {tool.name} Review 2026
 
 </h1>
 
 
-<p className="mt-5 max-w-3xl text-xl text-slate-300">
+
+<p className="mt-6 max-w-3xl text-xl text-slate-300">
 
 {tool.description}
 
 </p>
 
 
+
+
+
 <div className="mt-8 flex flex-wrap gap-4">
 
 
-<div className="rounded-xl bg-white/10 px-6 py-4">
+<div className="rounded-xl bg-white/10 px-6 py-4 font-bold">
 
-⭐ Score:
-
-<strong className="ml-2">
-
-{tool.rating}/10
-
-</strong>
+⭐ {tool.rating}/10
 
 </div>
 
@@ -162,13 +280,17 @@ Try {tool.name} →
 
 </div>
 
+
 </section>
 
 
 
 
 
-{/* Content */}
+
+
+
+{/* REVIEW CONTENT */}
 
 <section className="mx-auto max-w-5xl px-6 py-16">
 
@@ -176,9 +298,9 @@ Try {tool.name} →
 <div className="grid gap-10 md:grid-cols-3">
 
 
-{/* Main */}
 
 <div className="md:col-span-2">
+
 
 
 <h2 className="text-3xl font-black">
@@ -188,13 +310,17 @@ Overview
 </h2>
 
 
-<p className="mt-4 leading-8 text-slate-600">
 
-NorthSky Reviews tested and analyzed {tool.name}
-to evaluate features, pricing, performance,
-and overall value.
+<p className="mt-5 leading-8 text-slate-600">
+
+NorthSky Reviews evaluates {tool.name}
+based on features, usability, performance,
+pricing, and overall value.
 
 </p>
+
+
+
 
 
 
@@ -206,10 +332,15 @@ Pros & Cons
 </h2>
 
 
+
+
+
 <div className="mt-6 grid gap-6 md:grid-cols-2">
 
 
+
 <div className="rounded-2xl bg-green-50 p-6">
+
 
 <h3 className="font-black text-green-700">
 
@@ -220,26 +351,29 @@ Pros & Cons
 
 <ul className="mt-4 space-y-2">
 
-{(tool.pros || [
-"Easy to use",
-"Powerful features",
-"Good value"
-]).map((item)=>(
+
+{(tool.pros || []).map((item)=>(
 
 <li key={item}>
-• {item}
+
+✓ {item}
+
 </li>
 
 ))}
 
+
 </ul>
+
 
 </div>
 
 
 
 
+
 <div className="rounded-2xl bg-red-50 p-6">
+
 
 <h3 className="font-black text-red-700">
 
@@ -250,22 +384,29 @@ Pros & Cons
 
 <ul className="mt-4 space-y-2">
 
-{(tool.cons || [
-"Premium features may cost extra"
-]).map((item)=>(
+
+{(tool.cons || []).map((item)=>(
 
 <li key={item}>
+
 • {item}
+
 </li>
 
 ))}
 
+
 </ul>
 
+
 </div>
 
 
+
 </div>
+
+
+
 
 
 
@@ -278,17 +419,16 @@ Features
 </h2>
 
 
+
 <ul className="mt-5 space-y-3 text-slate-600">
 
 
-{(tool.features || [
-"Advanced technology",
-"Simple interface",
-"Reliable performance"
-]).map((feature)=>(
+{(tool.features || []).map((item)=>(
 
-<li key={feature}>
-✓ {feature}
+<li key={item}>
+
+✓ {item}
+
 </li>
 
 ))}
@@ -304,9 +444,13 @@ Features
 
 
 
-{/* Sidebar */}
 
-<aside className="rounded-3xl bg-slate-50 p-6">
+
+
+{/* SIDEBAR */}
+
+
+<aside className="h-fit rounded-3xl bg-slate-50 p-6">
 
 
 <h3 className="text-xl font-black">
@@ -316,31 +460,44 @@ Quick Facts
 </h3>
 
 
-<div className="mt-5 space-y-4 text-sm">
+
+<div className="mt-5 space-y-5 text-sm">
 
 
 <p>
-<strong>Category:</strong>
-<br/>
+
+<strong>Category</strong><br/>
+
 {tool.category}
+
 </p>
 
 
+
 <p>
-<strong>Rating:</strong>
-<br/>
+
+<strong>Rating</strong><br/>
+
 ⭐ {tool.rating}/10
+
 </p>
+
+
 
 
 <p>
-<strong>Best For:</strong>
-<br/>
-{tool.best || "General users"}
+
+<strong>Best For</strong><br/>
+
+{tool.bestFor || tool.best || "General users"}
+
 </p>
+
 
 
 </div>
+
+
 
 
 
@@ -357,7 +514,9 @@ Compare Alternatives →
 </Link>
 
 
+
 </aside>
+
 
 
 </div>
@@ -369,7 +528,11 @@ Compare Alternatives →
 
 
 
-{/* CTA */}
+
+
+
+{/* AFFILIATE CTA */}
+
 
 <section className="px-6 pb-20">
 
@@ -382,6 +545,7 @@ Compare Alternatives →
 Ready to try {tool.name}?
 
 </h2>
+
 
 
 <a
@@ -401,13 +565,27 @@ Visit Official Website →
 </a>
 
 
+
+
+<p className="mt-6 text-sm text-blue-100">
+
+Some links may be affiliate links. NorthSky Reviews may earn a commission at no extra cost to you.
+
+</p>
+
+
+
 </div>
 
 
 </section>
 
 
+
+
+
 </main>
 
-  );
+);
+
 }
