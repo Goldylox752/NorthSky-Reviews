@@ -1,104 +1,45 @@
 import Link from "next/link";
+import { tools } from "@/app/data/tools";
+import { comparisons } from "@/app/data/comparisons";
 
 
 export const metadata = {
 
   title:
-    "Technology Reviews 2026 | VPNs, AI Tools, Travel Tech & Software",
+    "Technology Reviews 2026 | AI Tools, VPNs, Software & Tech",
 
   description:
-    "Read trusted technology reviews and comparisons covering VPNs, AI tools, travel technology, software, cybersecurity, and digital products.",
+    "NorthSky Reviews provides expert technology reviews, AI tool comparisons, VPN reviews, software recommendations, and buying guides.",
 
-  keywords: [
+  keywords:[
     "technology reviews",
-    "VPN reviews",
-    "NordVPN review",
-    "Saily eSIM review",
-    "best VPN Canada",
     "AI tool reviews",
+    "VPN reviews",
     "software comparisons",
-    "travel tech reviews",
-  ],
+    "best technology products 2026"
+  ]
 
 };
-
-
-
-const reviews = [
-
-  {
-    title:"NordVPN Review 2026",
-    category:"VPN",
-    description:
-      "Complete NordVPN review covering privacy, security features, speed, pricing, and overall value.",
-    link:"/reviews/nordvpn",
-  },
-
-
-  {
-    title:"Saily eSIM Review 2026",
-    category:"Travel Tech",
-    description:
-      "Complete Saily eSIM review covering setup, coverage, pricing, and international travel use.",
-    link:"/reviews/saily",
-  },
-
-
-  {
-    title:"Best VPNs in Canada 2026",
-    category:"Comparison",
-    description:
-      "Compare the best VPN providers available in Canada for privacy, speed, and security.",
-    link:"/comparisons/best-vpns-canada",
-  },
-
-
-  {
-    title:"NordVPN vs ExpressVPN 2026",
-    category:"Comparison",
-    description:
-      "A detailed comparison of two leading VPN services across features, privacy, performance, and pricing.",
-    link:"/comparisons/nordvpn-vs-expressvpn",
-  },
-
-
-  {
-    title:"Best eSIMs in Canada 2026",
-    category:"Travel",
-    description:
-      "Compare the best eSIM providers for affordable international mobile data.",
-    link:"/travel/best-esim-canada",
-  },
-
-
-  {
-    title:"Best AI Tools 2026",
-    category:"Artificial Intelligence",
-    description:
-      "Explore AI tools for productivity, business automation, creativity, and workflow improvements.",
-    link:"/ai/best-ai-tools-2026",
-  },
-
-];
-
-
 
 
 
 export default function ReviewsPage(){
 
 
+const featuredReviews = [...tools]
+.sort((a,b)=>b.rating-a.rating)
+.slice(0,12);
+
+
+
 return (
 
-<main className="bg-white text-slate-900">
+<main className="min-h-screen bg-white text-slate-900">
 
 
 <script
-
 type="application/ld+json"
-
 dangerouslySetInnerHTML={{
-
 __html:JSON.stringify({
 
 "@context":"https://schema.org",
@@ -107,26 +48,26 @@ __html:JSON.stringify({
 
 "name":"NorthSky Reviews",
 
+"url":
+"https://northsky-reviews.vercel.app/reviews",
+
 "description":
 "Technology reviews, comparisons, and buying guides.",
 
 
-"mainEntity":{
-
+mainEntity:{
 "@type":"ItemList",
 
-"itemListElement":
-
-reviews.map((review,index)=>({
+itemListElement:featuredReviews.map((tool,index)=>({
 
 "@type":"ListItem",
 
-"position":index + 1,
+position:index+1,
 
-"name":review.title,
+name:tool.name,
 
-"url":
-`https://northsky-reviews.vercel.app${review.link}`
+url:
+`https://northsky-reviews.vercel.app/reviews/${tool.slug}`
 
 }))
 
@@ -135,30 +76,80 @@ reviews.map((review,index)=>({
 })
 
 }}
-
 />
 
 
 
 
 
-<section className="bg-slate-950 px-6 py-24 text-center text-white">
+{/* HERO */}
+
+<section className="bg-gradient-to-br from-slate-950 via-slate-900 to-blue-900 px-6 py-24 text-center text-white">
 
 
-<h1 className="text-5xl font-black md:text-6xl">
+<div className="mx-auto max-w-5xl">
+
+
+<div className="inline-flex rounded-full bg-blue-500/20 px-5 py-2 text-sm font-bold text-blue-300">
+
+🔬 Expert Technology Reviews
+
+</div>
+
+
+
+<h1 className="mt-6 text-5xl font-black md:text-7xl">
 
 NorthSky Reviews
 
 </h1>
 
 
+
 <p className="mx-auto mt-6 max-w-3xl text-xl text-slate-300">
 
-Independent technology reviews,
-comparisons, and buying guides helping
-you make smarter purchasing decisions.
+Independent reviews, comparisons, and buying guides
+for AI tools, VPNs, software, travel technology,
+and digital products.
 
 </p>
+
+
+
+<div className="mt-10 flex flex-wrap justify-center gap-4">
+
+
+<Link
+
+href="/all-tools"
+
+className="rounded-xl bg-blue-600 px-8 py-4 font-bold"
+
+>
+
+Browse Tools →
+
+</Link>
+
+
+
+<Link
+
+href="/comparisons"
+
+className="rounded-xl border border-white/30 px-8 py-4 font-bold"
+
+>
+
+Compare Products →
+
+</Link>
+
+
+</div>
+
+
+</div>
 
 
 </section>
@@ -169,65 +160,192 @@ you make smarter purchasing decisions.
 
 
 
+{/* FEATURED REVIEWS */}
+
+
 <section className="mx-auto max-w-7xl px-6 py-20">
 
 
-<h2 className="mb-10 text-4xl font-black">
+<div className="flex items-center justify-between">
 
-Latest Reviews & Comparisons
+
+<div>
+
+<h2 className="text-4xl font-black">
+
+Latest Reviews
 
 </h2>
 
 
+<p className="mt-2 text-slate-600">
 
-
-<div className="grid gap-8 md:grid-cols-3">
-
-
-{reviews.map((review)=>(
-
-
-<Link
-
-key={review.title}
-
-href={review.link}
-
-className="group rounded-2xl border border-slate-200 p-8 transition hover:-translate-y-2 hover:shadow-xl"
-
->
-
-
-<p className="text-sm font-bold text-blue-600">
-
-{review.category}
+Expert analysis of the latest technology products.
 
 </p>
 
 
+</div>
 
-<h3 className="mt-3 text-2xl font-bold group-hover:text-blue-600">
 
-{review.title}
+
+<Link
+
+href="/all-tools"
+
+className="font-bold text-blue-600"
+
+>
+
+View All →
+
+</Link>
+
+
+</div>
+
+
+
+
+
+<div className="mt-10 grid gap-8 md:grid-cols-3">
+
+
+{featuredReviews.map((tool)=>(
+
+
+<Link
+
+key={tool.slug}
+
+href={`/reviews/${tool.slug}`}
+
+className="rounded-3xl border p-8 transition hover:-translate-y-2 hover:shadow-xl"
+
+>
+
+
+<div className="flex justify-between">
+
+
+<span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-600">
+
+{tool.category}
+
+</span>
+
+
+
+<span className="font-black text-green-600">
+
+⭐ {tool.rating}
+
+</span>
+
+
+</div>
+
+
+
+
+<h3 className="mt-5 text-2xl font-black">
+
+{tool.name}
 
 </h3>
 
 
 
-<p className="mt-5 text-slate-600">
+<p className="mt-3 text-slate-600">
 
-{review.description}
+{tool.description}
 
 </p>
 
 
 
+
 <span className="mt-6 block font-bold text-blue-600">
 
-Read Full Review →
+Read Review →
 
 </span>
 
+
+</Link>
+
+
+))}
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+{/* COMPARISONS */}
+
+
+<section className="bg-slate-50 px-6 py-20">
+
+
+<div className="mx-auto max-w-7xl">
+
+
+<h2 className="text-4xl font-black">
+
+⚖️ Popular Comparisons
+
+</h2>
+
+
+
+<div className="mt-8 grid gap-6 md:grid-cols-3">
+
+
+{comparisons.slice(0,6).map((item)=>(
+
+
+<Link
+
+key={item.slug}
+
+href={`/comparisons/${item.slug}`}
+
+className="rounded-2xl bg-white p-6 shadow-sm hover:shadow-lg"
+
+>
+
+
+<h3 className="text-xl font-bold">
+
+{item.title}
+
+</h3>
+
+
+
+<p className="mt-3 text-slate-600">
+
+{item.description}
+
+</p>
+
+
+
+<span className="mt-4 block font-bold text-blue-600">
+
+Compare →
+
+</span>
 
 
 </Link>
@@ -239,6 +357,9 @@ Read Full Review →
 </div>
 
 
+</div>
+
+
 </section>
 
 
@@ -247,89 +368,42 @@ Read Full Review →
 
 
 
-
-<section className="bg-slate-50 px-6 py-20">
-
-
-<div className="mx-auto max-w-5xl">
+{/* METHODOLOGY */}
 
 
-<h2 className="text-4xl font-black">
+<section className="px-6 py-20">
 
-How We Review Technology
+
+<div className="mx-auto max-w-5xl rounded-3xl bg-slate-950 p-12 text-center text-white">
+
+
+<h2 className="text-3xl font-black">
+
+How NorthSky Reviews Works
 
 </h2>
 
 
+<p className="mt-5 text-slate-300">
 
-<p className="mt-6 text-lg text-slate-600">
-
-NorthSky Reviews evaluates products based on
-features, security, performance, usability,
-pricing, customer value, and real-world use.
-
-</p>
-
-
-
-
-
-<div className="mt-10 grid gap-6 md:grid-cols-3">
-
-
-<div className="rounded-xl border bg-white p-6">
-
-<h3 className="font-bold">
-Research
-</h3>
-
-<p className="mt-3 text-slate-600">
-
-We analyze products, competitors,
-features, and available information.
+We analyze features, pricing, security,
+performance, usability, and real-world value
+to help readers make better decisions.
 
 </p>
 
-</div>
 
+<Link
 
+href="/methodology"
 
+className="mt-8 inline-block rounded-xl bg-blue-600 px-8 py-4 font-bold"
 
-<div className="rounded-xl border bg-white p-6">
+>
 
-<h3 className="font-bold">
-Evaluation
-</h3>
+Review Methodology →
 
-<p className="mt-3 text-slate-600">
-
-We compare performance, pricing,
-security, and usability.
-
-</p>
-
-</div>
-
-
-
-
-<div className="rounded-xl border bg-white p-6">
-
-<h3 className="font-bold">
-Recommendations
-</h3>
-
-<p className="mt-3 text-slate-600">
-
-We highlight technology that offers
-strong overall value.
-
-</p>
-
-</div>
-
-
-</div>
+</Link>
 
 
 </div>
@@ -341,6 +415,8 @@ strong overall value.
 
 
 
+
+{/* CTA */}
 
 
 <section className="bg-blue-600 px-6 py-20 text-center text-white">
@@ -348,15 +424,16 @@ strong overall value.
 
 <h2 className="text-4xl font-black">
 
-Choose Better Technology
+Find Better Technology Faster
 
 </h2>
 
 
-<p className="mx-auto mt-5 max-w-3xl">
 
-Browse our comparisons, guides, and reviews
-to find the right products and services.
+<p className="mx-auto mt-4 max-w-2xl">
+
+Explore AI tools, software, VPNs, and technology
+recommendations from NorthSky Reviews.
 
 </p>
 
@@ -364,25 +441,15 @@ to find the right products and services.
 
 <Link
 
-href="/comparisons"
+href="/newsletter"
 
 className="mt-8 inline-block rounded-xl bg-white px-8 py-4 font-bold text-blue-600"
 
 >
 
-Explore Comparisons →
+Join Newsletter →
 
 </Link>
-
-
-
-
-<p className="mx-auto mt-8 max-w-2xl text-sm text-blue-100">
-
-Some links may be affiliate links. We may earn
-a commission at no extra cost to you.
-
-</p>
 
 
 </section>
