@@ -8,12 +8,11 @@ export const metadata = {
     "Best AI Tools Directory 2026 | Reviews, Ratings & Comparisons | NorthSky Reviews",
 
   description:
-    "Explore the best AI tools for business, productivity, writing, coding, design, automation and creativity. Compare AI software with expert reviews.",
+    "Discover the best AI tools for writing, coding, business, automation, design, and productivity. Compare AI software with expert reviews.",
 
   keywords:[
     "best AI tools 2026",
-    "AI software directory",
-    "AI reviews",
+    "AI software reviews",
     "AI productivity tools",
     "AI automation tools",
     "AI coding assistants"
@@ -30,19 +29,22 @@ const ITEMS_PER_PAGE = 12;
 export default async function AllToolsPage({searchParams}){
 
 
-const params = await searchParams;
+const params = await searchParams || {};
+
 
 
 const search =
-params?.search || "";
+params.search || "";
+
 
 
 const category =
-params?.category || "";
+params.category || "";
+
 
 
 const page =
-Number(params?.page || 1);
+Number(params.page || 1);
 
 
 
@@ -52,21 +54,6 @@ let filtered = tools.filter(tool =>
 
 tool.tags?.includes("ai")
 
-||
-
-tool.category?.toLowerCase().includes("ai")
-
-);
-
-
-
-
-// Sort highest rated first
-
-filtered.sort(
-(a,b)=>
-(b.rating || 0) -
-(a.rating || 0)
 );
 
 
@@ -75,21 +62,24 @@ filtered.sort(
 
 if(category){
 
-const selected =
+
+const selectedCategory =
 categories.find(
-cat=>cat.slug===category
+cat=>cat.slug === category
 );
 
 
-if(selected){
+
+if(selectedCategory){
 
 filtered =
 filtered.filter(
-tool=>
-tool.category === selected.name
+tool =>
+tool.category === selectedCategory.name
 );
 
 }
+
 
 }
 
@@ -98,8 +88,10 @@ tool.category === selected.name
 
 if(search){
 
+
 const query =
 search.toLowerCase();
+
 
 
 filtered =
@@ -128,8 +120,21 @@ tool.category
 
 
 
+
+filtered.sort(
+(a,b)=>
+(b.rating || 0) -
+(a.rating || 0)
+);
+
+
+
+
+
+
 const total =
 filtered.length;
+
 
 
 const totalPages =
@@ -138,8 +143,10 @@ total / ITEMS_PER_PAGE
 );
 
 
+
 const start =
-(page-1)*ITEMS_PER_PAGE;
+(page - 1) * ITEMS_PER_PAGE;
+
 
 
 const results =
@@ -152,11 +159,14 @@ start + ITEMS_PER_PAGE
 
 
 
+
+
 function buildUrl(number){
 
 
 const query =
 new URLSearchParams();
+
 
 
 if(search)
@@ -166,11 +176,13 @@ search
 );
 
 
+
 if(category)
 query.set(
 "category",
 category
 );
+
 
 
 if(number > 1)
@@ -181,7 +193,12 @@ number
 
 
 
-return `/all-tools?${query}`;
+const url =
+query.toString();
+
+
+
+return `/all-tools${url ? `?${url}` : ""}`;
 
 }
 
@@ -194,27 +211,52 @@ return (
 <main className="min-h-screen bg-white text-slate-900">
 
 
+
+
+
 <script
 
 type="application/ld+json"
 
 dangerouslySetInnerHTML={{
 
-__html:
-
-JSON.stringify({
+__html:JSON.stringify({
 
 "@context":"https://schema.org",
 
 "@type":"CollectionPage",
 
-"name":"AI Tools Directory",
+"name":
+"NorthSky AI Tools Directory",
 
 "description":
 "Best AI tools reviewed by NorthSky Reviews.",
 
+
 "url":
-"https://northsky-reviews.vercel.app/all-tools"
+"https://northsky-reviews.vercel.app/all-tools",
+
+
+mainEntity:{
+
+"@type":"ItemList",
+
+itemListElement:
+
+results.map((tool,index)=>({
+
+"@type":"ListItem",
+
+position:index+1,
+
+name:tool.name,
+
+url:
+`https://northsky-reviews.vercel.app/reviews/${tool.slug}`
+
+}))
+
+}
 
 })
 
@@ -226,7 +268,11 @@ JSON.stringify({
 
 
 
-<section className="bg-gradient-to-br from-slate-950 via-indigo-950 to-blue-900 px-6 py-20 text-white">
+
+
+
+
+<section className="bg-gradient-to-br from-slate-950 via-indigo-950 to-blue-900 px-6 py-24 text-white">
 
 
 <div className="mx-auto max-w-6xl">
@@ -241,10 +287,12 @@ AI Tools Directory
 
 <p className="mt-6 max-w-3xl text-xl text-slate-300">
 
-Discover top-rated AI software for writing,
-coding, design, automation, business and productivity.
+Explore top-rated AI software for business,
+writing, coding, design, automation,
+and productivity.
 
 </p>
+
 
 
 
@@ -254,11 +302,15 @@ coding, design, automation, business and productivity.
 <div className="rounded-2xl bg-white/10 p-6">
 
 <p className="text-4xl font-black">
+
 {total}+
+
 </p>
 
 <p className="text-slate-300">
+
 AI Tools
+
 </p>
 
 </div>
@@ -268,11 +320,15 @@ AI Tools
 <div className="rounded-2xl bg-white/10 p-6">
 
 <p className="text-4xl font-black">
+
 2026
+
 </p>
 
 <p className="text-slate-300">
+
 Updated Rankings
+
 </p>
 
 </div>
@@ -282,11 +338,15 @@ Updated Rankings
 <div className="rounded-2xl bg-white/10 p-6">
 
 <p className="text-4xl font-black">
+
 ⭐
+
 </p>
 
 <p className="text-slate-300">
+
 Expert Reviews
+
 </p>
 
 </div>
@@ -304,15 +364,21 @@ Expert Reviews
 
 
 
+
+
 <section className="mx-auto max-w-7xl px-6 py-12">
 
 
 <div className="flex flex-col gap-5 md:flex-row">
 
 
+
 <form
+
 action="/all-tools"
+
 className="flex flex-1 gap-3"
+
 >
 
 
@@ -329,6 +395,7 @@ className="flex-1 rounded-xl border px-5 py-3"
 />
 
 
+
 <button
 
 className="rounded-xl bg-blue-600 px-6 py-3 font-bold text-white"
@@ -341,6 +408,7 @@ Search
 
 
 </form>
+
 
 
 
@@ -362,11 +430,15 @@ className="rounded-xl border px-5 py-3"
 
 
 <option value="">
+
 All Categories
+
 </option>
 
 
+
 {categories.map(cat=>(
+
 
 <option
 
@@ -380,16 +452,20 @@ value={cat.slug}
 
 </option>
 
+
 ))}
 
 
+
 </select>
+
 
 
 </div>
 
 
 </section>
+
 
 
 
@@ -410,7 +486,7 @@ value={cat.slug}
 
 key={tool.slug}
 
-className="rounded-3xl border p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl"
+className="rounded-3xl border p-8 transition hover:-translate-y-2 hover:shadow-xl"
 
 >
 
@@ -425,9 +501,10 @@ className="rounded-3xl border p-8 shadow-sm transition hover:-translate-y-2 hove
 </span>
 
 
+
 <span className="font-bold text-green-600">
 
-⭐ {tool.rating}
+⭐ {tool.rating}/10
 
 </span>
 
@@ -445,6 +522,7 @@ className="rounded-3xl border p-8 shadow-sm transition hover:-translate-y-2 hove
 
 
 
+
 <p className="mt-4 text-slate-600">
 
 {tool.description}
@@ -454,14 +532,15 @@ className="rounded-3xl border p-8 shadow-sm transition hover:-translate-y-2 hove
 
 
 
+
 <div className="mt-8 space-y-3">
 
 
 <Link
 
-href={`/ai/reviews/${tool.slug}`}
+href={`/reviews/${tool.slug}`}
 
-className="block rounded-xl border px-5 py-3 text-center font-bold hover:bg-slate-50"
+className="block rounded-xl border px-5 py-3 text-center font-bold"
 
 >
 
@@ -471,6 +550,10 @@ Read Full Review →
 
 
 
+
+
+{tool.link && (
+
 <a
 
 href={tool.link}
@@ -479,13 +562,15 @@ target="_blank"
 
 rel="noopener noreferrer sponsored"
 
-className="block rounded-xl bg-blue-600 px-5 py-3 text-center font-bold text-white hover:bg-blue-700"
+className="block rounded-xl bg-blue-600 px-5 py-3 text-center font-bold text-white"
 
 >
 
 Try {tool.name} →
 
 </a>
+
+)}
 
 
 </div>
@@ -502,9 +587,12 @@ Try {tool.name} →
 
 
 
-{results.length===0 && (
+
+
+{results.length === 0 && (
 
 <div className="rounded-3xl bg-slate-50 p-12 text-center">
+
 
 <h2 className="text-3xl font-black">
 
@@ -531,8 +619,8 @@ Clear Filters
 )}
 
 
-
 </section>
+
 
 
 
@@ -546,10 +634,12 @@ Clear Filters
 
 
 {Array.from(
+
 {length:totalPages},
+
 (_,i)=>i+1
-)
-.map(number=>(
+
+).map(number=>(
 
 
 <Link
@@ -579,6 +669,7 @@ number===page
 </div>
 
 )}
+
 
 
 
