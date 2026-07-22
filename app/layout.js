@@ -3,88 +3,137 @@ import Script from "next/script";
 import "./globals.css";
 
 
-const siteUrl = "https://northsky-reviews.vercel.app";
+const siteUrl =
+  "https://northsky-reviews.vercel.app";
 
 
 export const metadata = {
 
-  metadataBase:new URL(siteUrl),
+  metadataBase:
+    new URL(siteUrl),
+
 
   title:{
+
     default:
-    "NorthSky Reviews | AI Tools, VPNs, Travel Tech & Software Reviews",
+      "NorthSky Reviews | AI Tools, VPNs, Travel Tech & Software Reviews",
 
     template:
-    "%s | NorthSky Reviews",
+      "%s | NorthSky Reviews"
+
   },
 
 
   description:
-  "Independent technology reviews, AI tool comparisons, VPN guides, travel tech recommendations, software reviews, and buying guides.",
+    "Independent technology reviews, AI tool comparisons, VPN guides, software reviews, cybersecurity recommendations, and technology buying guides.",
 
 
   keywords:[
+
     "AI tools",
     "AI software reviews",
+    "ChatGPT alternatives",
     "VPN reviews",
-    "travel tech",
     "software comparisons",
-    "technology buying guides",
-    "cybersecurity"
+    "technology reviews",
+    "travel tech",
+    "buying guides"
+
   ],
 
 
+  manifest:
+    "/manifest.webmanifest",
+
+
   robots:{
+
     index:true,
-    follow:true
+    follow:true,
+
+    googleBot:{
+      index:true,
+      follow:true
+    }
+
   },
 
 
   openGraph:{
 
     title:
-    "NorthSky Reviews",
+      "NorthSky Reviews",
 
     description:
-    "Technology reviews, AI tools, software comparisons and buying guides.",
+      "AI tools, software reviews, comparisons and technology buying guides.",
 
-    url:siteUrl,
+    url:
+      siteUrl,
 
     siteName:
-    "NorthSky Reviews",
+      "NorthSky Reviews",
 
-    type:"website",
+    locale:
+      "en_CA",
 
-    locale:"en_CA",
+    type:
+      "website",
 
     images:[
+
       {
-        url:`${siteUrl}/og-image.jpg`,
-        width:1200,
-        height:630,
-        alt:"NorthSky Reviews"
+        url:
+          `${siteUrl}/og-image.jpg`,
+
+        width:
+          1200,
+
+        height:
+          630,
+
+        alt:
+          "NorthSky Reviews Technology Guides"
+
       }
+
     ]
 
   },
 
 
   twitter:{
-    card:"summary_large_image",
-    title:"NorthSky Reviews",
+
+    card:
+      "summary_large_image",
+
+    title:
+      "NorthSky Reviews",
+
     description:
-    "Independent technology reviews and buying guides.",
+      "Independent technology reviews and AI software comparisons.",
+
     images:[
       `${siteUrl}/og-image.jpg`
     ]
+
   },
 
 
   alternates:{
-    canonical:siteUrl
+    canonical:
+      siteUrl
+  },
+
+
+  verification:{
+
+    google:
+      "your-google-verification-code"
+
   }
 
 };
+
 
 
 
@@ -94,6 +143,14 @@ export default function RootLayout({children}){
 return (
 
 <html lang="en">
+
+
+<head>
+
+<meta name="theme-color" content="#2563eb"/>
+
+</head>
+
 
 
 <body className="bg-white text-slate-900 antialiased flex min-h-screen flex-col">
@@ -109,7 +166,7 @@ strategy="afterInteractive"
 
 
 <Script
-id="google-analytics"
+id="ga4"
 strategy="afterInteractive"
 dangerouslySetInnerHTML={{
 __html:`
@@ -117,12 +174,12 @@ __html:`
 window.dataLayer = window.dataLayer || [];
 
 function gtag(){
-dataLayer.push(arguments);
+window.dataLayer.push(arguments);
 }
 
-gtag('js', new Date());
+gtag("js",new Date());
 
-gtag('config','G-528699336');
+gtag("config","G-528699336");
 
 `
 }}
@@ -130,50 +187,54 @@ gtag('config','G-528699336');
 
 
 
-{/* Website Schema */}
+
+
+{/* SEO Schema */}
 
 <Script
-id="website-schema"
+
+id="schema"
+
 type="application/ld+json"
+
 dangerouslySetInnerHTML={{
-__html:JSON.stringify({
 
-"@context":"https://schema.org",
+__html:
 
-"@type":"WebSite",
+JSON.stringify({
 
-"name":"NorthSky Reviews",
+"@context":
+"https://schema.org",
 
-"url":siteUrl,
+"@type":
+"Organization",
 
+"name":
+"NorthSky Reviews",
 
-"potentialAction":{
-
-"@type":"SearchAction",
-
-"target":
-`${siteUrl}/search?q={search_term_string}`,
-
-"query-input":
-"required name=search_term_string"
-
-},
+"url":
+siteUrl,
 
 
-"publisher":{
+"logo":
+`${siteUrl}/icon-512.png`,
 
-"@type":"Organization",
 
-"name":"NorthSky Reviews",
+"description":
+"Independent technology reviews, AI tool comparisons and buying guides.",
 
-"url":siteUrl
 
-}
+"sameAs":[
 
+]
 
 })
+
 }}
+
 />
+
+
 
 
 
@@ -202,7 +263,6 @@ Reviews
 
 <div className="hidden gap-8 md:flex">
 
-
 <Link href="/reviews">
 Reviews
 </Link>
@@ -227,18 +287,19 @@ Deals
 href="/search"
 className="rounded-full bg-slate-100 px-4 py-2"
 >
+
 🔍 Search
+
 </Link>
 
 
 </div>
 
 
-
 </nav>
 
-</header>
 
+</header>
 
 
 
@@ -255,6 +316,7 @@ className="rounded-full bg-slate-100 px-4 py-2"
 
 
 
+
 <footer className="border-t bg-slate-50">
 
 
@@ -263,9 +325,10 @@ className="rounded-full bg-slate-100 px-4 py-2"
 
 <div>
 
-<h3 className="font-black text-xl">
+<h3 className="text-xl font-black">
 NorthSky Reviews
 </h3>
+
 
 <p className="mt-3 text-sm text-slate-600">
 
@@ -288,18 +351,15 @@ Explore
 
 <div className="mt-4 space-y-2 text-sm">
 
-
-<Link href="/reviews">
-Reviews
-</Link>
-
-
-<br/>
-
 <Link href="/ai">
 AI Tools
 </Link>
 
+<br/>
+
+<Link href="/reviews">
+Reviews
+</Link>
 
 <br/>
 
@@ -307,13 +367,11 @@ AI Tools
 Comparisons
 </Link>
 
-
 <br/>
 
-<Link href="/deals">
-Deals
+<Link href="/guides">
+Guides
 </Link>
-
 
 </div>
 
@@ -326,7 +384,7 @@ Deals
 <div>
 
 <h4 className="font-bold">
-Topics
+Categories
 </h4>
 
 
@@ -343,7 +401,6 @@ VPN
 AI Tools
 </Link>
 
-
 <br/>
 
 <Link href="/categories/software">
@@ -351,15 +408,7 @@ Software
 </Link>
 
 
-<br/>
-
-<Link href="/categories/travel-tech">
-Travel Tech
-</Link>
-
-
 </div>
-
 
 </div>
 
@@ -376,30 +425,23 @@ Company
 
 <div className="mt-4 space-y-2 text-sm">
 
-
 <Link href="/about">
 About
 </Link>
 
-
 <br/>
-
 
 <Link href="/contact">
 Contact
 </Link>
 
-
 <br/>
-
 
 <Link href="/privacy">
 Privacy
 </Link>
 
-
 <br/>
-
 
 <Link href="/terms">
 Terms
@@ -408,19 +450,16 @@ Terms
 
 </div>
 
-
 </div>
 
 
 
 </div>
-
 
 
 
 
 <div className="border-t py-6 text-center text-sm text-slate-500">
-
 
 © {new Date().getFullYear()} NorthSky Reviews.
 
@@ -431,9 +470,7 @@ Affiliate links may earn us a commission at no extra cost.
 </div>
 
 
-
 </footer>
-
 
 
 
