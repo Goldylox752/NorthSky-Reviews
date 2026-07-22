@@ -11,8 +11,7 @@ export async function GET(request) {
 
 
   const query =
-    searchParams.get("q") || "";
-
+    searchParams.get("q")?.toLowerCase() || "";
 
 
   const category =
@@ -24,34 +23,34 @@ export async function GET(request) {
 
 
 
-  if (query) {
+  // Search filter
 
-
-    const search =
-      query.toLowerCase();
-
-
+  if(query){
 
     results =
-      results.filter((tool) =>
+      results.filter((tool)=>{
 
-        tool.name
-          .toLowerCase()
-          .includes(search)
 
-        ||
+        const searchable = [
 
-        tool.description
-          .toLowerCase()
-          .includes(search)
+          tool.name,
 
-        ||
+          tool.description,
 
-        tool.category
-          .toLowerCase()
-          .includes(search)
+          tool.category,
 
-      );
+          ...(tool.tags || [])
+
+        ]
+        .join(" ")
+        .toLowerCase();
+
+
+
+        return searchable.includes(query);
+
+
+      });
 
   }
 
@@ -59,45 +58,71 @@ export async function GET(request) {
 
 
 
-  if (category) {
+  // Category filter
 
+  if(category){
 
     results =
       results.filter(
-        (tool) =>
+        (tool)=>
           tool.category === category
       );
 
-
   }
+
+
+
+
+
+
+  // Sort highest rated first
+
+  results.sort(
+    (a,b)=>
+      Number(b.rating || 0) -
+      Number(a.rating || 0)
+  );
+
 
 
 
 
 
   const formatted =
-    results.map((tool) => ({
+    results.map((tool)=>({
+
 
       slug:
         tool.slug,
 
+
       name:
         tool.name,
+
 
       category:
         tool.category,
 
+
       rating:
         tool.rating,
+
 
       description:
         tool.description,
 
+
       logo:
-        tool.logo,
+        tool.logo || "/icon-512.png",
+
+
+      best:
+        tool.best || "",
+
 
       url:
         `/reviews/${tool.slug}`
+
 
     }));
 
@@ -105,13 +130,19 @@ export async function GET(request) {
 
 
 
+
   return NextResponse.json({
+
+    success:true,
+
+    query,
 
     count:
       formatted.length,
 
     results:
       formatted
+
 
   });
 
