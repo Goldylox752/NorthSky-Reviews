@@ -1,120 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-
-
-const categories = {
-
-  writing: {
-    title: "Best AI Writing Tools 2026",
-    description:
-      "Discover the best AI writing software for blogs, marketing, emails, copywriting, and professional content creation.",
-
-    icon: "✍️",
-
-    tools: [
-      {
-        name: "ChatGPT",
-        slug: "chatgpt",
-        rating: "9.8/10",
-        description:
-          "Create articles, emails, ideas, research summaries, and business content with AI."
-      },
-      {
-        name: "Jasper AI",
-        slug: "jasper-ai",
-        rating: "9.0/10",
-        description:
-          "AI writing platform designed for marketing teams, brands, and content creators."
-      }
-    ]
-  },
-
-
-  coding: {
-    title: "Best AI Coding Tools 2026",
-    description:
-      "Compare the best AI coding assistants for developers, programmers, and software teams.",
-
-    icon: "💻",
-
-    tools: [
-      {
-        name: "GitHub Copilot",
-        slug: "github-copilot",
-        rating: "9.4/10",
-        description:
-          "AI programming assistant that helps developers write, debug, and improve code."
-      },
-      {
-        name: "ChatGPT",
-        slug: "chatgpt",
-        rating: "9.8/10",
-        description:
-          "Useful for programming help, debugging, explanations, and learning."
-      }
-    ]
-  },
-
-
-  design: {
-    title: "Best AI Design Tools 2026",
-    description:
-      "Explore AI design software for images, graphics, presentations, branding, and creative projects.",
-
-    icon: "🎨",
-
-    tools: [
-      {
-        name: "Canva AI",
-        slug: "canva-ai",
-        rating: "9.2/10",
-        description:
-          "Create graphics, presentations, social media designs, and marketing materials."
-      },
-      {
-        name: "Midjourney",
-        slug: "midjourney",
-        rating: "9.3/10",
-        description:
-          "Generate creative AI images and artwork from text prompts."
-      }
-    ]
-  },
-
-
-  automation: {
-    title: "Best AI Automation Tools 2026",
-    description:
-      "Find AI automation platforms that help businesses save time and improve workflows.",
-
-    icon: "⚙️",
-
-    tools: [
-      {
-        name: "Zapier AI",
-        slug: "zapier-ai",
-        rating: "9.1/10",
-        description:
-          "Automate business workflows by connecting apps with AI."
-      },
-      {
-        name: "Make AI",
-        slug: "make-ai",
-        rating: "8.9/10",
-        description:
-          "Build powerful automated workflows for businesses."
-      }
-    ]
-  }
-
-};
-
+import { tools, categories } from "@/app/data/tools";
 
 
 export async function generateStaticParams(){
 
-  return Object.keys(categories).map((slug)=>({
-    slug
+  return categories.map((category)=>({
+    slug: category.slug
   }));
 
 }
@@ -123,7 +15,13 @@ export async function generateStaticParams(){
 
 export async function generateMetadata({params}){
 
-  const category = categories[params.slug];
+  const {slug}=await params;
+
+
+  const category =
+  categories.find(
+    (item)=>item.slug===slug
+  );
 
 
   if(!category){
@@ -138,11 +36,10 @@ export async function generateMetadata({params}){
   return {
 
     title:
-    `${category.title} | NorthSky Reviews`,
-
+    `Best ${category.name} AI Tools 2026 | NorthSky Reviews`,
 
     description:
-    category.description
+    `Compare the best ${category.name.toLowerCase()} AI software, reviews, ratings, and recommendations.`
 
   };
 
@@ -151,193 +48,364 @@ export async function generateMetadata({params}){
 
 
 
-export default function AIcategoryPage({params}){
 
+export default async function AIcategoryPage({params}){
 
-  const category = categories[params.slug];
 
+const {slug}=await params;
 
-  if(!category){
 
-    notFound();
 
-  }
+const category =
+categories.find(
+(item)=>item.slug===slug
+);
 
 
 
-  return (
+if(!category){
 
-    <main className="min-h-screen bg-white text-slate-900">
+notFound();
 
+}
 
-      {/* Hero */}
 
-      <section className="bg-gradient-to-br from-slate-950 via-indigo-950 to-blue-900 px-6 py-24 text-white">
 
-        <div className="mx-auto max-w-5xl text-center">
 
 
-          <div className="text-5xl">
-            {category.icon}
-          </div>
+const categoryTools =
+tools
+.filter((tool)=>
 
+tool.category === category.name
 
-          <h1 className="mt-6 text-5xl font-black md:text-6xl">
+||
 
-            {category.title}
+tool.tags?.includes(slug)
 
-          </h1>
+)
 
+.sort(
+(a,b)=>
+(b.rating || 0) -
+(a.rating || 0)
+);
 
-          <p className="mx-auto mt-6 max-w-3xl text-xl text-slate-300">
 
-            {category.description}
 
-          </p>
 
 
-        </div>
 
-      </section>
+return (
 
+<main className="min-h-screen bg-white text-slate-900">
 
 
+<script
 
-      {/* Tools */}
+type="application/ld+json"
 
-      <section className="mx-auto max-w-7xl px-6 py-20">
+dangerouslySetInnerHTML={{
 
+__html:
 
-        <h2 className="text-center text-4xl font-black">
+JSON.stringify({
 
-          Top Recommended Tools
+"@context":"https://schema.org",
 
-        </h2>
+"@type":"CollectionPage",
 
+"name":
+`Best ${category.name} AI Tools`,
 
+"description":
+`AI software reviews and recommendations.`,
 
-        <div className="mt-12 grid gap-8 md:grid-cols-2">
+"url":
+`https://northsky-reviews.vercel.app/ai/categories/${slug}`
 
+})
 
-          {category.tools.map((tool)=>(
+}}
 
+/>
 
-            <div
 
-              key={tool.slug}
 
-              className="rounded-3xl border p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl"
 
-            >
 
+<section className="bg-gradient-to-br from-slate-950 via-indigo-950 to-blue-900 px-6 py-24 text-white">
 
-              <div className="flex justify-between">
 
+<div className="mx-auto max-w-5xl text-center">
 
-                <h3 className="text-3xl font-black">
 
-                  {tool.name}
+<div className="text-6xl">
 
-                </h3>
+{category.icon}
 
+</div>
 
-                <span className="font-bold text-yellow-500">
 
-                  ⭐ {tool.rating}
 
-                </span>
+<h1 className="mt-8 text-5xl font-black md:text-6xl">
 
+Best {category.name} AI Tools 2026
 
-              </div>
+</h1>
 
 
 
-              <p className="mt-5 text-slate-600">
+<p className="mx-auto mt-6 max-w-3xl text-xl text-slate-300">
 
-                {tool.description}
+Discover top-rated AI tools for
+{category.name.toLowerCase()},
+including reviews, ratings, comparisons,
+and recommendations.
 
-              </p>
+</p>
 
 
 
-              <Link
+</div>
 
-                href={`/ai/reviews/${tool.slug}`}
+</section>
 
-                className="mt-6 inline-block font-bold text-blue-600"
 
-              >
 
-                Read Full Review →
 
-              </Link>
 
 
-            </div>
 
+<section className="mx-auto max-w-7xl px-6 py-20">
 
-          ))}
 
+<div className="mb-12 text-center">
 
-        </div>
 
+<h2 className="text-4xl font-black">
 
-      </section>
+Top {category.name} Tools
 
+</h2>
 
 
+<p className="mt-4 text-slate-600">
 
-      {/* Trust */}
+Ranked by features, usability, performance,
+and overall value.
 
-      <section className="bg-slate-50 px-6 py-20">
+</p>
 
 
-        <div className="mx-auto max-w-4xl text-center">
+</div>
 
 
-          <h2 className="text-4xl font-black">
 
-            How NorthSky Reviews Ranks AI Tools
 
-          </h2>
 
 
-          <p className="mt-5 text-lg text-slate-600">
+<div className="grid gap-8 md:grid-cols-3">
 
-            We evaluate AI software based on features, pricing,
-            usability, performance, reliability, and real-world
-            value for users and businesses.
 
-          </p>
+{categoryTools.map((tool)=>(
 
 
-        </div>
+<article
 
+key={tool.slug}
 
-      </section>
+className="rounded-3xl border p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl"
 
+>
 
 
+<div className="flex justify-between">
 
-      <div className="py-12 text-center">
 
-        <Link
+<span className="rounded-full bg-blue-100 px-3 py-1 text-sm font-bold text-blue-700">
 
-          href="/ai"
+{tool.category}
 
-          className="font-bold text-blue-600"
+</span>
 
-        >
 
-          ← Back to AI Hub
 
-        </Link>
+<span className="font-bold text-yellow-500">
 
-      </div>
+⭐ {tool.rating}
 
+</span>
 
-    </main>
 
-  );
+</div>
+
+
+
+
+
+<h3 className="mt-6 text-3xl font-black">
+
+{tool.name}
+
+</h3>
+
+
+
+
+
+<p className="mt-4 text-slate-600">
+
+{tool.description}
+
+</p>
+
+
+
+
+
+<div className="mt-8 space-y-3">
+
+
+<Link
+
+href={`/ai/reviews/${tool.slug}`}
+
+className="block rounded-xl border px-5 py-3 text-center font-bold"
+
+>
+
+Read Full Review →
+
+</Link>
+
+
+
+
+
+<a
+
+href={tool.link}
+
+target="_blank"
+
+rel="noopener noreferrer sponsored"
+
+className="block rounded-xl bg-blue-600 px-5 py-3 text-center font-bold text-white"
+
+>
+
+Try {tool.name}
+
+</a>
+
+
+
+</div>
+
+
+</article>
+
+
+))}
+
+
+</div>
+
+
+
+
+
+
+{categoryTools.length===0 && (
+
+<div className="rounded-3xl bg-slate-50 p-10 text-center">
+
+
+<h2 className="text-2xl font-black">
+
+No tools found
+
+</h2>
+
+
+<p className="mt-3 text-slate-600">
+
+More AI tools are being added soon.
+
+</p>
+
+
+</div>
+
+)}
+
+
+
+</section>
+
+
+
+
+
+
+
+<section className="bg-slate-50 px-6 py-20">
+
+
+<div className="mx-auto max-w-5xl text-center">
+
+
+<h2 className="text-4xl font-black">
+
+How NorthSky Reviews Evaluates AI Tools
+
+</h2>
+
+
+<p className="mt-5 text-lg text-slate-600">
+
+We review AI platforms based on pricing,
+features, ease of use, reliability,
+security, and real-world performance.
+
+</p>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<section className="py-12 text-center">
+
+
+<Link
+
+href="/ai"
+
+className="font-bold text-blue-600"
+
+>
+
+← Back to AI Hub
+
+</Link>
+
+
+</section>
+
+
+
+
+
+</main>
+
+);
 
 }
