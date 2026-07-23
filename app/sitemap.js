@@ -1,221 +1,273 @@
-import { tools, categories } from "@/app/data/tools";
-import { comparisons } from "@/app/data/comparisons";
-import { guides } from "@/app/data/guides";
+import { tools = [], categories = [] } from "@/app/data/tools";
+import { comparisons = [] } from "@/app/data/comparisons";
+
+import { guides = [] } from "@/app/data/guides";
+
 
 
 const baseUrl =
-  "https://northsky-reviews.vercel.app";
+"https://northsky-reviews.vercel.app";
 
 
 
-export default function sitemap() {
 
 
-  const lastModified = new Date();
+export default function sitemap(){
 
 
+const lastModified = new Date();
 
-  const staticPages = [
 
-    {
-      url:"",
-      changeFrequency:"daily",
-      priority:1
-    },
 
-    {
-      url:"/all-tools",
-      changeFrequency:"weekly",
-      priority:0.9
-    },
 
-    {
-      url:"/reviews",
-      changeFrequency:"weekly",
-      priority:0.8
-    },
 
-    {
-      url:"/comparisons",
-      changeFrequency:"weekly",
-      priority:0.8
-    },
+const staticPages = [
 
-    {
-      url:"/guides",
-      changeFrequency:"weekly",
-      priority:0.8
-    },
 
-    {
-      url:"/categories",
-      changeFrequency:"weekly",
-      priority:0.8
-    },
+{
+url:"",
+changeFrequency:"daily",
+priority:1
+},
 
-    {
-      url:"/about",
-      changeFrequency:"monthly",
-      priority:0.5
-    },
 
-    {
-      url:"/methodology",
-      changeFrequency:"monthly",
-      priority:0.6
-    },
+{
+url:"/ai",
+changeFrequency:"weekly",
+priority:0.9
+},
 
-    {
-      url:"/affiliate-disclosure",
-      changeFrequency:"monthly",
-      priority:0.4
-    },
 
-    {
-      url:"/privacy",
-      changeFrequency:"yearly",
-      priority:0.3
-    },
+{
+url:"/best",
+changeFrequency:"weekly",
+priority:0.9
+},
 
-    {
-      url:"/terms",
-      changeFrequency:"yearly",
-      priority:0.3
-    }
 
-  ];
+{
+url:"/all-tools",
+changeFrequency:"weekly",
+priority:0.9
+},
 
 
+{
+url:"/reviews",
+changeFrequency:"weekly",
+priority:0.8
+},
 
 
-  const pages = staticPages.map(page => ({
+{
+url:"/comparisons",
+changeFrequency:"weekly",
+priority:0.8
+},
 
-    url:
-      `${baseUrl}${page.url}`,
 
-    lastModified,
+{
+url:"/guides",
+changeFrequency:"weekly",
+priority:0.8
+},
 
-    changeFrequency:
-      page.changeFrequency,
 
-    priority:
-      page.priority
+{
+url:"/categories",
+changeFrequency:"weekly",
+priority:0.8
+},
 
-  }));
 
+{
+url:"/about",
+changeFrequency:"monthly",
+priority:0.5
+},
 
 
+{
+url:"/contact",
+changeFrequency:"monthly",
+priority:0.5
+},
 
 
+{
+url:"/privacy",
+changeFrequency:"yearly",
+priority:0.3
+},
 
-  // Reviews
 
-  const reviewPages =
-  tools.map(tool => ({
+{
+url:"/terms",
+changeFrequency:"yearly",
+priority:0.3
+},
 
-    url:
-      `${baseUrl}/reviews/${tool.slug}`,
 
-    lastModified,
+{
+url:"/disclosure",
+changeFrequency:"yearly",
+priority:0.3
+}
 
-    changeFrequency:
-      "monthly",
 
-    priority:
-      0.8
+];
 
-  }));
 
 
 
 
 
 
+const pages = staticPages.map((page)=>({
 
-  // Categories
 
-  const categoryPages =
-  categories.map(category => ({
+url:
+`${baseUrl}${page.url}`,
 
-    url:
-      `${baseUrl}/categories/${category.slug}`,
 
-    lastModified,
+lastModified,
 
-    changeFrequency:
-      "weekly",
 
-    priority:
-      0.75
+changeFrequency:
+page.changeFrequency,
 
-  }));
 
+priority:
+page.priority
 
 
+}));
 
 
 
 
-  // Comparisons
 
-  const comparisonPages =
-  comparisons.map(item => ({
 
-    url:
-      `${baseUrl}/comparisons/${item.slug}`,
 
-    lastModified,
 
-    changeFrequency:
-      "monthly",
 
-    priority:
-      0.8
+const reviewPages = tools.map((tool)=>({
 
-  }));
+url:
+`${baseUrl}/reviews/${tool.slug}`,
 
+lastModified,
 
+changeFrequency:
+"monthly",
 
+priority:
+0.8
 
+}));
 
 
 
-  // Guides
 
-  const guidePages =
-  guides.map(guide => ({
 
-    url:
-      `${baseUrl}/guides/${guide.slug}`,
 
-    lastModified,
 
-    changeFrequency:
-      "weekly",
 
-    priority:
-      0.85
 
-  }));
+const categoryPages = categories.map((category)=>(
 
+{
 
+url:
+`${baseUrl}/categories/${category.slug}`,
 
+lastModified,
 
+changeFrequency:
+"weekly",
 
+priority:
+0.75
 
+}
 
-  return [
+));
 
-    ...pages,
 
-    ...reviewPages,
 
-    ...categoryPages,
 
-    ...comparisonPages,
 
-    ...guidePages
 
-  ];
+
+
+
+const comparisonPages = comparisons.map((item)=>(
+
+{
+
+url:
+`${baseUrl}/comparisons/${item.slug}`,
+
+lastModified,
+
+changeFrequency:
+"monthly",
+
+priority:
+0.8
+
+}
+
+));
+
+
+
+
+
+
+
+
+
+const guidePages = guides.map((guide)=>(
+
+{
+
+url:
+`${baseUrl}/guides/${guide.slug}`,
+
+lastModified,
+
+changeFrequency:
+"weekly",
+
+priority:
+0.85
+
+}
+
+));
+
+
+
+
+
+
+
+
+
+return [
+
+...pages,
+
+...reviewPages,
+
+...categoryPages,
+
+...comparisonPages,
+
+...guidePages
+
+];
+
 
 }
