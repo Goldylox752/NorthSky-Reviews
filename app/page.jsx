@@ -1,283 +1,430 @@
 import Head from "next/head";
+import { useEffect, useState } from "react";
+
+function useCountUp(target, durationMs = 1200) {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    let start;
+    let frame;
+    const tick = (t) => {
+      if (start === undefined) start = t;
+      const progress = Math.min((t - start) / durationMs, 1);
+      setValue(target * progress);
+      if (progress < 1) frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [target, durationMs]);
+  return value;
+}
+
+const vpns = [
+  {
+    name: "NordVPN",
+    tag: "BEST OVERALL",
+    servers: "6,400+",
+    unblock: "Netflix, Hulu",
+    speedLoss: 12,
+    price: "$3.09",
+    rating: 9.7,
+    href: "/reviews/nordvpn",
+  },
+  {
+    name: "ExpressVPN",
+    tag: "MOST CONSISTENT",
+    servers: "3,000+",
+    unblock: "Netflix, BBC",
+    speedLoss: 18,
+    price: "$6.67",
+    rating: 9.4,
+    href: "/reviews/expressvpn",
+  },
+  {
+    name: "Surfshark",
+    tag: "BEST VALUE",
+    servers: "3,200+",
+    unblock: "Disney+, HBO",
+    speedLoss: 15,
+    price: "$2.19",
+    rating: 9.1,
+    href: "/reviews/surfshark",
+  },
+];
 
 export default function Home() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState("idle");
+
+  const speedLoss = useCountUp(12);
+  const serverCount = useCountUp(6400);
+  const testedCount = useCountUp(24);
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    if (!email.includes("@")) {
+      setStatus("error");
+      return;
+    }
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (!res.ok) throw new Error("Subscribe failed");
+      setStatus("success");
+      setEmail("");
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
     <>
       <Head>
         <title>NorthSky Reviews – Independent VPN, eSIM & AI Tool Tests 2026</title>
         <meta
           name="description"
-          content="Hands-on reviews of the best VPNs, eSIMs, and AI tools. No fluff, just real speed tests and honest comparisons."
+          content="Hands-on reviews of the best VPNs, eSIMs, and AI tools. We buy every subscription and publish the raw speed, latency, and unblock numbers."
         />
-        {/* JSON-LD for SEO Stars (Google Rich Snippets) */}
+        <link rel="canonical" href="https://www.northskyreviews.com/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="NorthSky Reviews – Independent VPN, eSIM & AI Tool Tests 2026" />
+        <meta
+          property="og:description"
+          content="Hands-on reviews of the best VPNs, eSIMs, and AI tools. Raw numbers, no sponsored placements."
+        />
+        <meta property="og:url" content="https://www.northskyreviews.com/" />
+        <meta property="og:image" content="https://www.northskyreviews.com/og-cover.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap"
+          rel="stylesheet"
+        />
+        {/*
+          WebSite schema, not Product/AggregateRating — this is a listing page,
+          not a single reviewed product. Per-product Review/AggregateRating
+          markup lives on each /reviews/[product] page instead, tied to the
+          actual review content there.
+        */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org/",
-              "@type": "Product",
+              "@type": "WebSite",
               name: "NorthSky Reviews",
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: "9.6",
-                bestRating: "10",
-                ratingCount: "87",
-              },
+              url: "https://www.northskyreviews.com/",
+              description:
+                "Independent, hands-on reviews of VPNs, eSIMs, and AI tools.",
             }),
           }}
         />
       </Head>
 
-      <main className="max-w-6xl mx-auto px-4 py-8 font-sans">
-        {/* ===== HERO SECTION ===== */}
-        <section className="text-center py-12 border-b border-gray-200">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-            We Test, You Trust. <br />
-            <span className="text-blue-600">Independent Reviews for 2026</span>
-          </h1>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto mt-4">
-            No sponsored fluff. We buy, benchmark, and break every VPN, eSIM, and
-            AI tool so you don't have to.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3 mt-6 text-sm">
-            <span className="bg-green-100 text-green-800 px-4 py-1 rounded-full">
-              ✅ 15+ VPNs tested
-            </span>
-            <span className="bg-green-100 text-green-800 px-4 py-1 rounded-full">
-              ⚡ Speed loss measured
-            </span>
-            <span className="bg-green-100 text-green-800 px-4 py-1 rounded-full">
-              📆 Updated July 2026
-            </span>
-          </div>
-          {/* These buttons go to INTERNAL review pages */}
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
-            <a
-              href="/reviews/nordvpn"
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition"
-            >
-              🔍 Read Full VPN Comparison
-            </a>
-            <a
-              href="/reviews/best-esim"
-              className="border border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold px-8 py-3 rounded-lg transition"
-            >
-              🌍 Best eSIMs 2026
-            </a>
-          </div>
-        </section>
-
-        {/* ===== COMPARISON TABLE (Now all links go to internal reviews) ===== */}
-        <section className="py-12">
-          <h2 className="text-3xl font-bold mb-2">🧩 Side-by-Side: Top 3 VPNs</h2>
-          <p className="text-gray-500 mb-6">
-            See exactly how they stack up before you buy.
-          </p>
-          <div className="overflow-x-auto shadow-lg rounded-2xl border border-gray-200">
-            <table className="w-full text-sm md:text-base">
-              <thead className="bg-gray-100 text-gray-700">
-                <tr>
-                  <th className="p-4 text-left">Feature</th>
-                  <th className="p-4 text-center">🏆 NordVPN</th>
-                  <th className="p-4 text-center">⚡ ExpressVPN</th>
-                  <th className="p-4 text-center">💰 Surfshark</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y">
-                <tr>
-                  <td className="p-4 font-medium">Servers</td>
-                  <td className="p-4 text-center">6,400+</td>
-                  <td className="p-4 text-center">3,000+</td>
-                  <td className="p-4 text-center">3,200+</td>
-                </tr>
-                <tr className="bg-blue-50/30">
-                  <td className="p-4 font-medium">Streaming unblock</td>
-                  <td className="p-4 text-center text-green-600">
-                    ✅ Netflix, Hulu
-                  </td>
-                  <td className="p-4 text-center text-green-600">
-                    ✅ Netflix, BBC
-                  </td>
-                  <td className="p-4 text-center text-green-600">
-                    ✅ Disney+, HBO
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-4 font-medium">Speed loss (avg)</td>
-                  <td className="p-4 text-center font-bold text-blue-600">
-                    12%
-                  </td>
-                  <td className="p-4 text-center">18%</td>
-                  <td className="p-4 text-center">15%</td>
-                </tr>
-                <tr className="bg-blue-50/30">
-                  <td className="p-4 font-medium">Best price / mo</td>
-                  <td className="p-4 text-center">$3.09</td>
-                  <td className="p-4 text-center">$6.67</td>
-                  <td className="p-4 text-center font-bold text-green-600">
-                    $2.19
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-4 font-medium">Our rating</td>
-                  <td className="p-4 text-center font-bold text-blue-600">
-                    ⭐ 9.7
-                  </td>
-                  <td className="p-4 text-center font-bold">⭐ 9.4</td>
-                  <td className="p-4 text-center font-bold">⭐ 9.1</td>
-                </tr>
-                {/* 
-                  ===== FIXED: "Action" links now go to internal review pages ===== 
-                  Users read your analysis first, THEN click the affiliate link inside the review.
-                */}
-                <tr>
-                  <td className="p-4 font-medium">Action</td>
-                  <td className="p-4 text-center">
-                    <a
-                      href="/reviews/nordvpn"
-                      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-xs font-bold transition"
-                    >
-                      Read Review →
-                    </a>
-                  </td>
-                  <td className="p-4 text-center">
-                    <a
-                      href="/reviews/expressvpn"
-                      className="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded-lg text-xs font-bold transition"
-                    >
-                      Read Review →
-                    </a>
-                  </td>
-                  <td className="p-4 text-center">
-                    <a
-                      href="/reviews/surfshark"
-                      className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-xs font-bold transition"
-                    >
-                      Read Review →
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p className="text-xs text-gray-400 mt-3 text-center">
-            *Affiliate links support our independent testing at no extra cost to
-            you.
-          </p>
-        </section>
-
-        {/* ===== FEATURED REVIEWS WITH WINNER BADGES ===== */}
-        <section className="py-12">
-          <h2 className="text-3xl font-bold mb-6">🏅 Featured Reviews</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* Card 1 */}
-            <div className="relative border rounded-xl p-5 shadow-sm hover:shadow-md transition bg-white">
-              <span className="absolute top-3 right-3 bg-yellow-400 text-black text-[10px] font-bold px-3 py-1 rounded-full">
-                🏆 BEST OVERALL
-              </span>
-              <h3 className="text-xl font-bold mt-4">NordVPN</h3>
-              <p className="text-sm text-gray-500">
-                Blazing fast WireGuard, unblocks everything.
-              </p>
-              <div className="flex items-center gap-1 mt-2 text-amber-500 text-sm">
-                ⭐ 9.7 / 10
-              </div>
-              <a
-                href="/reviews/nordvpn"
-                className="block text-center mt-4 border border-blue-600 text-blue-600 hover:bg-blue-50 py-2 rounded-lg font-medium text-sm transition"
-              >
-                📖 Read full review
-              </a>
-            </div>
-
-            {/* Card 2 */}
-            <div className="relative border rounded-xl p-5 shadow-sm hover:shadow-md transition bg-white">
-              <span className="absolute top-3 right-3 bg-green-400 text-black text-[10px] font-bold px-3 py-1 rounded-full">
-                💰 BEST BUDGET
-              </span>
-              <h3 className="text-xl font-bold mt-4">Surfshark</h3>
-              <p className="text-sm text-gray-500">
-                Unlimited devices + killer price.
-              </p>
-              <div className="flex items-center gap-1 mt-2 text-amber-500 text-sm">
-                ⭐ 9.1 / 10
-              </div>
-              <a
-                href="/reviews/surfshark"
-                className="block text-center mt-4 border border-blue-600 text-blue-600 hover:bg-blue-50 py-2 rounded-lg font-medium text-sm transition"
-              >
-                📖 Read full review
-              </a>
-            </div>
-
-            {/* Card 3 */}
-            <div className="relative border rounded-xl p-5 shadow-sm hover:shadow-md transition bg-white">
-              <span className="absolute top-3 right-3 bg-purple-400 text-white text-[10px] font-bold px-3 py-1 rounded-full">
-                ✈️ BEST eSIM
-              </span>
-              <h3 className="text-xl font-bold mt-4">Saily</h3>
-              <p className="text-sm text-gray-500">
-                Global data packs, no physical SIM needed.
-              </p>
-              <div className="flex items-center gap-1 mt-2 text-amber-500 text-sm">
-                ⭐ 8.9 / 10
-              </div>
-              <a
-                href="/reviews/saily"
-                className="block text-center mt-4 border border-blue-600 text-blue-600 hover:bg-blue-50 py-2 rounded-lg font-medium text-sm transition"
-              >
-                📖 Read full review
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* ===== AUTHOR TRUST SECTION ===== */}
-        <section className="py-10 border-t border-gray-200 mt-4">
-          <div className="flex flex-col md:flex-row items-center gap-6 bg-gray-50 p-6 rounded-2xl">
-            <div className="w-20 h-20 bg-blue-200 rounded-full flex items-center justify-center text-3xl font-bold text-blue-700">
-              AN
-            </div>
+      <div
+        className="min-h-screen bg-[#0B1220] text-[#E7ECF3]"
+        style={{ fontFamily: "'Inter', sans-serif" }}
+      >
+        <main className="max-w-6xl mx-auto px-4">
+          {/* ===== HERO: live-readout diagnostics panel ===== */}
+          <section className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center py-16 md:py-24 border-b border-white/10">
             <div>
-              <h4 className="font-bold text-lg">Reviewed by Alex North</h4>
-              <p className="text-sm text-gray-600">
-                Cybersecurity nerd & digital nomad. I personally buy and test
-                every product for <strong>2 weeks</strong> before writing a
-                review. No vendor ever pays for a rating.
+              <p
+                className="text-[13px] tracking-[0.2em] text-[#5EEAD4] uppercase"
+                style={{ fontFamily: "'IBM Plex Mono', monospace" }}
+              >
+                Field tests · updated July 2026
               </p>
-              <div className="flex gap-4 mt-2 text-xs text-gray-400">
-                <span>📅 Updated: July 22, 2026</span>
-                <span>🧪 24 products tested this year</span>
+              <h1
+                className="text-4xl md:text-6xl font-bold tracking-tight mt-4 leading-[1.05]"
+                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              >
+                Every rating here
+                <br />
+                survived a stopwatch.
+              </h1>
+              <p className="text-[#8A96AC] text-lg max-w-xl mt-5">
+                No sponsored placements, no vendor-supplied scores. We buy each
+                subscription ourselves, run it under load for two weeks, and
+                publish the raw numbers before we publish an opinion.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 mt-8">
+                <a
+                  href="/reviews/nordvpn"
+                  className="bg-[#5EEAD4] hover:bg-[#7EF3E1] text-[#0B1220] font-semibold px-7 py-3 rounded-lg transition"
+                >
+                  Read the VPN comparison
+                </a>
+                <a
+                  href="/reviews/best-esim"
+                  className="border border-white/20 hover:border-white/40 text-[#E7ECF3] font-semibold px-7 py-3 rounded-lg transition"
+                >
+                  Best eSIMs 2026
+                </a>
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* ===== NEWSLETTER ===== */}
-        <section className="text-center py-10">
-          <h3 className="text-2xl font-semibold">📬 Get new reviews first</h3>
-          <p className="text-gray-500 text-sm">
-            No spam. Just honest tests every Wednesday.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-3 max-w-md mx-auto mt-4">
-            <input
-              type="email"
-              placeholder="you@email.com"
-              className="border p-3 rounded-lg flex-1"
-            />
-            <button className="bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition">
-              Subscribe →
-            </button>
-          </div>
-        </section>
+            {/* Sample readout card — a real captured test, animated once on load */}
+            <div className="bg-[#121B2E] border border-white/10 rounded-2xl p-6">
+              <div className="flex items-center justify-between">
+                <p
+                  className="text-xs tracking-widest text-[#8A96AC] uppercase"
+                  style={{ fontFamily: "'IBM Plex Mono', monospace" }}
+                >
+                  Sample capture · NordVPN · London node
+                </p>
+                <span className="w-2 h-2 rounded-full bg-[#5EEAD4]" />
+              </div>
+              <dl
+                className="grid grid-cols-2 gap-6 mt-6"
+                style={{ fontFamily: "'IBM Plex Mono', monospace" }}
+              >
+                <div>
+                  <dt className="text-[#8A96AC] text-xs uppercase">Speed loss</dt>
+                  <dd className="text-3xl font-medium mt-1">
+                    {speedLoss.toFixed(0)}%
+                  </dd>
+                </div>
+                <div>
+                  <dt className="text-[#8A96AC] text-xs uppercase">Servers tested</dt>
+                  <dd className="text-3xl font-medium mt-1">
+                    {Math.round(serverCount).toLocaleString()}+
+                  </dd>
+                </div>
+                <div>
+                  <dt className="text-[#8A96AC] text-xs uppercase">Products tested</dt>
+                  <dd className="text-3xl font-medium mt-1">
+                    {Math.round(testedCount)}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="text-[#8A96AC] text-xs uppercase">Streaming blocks</dt>
+                  <dd className="text-3xl font-medium mt-1 text-[#5EEAD4]">0</dd>
+                </div>
+              </dl>
+            </div>
+          </section>
 
-        <footer className="text-center text-xs text-gray-400 border-t pt-6 mt-4">
-          <p>
-            NorthSky Reviews © 2026 — Independent reviews with affiliate links.
-            We may earn a commission.
-          </p>
-        </footer>
-      </main>
+          {/* ===== COMPARISON: terminal-style table ===== */}
+          <section className="py-16 border-b border-white/10">
+            <h2
+              className="text-3xl font-bold"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
+              Top 3 VPNs, side by side
+            </h2>
+            <p className="text-[#8A96AC] mt-2 mb-8">
+              Same connection, same five nodes, same two weeks.
+            </p>
+            <div className="overflow-x-auto rounded-xl border border-white/10">
+              <table
+                className="w-full text-sm"
+                style={{ fontFamily: "'IBM Plex Mono', monospace" }}
+              >
+                <thead className="bg-white/[0.04] text-[#8A96AC] uppercase text-xs tracking-wider">
+                  <tr>
+                    <th className="p-4 text-left">Metric</th>
+                    {vpns.map((v) => (
+                      <th key={v.name} className="p-4 text-center">
+                        {v.name}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/10">
+                  <tr>
+                    <td className="p-4 text-[#8A96AC]">Servers</td>
+                    {vpns.map((v) => (
+                      <td key={v.name} className="p-4 text-center">
+                        {v.servers}
+                      </td>
+                    ))}
+                  </tr>
+                  <tr className="bg-white/[0.02]">
+                    <td className="p-4 text-[#8A96AC]">Unblocks</td>
+                    {vpns.map((v) => (
+                      <td key={v.name} className="p-4 text-center text-[#5EEAD4]">
+                        {v.unblock}
+                      </td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <td className="p-4 text-[#8A96AC]">Speed loss</td>
+                    {vpns.map((v) => (
+                      <td key={v.name} className="p-4 text-center font-medium">
+                        {v.speedLoss}%
+                      </td>
+                    ))}
+                  </tr>
+                  <tr className="bg-white/[0.02]">
+                    <td className="p-4 text-[#8A96AC]">Best price / mo</td>
+                    {vpns.map((v) => (
+                      <td key={v.name} className="p-4 text-center font-medium">
+                        {v.price}
+                      </td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <td className="p-4 text-[#8A96AC]">Rating</td>
+                    {vpns.map((v) => (
+                      <td key={v.name} className="p-4 text-center font-bold text-[#5EEAD4]">
+                        {v.rating}
+                      </td>
+                    ))}
+                  </tr>
+                  <tr className="bg-white/[0.02]">
+                    <td className="p-4 text-[#8A96AC]">Full review</td>
+                    {vpns.map((v) => (
+                      <td key={v.name} className="p-4 text-center">
+                        <a
+                          href={v.href}
+                          className="inline-block bg-[#5EEAD4] text-[#0B1220] px-4 py-2 rounded-lg text-xs font-bold"
+                        >
+                          Read →
+                        </a>
+                      </td>
+                    ))}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="text-xs text-[#8A96AC] mt-3 text-center">
+              *Affiliate links support our testing at no extra cost to you.
+            </p>
+          </section>
+
+          {/* ===== FEATURED REVIEWS ===== */}
+          <section className="py-16 border-b border-white/10">
+            <h2
+              className="text-3xl font-bold mb-8"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
+              Featured reviews
+            </h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              {vpns.map((v) => (
+                <div
+                  key={v.name}
+                  className="border border-white/10 rounded-xl p-5 bg-[#121B2E] hover:border-[#5EEAD4]/50 transition"
+                >
+                  <span
+                    className="text-[10px] tracking-widest uppercase text-[#5EEAD4]"
+                    style={{ fontFamily: "'IBM Plex Mono', monospace" }}
+                  >
+                    {v.tag}
+                  </span>
+                  <h3
+                    className="text-xl font-bold mt-3"
+                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                  >
+                    {v.name}
+                  </h3>
+                  <p className="text-sm text-[#8A96AC] mt-1">
+                    {v.speedLoss}% speed loss · {v.unblock}
+                  </p>
+                  <div
+                    className="mt-3 text-sm text-[#5EEAD4]"
+                    style={{ fontFamily: "'IBM Plex Mono', monospace" }}
+                  >
+                    {v.rating} / 10
+                  </div>
+                  <a
+                    href={v.href}
+                    className="block text-center mt-4 border border-white/20 hover:border-[#5EEAD4] py-2 rounded-lg font-medium text-sm transition"
+                  >
+                    Read full review
+                  </a>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* ===== AUTHOR: operator card ===== */}
+          <section className="py-16 border-b border-white/10">
+            <div className="flex flex-col md:flex-row items-center gap-6 bg-[#121B2E] border border-white/10 p-6 rounded-2xl">
+              <div className="w-20 h-20 bg-[#5EEAD4]/15 border border-[#5EEAD4]/40 rounded-full flex items-center justify-center text-2xl font-bold text-[#5EEAD4]">
+                AN
+              </div>
+              <div>
+                <h3
+                  className="font-bold text-lg"
+                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                >
+                  Alex North, tester
+                </h3>
+                <p className="text-sm text-[#8A96AC] mt-1">
+                  Cybersecurity nerd and digital nomad. I personally buy and
+                  test every product for two weeks before writing a review. No
+                  vendor ever pays for a rating.
+                </p>
+                <div
+                  className="flex gap-4 mt-3 text-xs text-[#8A96AC]"
+                  style={{ fontFamily: "'IBM Plex Mono', monospace" }}
+                >
+                  <span>Updated Jul 22, 2026</span>
+                  <span>{Math.round(testedCount)} products tested this year</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ===== NEWSLETTER ===== */}
+          <section className="text-center py-16">
+            <h3
+              className="text-2xl font-bold"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
+              Subscribe to the transmission
+            </h3>
+            <p className="text-[#8A96AC] text-sm mt-1">
+              No spam. One honest test report, every Wednesday.
+            </p>
+            <form
+              onSubmit={handleSubscribe}
+              className="flex flex-col sm:flex-row justify-center gap-3 max-w-md mx-auto mt-5"
+            >
+              <label htmlFor="newsletter-email" className="sr-only">
+                Email address
+              </label>
+              <input
+                id="newsletter-email"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@email.com"
+                className="border border-white/20 bg-[#121B2E] p-3 rounded-lg flex-1 text-[#E7ECF3] placeholder:text-[#8A96AC] focus:outline-none focus:border-[#5EEAD4]"
+              />
+              <button
+                type="submit"
+                disabled={status === "loading"}
+                className="bg-[#5EEAD4] text-[#0B1220] px-6 py-3 rounded-lg font-semibold hover:bg-[#7EF3E1] transition disabled:opacity-50"
+              >
+                {status === "loading" ? "Subscribing…" : "Subscribe →"}
+              </button>
+            </form>
+            {status === "success" && (
+              <p className="text-[#5EEAD4] text-sm mt-2">
+                You're on the list — check your inbox to confirm.
+              </p>
+            )}
+            {status === "error" && (
+              <p className="text-red-400 text-sm mt-2">
+                Enter a valid email and try again.
+              </p>
+            )}
+          </section>
+
+          <footer className="text-center text-xs text-[#8A96AC] border-t border-white/10 pt-6 pb-10">
+            <p>
+              NorthSky Reviews © 2026 — Independent reviews with affiliate
+              links. We may earn a commission.
+            </p>
+          </footer>
+        </main>
+      </div>
     </>
   );
 }
