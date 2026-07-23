@@ -11,95 +11,120 @@ const baseUrl =
 export default function sitemap() {
 
 
-  const lastModified = new Date();
+  const lastModified =
+    new Date();
 
 
 
-  const pages = [
+
+
+  const staticPages = [
+
 
     {
-      url:"",
-      frequency:"daily",
-      priority:1
+      url: "/",
+      changeFrequency: "daily",
+      priority: 1
     },
 
-    {
-      url:"/ai",
-      frequency:"daily",
-      priority:0.95
-    },
 
     {
-      url:"/ai/best-ai-tools-2026",
-      frequency:"weekly",
-      priority:0.9
+      url: "/all-tools",
+      changeFrequency: "weekly",
+      priority: 0.9
     },
 
-    {
-      url:"/all-tools",
-      frequency:"weekly",
-      priority:0.9
-    },
 
     {
-      url:"/reviews",
-      frequency:"weekly",
-      priority:0.8
+      url: "/reviews",
+      changeFrequency: "weekly",
+      priority: 0.9
     },
 
-    {
-      url:"/comparisons",
-      frequency:"weekly",
-      priority:0.8
-    },
 
     {
-      url:"/guides",
-      frequency:"weekly",
-      priority:0.8
+      url: "/comparisons",
+      changeFrequency: "weekly",
+      priority: 0.85
     },
 
-    {
-      url:"/about",
-      frequency:"monthly",
-      priority:0.5
-    },
 
     {
-      url:"/contact",
-      frequency:"monthly",
-      priority:0.5
+      url: "/guides",
+      changeFrequency: "weekly",
+      priority: 0.85
     },
 
-    {
-      url:"/affiliate-disclosure",
-      frequency:"monthly",
-      priority:0.4
-    },
 
     {
-      url:"/methodology",
-      frequency:"monthly",
-      priority:0.6
+      url: "/categories",
+      changeFrequency: "weekly",
+      priority: 0.8
+    },
+
+
+    {
+      url: "/travel",
+      changeFrequency: "weekly",
+      priority: 0.8
+    },
+
+
+    {
+      url: "/about",
+      changeFrequency: "monthly",
+      priority: 0.5
+    },
+
+
+    {
+      url: "/methodology",
+      changeFrequency: "monthly",
+      priority: 0.6
+    },
+
+
+    {
+      url: "/affiliate-disclosure",
+      changeFrequency: "monthly",
+      priority: 0.4
+    },
+
+
+    {
+      url: "/contact",
+      changeFrequency: "monthly",
+      priority: 0.5
     }
+
 
   ];
 
 
 
 
-  const staticUrls = pages.map(page=>({
 
-    url:`${baseUrl}${page.url}`,
+
+
+
+  const pages = staticPages.map((page)=>({
+
+
+    url:
+    `${baseUrl}${page.url}`,
+
 
     lastModified,
 
+
     changeFrequency:
-    page.frequency,
+    page.changeFrequency,
+
 
     priority:
     page.priority
 
+
   }));
 
 
@@ -107,21 +132,28 @@ export default function sitemap() {
 
 
 
-  // AI Reviews
 
-  const aiReviewUrls =
-  tools.map(tool=>({
+
+
+  // Individual Reviews
+
+  const reviewPages = tools.map((tool)=>({
+
 
     url:
-    `${baseUrl}/ai/reviews/${tool.slug}`,
+    `${baseUrl}/reviews/${tool.slug}`,
+
 
     lastModified,
+
 
     changeFrequency:
     "monthly",
 
+
     priority:
     0.8
+
 
   }));
 
@@ -131,23 +163,31 @@ export default function sitemap() {
 
 
 
-  // AI Categories
 
-  const aiCategoryUrls =
-  categories.map(category=>({
+
+  // Categories
+
+  const categoryPages = categories.map((category)=>({
+
 
     url:
-    `${baseUrl}/ai/categories/${category.slug}`,
+    `${baseUrl}/categories/${category.slug}`,
+
 
     lastModified,
+
 
     changeFrequency:
     "weekly",
 
+
     priority:
     0.75
 
+
   }));
+
+
 
 
 
@@ -157,19 +197,23 @@ export default function sitemap() {
 
   // Comparisons
 
-  const comparisonUrls =
-  comparisons.map(item=>({
+  const comparisonPages = comparisons.map((item)=>({
+
 
     url:
     `${baseUrl}/comparisons/${item.slug}`,
 
+
     lastModified,
+
 
     changeFrequency:
     "monthly",
 
+
     priority:
     0.8
+
 
   }));
 
@@ -179,23 +223,31 @@ export default function sitemap() {
 
 
 
-  // Guides
 
-  const guideUrls =
-  guides.map(guide=>({
+
+  // Buying Guides
+
+  const guidePages = guides.map((guide)=>({
+
 
     url:
     `${baseUrl}/guides/${guide.slug}`,
 
+
     lastModified,
+
 
     changeFrequency:
     "weekly",
 
+
     priority:
     0.85
 
+
   }));
+
+
 
 
 
@@ -205,16 +257,17 @@ export default function sitemap() {
 
   return [
 
-    ...staticUrls,
+    ...pages,
 
-    ...aiReviewUrls,
+    ...reviewPages,
 
-    ...aiCategoryUrls,
+    ...categoryPages,
 
-    ...comparisonUrls,
+    ...comparisonPages,
 
-    ...guideUrls
+    ...guidePages
 
   ];
+
 
 }
