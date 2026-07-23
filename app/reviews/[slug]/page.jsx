@@ -4,8 +4,7 @@ import { notFound } from "next/navigation";
 import { tools } from "@/app/data/tools";
 
 
-const siteUrl =
-"https://northsky-reviews.vercel.app";
+const siteUrl = "https://northsky-reviews.vercel.app";
 
 
 
@@ -13,7 +12,7 @@ export async function generateStaticParams(){
 
   return tools.map((tool)=>({
 
-    slug:tool.slug
+    slug: tool.slug
 
   }));
 
@@ -26,12 +25,10 @@ export async function generateStaticParams(){
 export async function generateMetadata({params}){
 
 
-const {slug}=params;
+const {slug} = await params;
 
 
-
-const tool =
-tools.find(
+const tool = tools.find(
 (item)=>item.slug === slug
 );
 
@@ -41,8 +38,7 @@ if(!tool){
 
 return {
 
-title:
-"Review Not Found | NorthSky Reviews"
+title:"Review Not Found | NorthSky Reviews"
 
 };
 
@@ -50,22 +46,15 @@ title:
 
 
 
-
-
 return {
 
 
 title:
-`${tool.name} Review 2026: Features, Pricing & Alternatives | NorthSky Reviews`,
-
-
+`${tool.name} Review 2026 | Features, Pricing & Alternatives`,
 
 
 description:
-`Our ${tool.name} review covers features, pricing, pros, cons, alternatives, ratings, and whether it is worth using in 2026.`,
-
-
-
+`NorthSky Reviews tests ${tool.name}. Explore features, pricing, pros, cons, alternatives, and whether it is worth using in 2026.`,
 
 
 keywords:[
@@ -76,12 +65,9 @@ keywords:[
 
 `${tool.name} alternatives`,
 
-`best ${tool.category} tools 2026`
+`${tool.category} software`
 
 ],
-
-
-
 
 
 alternates:{
@@ -92,48 +78,47 @@ canonical:
 },
 
 
-
-
-
 openGraph:{
-
 
 title:
 `${tool.name} Review 2026`,
 
-
-
 description:
-`NorthSky Reviews expert analysis of ${tool.name}.`,
-
-
+`Expert ${tool.name} analysis from NorthSky Reviews.`,
 
 url:
 `${siteUrl}/reviews/${tool.slug}`,
 
-
-
 siteName:
-"NorthSky Reviews"
+"NorthSky Reviews",
+
+type:
+"article"
 
 }
-
-
 
 };
 
 
 }
-export default function ReviewPage({params}){
-
-
-const {slug}=params;
 
 
 
-const tool =
-tools.find(
+
+
+
+
+export default async function ReviewPage({params}){
+
+
+const {slug}=await params;
+
+
+
+const tool = tools.find(
+
 (item)=>item.slug === slug
+
 );
 
 
@@ -146,8 +131,33 @@ notFound();
 
 
 
-const rating =
-tool.rating || 0;
+const rating = tool.rating || 0;
+
+
+
+const scoreData=[
+
+{
+name:"Features",
+score:tool.featureScore || 9
+},
+
+{
+name:"Ease Of Use",
+score:tool.easeScore || 9
+},
+
+{
+name:"Performance",
+score:tool.performanceScore || 9
+},
+
+{
+name:"Value",
+score:tool.valueScore || 8
+}
+
+];
 
 
 
@@ -155,18 +165,11 @@ tool.rating || 0;
 
 return (
 
-<main className="
-min-h-screen
-bg-white
-text-slate-900
-">
+<main className="min-h-screen bg-white text-slate-900">
 
 
 
 
-
-
-{/* REVIEW + SOFTWARE SCHEMA */}
 
 
 
@@ -178,18 +181,18 @@ dangerouslySetInnerHTML={{
 
 __html:JSON.stringify({
 
-"@context":
-"https://schema.org",
+"@context":"https://schema.org",
 
-
-"@type":
-"Review",
-
-
+"@type":"Review",
 
 "name":
 `${tool.name} Review 2026`,
 
+"datePublished":
+"2026-07-23",
+
+"dateModified":
+"2026-07-23",
 
 
 "url":
@@ -197,56 +200,40 @@ __html:JSON.stringify({
 
 
 
-
 "author":{
 
-"@type":
-"Organization",
+"@type":"Organization",
 
-"name":
-"NorthSky Reviews"
+"name":"NorthSky Reviews"
 
 },
-
 
 
 
 "reviewRating":{
 
-"@type":
-"Rating",
+"@type":"Rating",
 
-"ratingValue":
-rating,
+"ratingValue":rating,
 
-"bestRating":
-10
+"bestRating":10
 
 },
 
 
 
-
 "itemReviewed":{
 
-"@type":
-"SoftwareApplication",
+"@type":"SoftwareApplication",
 
+"name":tool.name,
 
-"name":
-tool.name,
+"applicationCategory":tool.category,
 
-
-
-"applicationCategory":
-tool.category,
-
-
-"description":
-tool.description
-
+"description":tool.description
 
 }
+
 
 })
 
@@ -262,74 +249,30 @@ tool.description
 
 
 
-{/* BREADCRUMBS */}
+<div className="mx-auto max-w-6xl px-6 pt-8 text-sm text-slate-500">
 
 
-
-<div className="
-mx-auto
-max-w-6xl
-px-6
-pt-8
-text-sm
-text-slate-500
-">
-
-
-<Link
-
-href="/"
-
-className="
-hover:text-blue-600
-"
-
->
-
+<Link href="/">
 Home
-
 </Link>
 
 
-
 <span className="mx-2">
-
 /
-
 </span>
 
 
-
-<Link
-
-href="/reviews"
-
-className="
-hover:text-blue-600
-"
-
->
-
+<Link href="/reviews">
 Reviews
-
 </Link>
 
 
-
 <span className="mx-2">
-
 /
-
 </span>
 
-
-
-<span>
 
 {tool.name}
-
-</span>
-
 
 
 </div>
@@ -342,10 +285,6 @@ Reviews
 
 
 
-{/* HERO */}
-
-
-
 <section className="
 mt-8
 bg-gradient-to-br
@@ -353,26 +292,15 @@ from-slate-950
 via-indigo-950
 to-blue-900
 px-6
-py-20
+py-24
 text-white
 ">
 
 
-
-<div className="
-mx-auto
-max-w-6xl
-">
+<div className="mx-auto max-w-6xl">
 
 
-
-
-
-<div className="
-flex
-flex-wrap
-gap-3
-">
+<div className="flex gap-3 flex-wrap">
 
 
 <span className="
@@ -380,7 +308,6 @@ rounded-full
 bg-blue-500/20
 px-4
 py-2
-text-sm
 font-bold
 text-blue-300
 ">
@@ -396,7 +323,6 @@ rounded-full
 bg-green-500/20
 px-4
 py-2
-text-sm
 font-bold
 text-green-300
 ">
@@ -412,14 +338,11 @@ text-green-300
 
 
 
-
-
-
 <h1 className="
-mt-6
+mt-8
 text-5xl
 font-black
-md:text-6xl
+md:text-7xl
 ">
 
 {tool.name}
@@ -427,9 +350,6 @@ md:text-6xl
 Review 2026
 
 </h1>
-
-
-
 
 
 
@@ -449,17 +369,7 @@ text-slate-300
 
 
 
-
-
-<div className="
-mt-10
-flex
-flex-wrap
-gap-4
-">
-
-
-
+<div className="mt-10 flex gap-4 flex-wrap">
 
 
 {tool.link && (
@@ -478,12 +388,11 @@ bg-blue-600
 px-8
 py-4
 font-bold
-hover:bg-blue-700
 "
 
 >
 
-Try {tool.name} →
+Visit {tool.name}
 
 </a>
 
@@ -504,7 +413,6 @@ border-white/30
 px-8
 py-4
 font-bold
-hover:bg-white/10
 "
 
 >
@@ -514,76 +422,44 @@ Compare Alternatives
 </Link>
 
 
-
 </div>
-
-
-
-
-
 
 
 </div>
 
 
 </section>
-{/* MAIN REVIEW CONTENT */}
-
-
-<section className="
-mx-auto
-max-w-6xl
-px-6
-py-16
-">
-
-
-<div className="
-grid
-gap-10
-lg:grid-cols-3
-">
 
 
 
 
 
-{/* ARTICLE */}
-
-
-<div className="
-lg:col-span-2
-">
 
 
 
 
+<section className="mx-auto max-w-6xl px-6 py-20">
 
-<h2 className="
-text-3xl
-font-black
-">
+
+<div className="grid gap-10 lg:grid-cols-3">
+
+
+
+<article className="lg:col-span-2">
+
+
+<h2 className="text-4xl font-black">
 
 What Is {tool.name}?
 
 </h2>
 
 
-
-<p className="
-mt-5
-leading-8
-text-slate-600
-">
+<p className="mt-5 leading-8 text-slate-600">
 
 NorthSky Reviews evaluates {tool.name}
-based on features, usability, pricing,
-performance, integrations, security,
-and overall value.
-
-Our goal is to help users decide if
-{tool.name} is the right solution for
-their workflow.
+based on features, pricing, performance,
+security, usability, and overall value.
 
 </p>
 
@@ -594,9 +470,6 @@ their workflow.
 
 
 
-{/* SCORE BREAKDOWN */}
-
-
 
 <h2 className="
 mt-12
@@ -604,48 +477,16 @@ text-3xl
 font-black
 ">
 
-NorthSky Score Breakdown
+NorthSky Score
 
 </h2>
 
 
 
+<div className="mt-6 grid gap-5 md:grid-cols-2">
 
 
-<div className="
-mt-6
-grid
-gap-4
-sm:grid-cols-2
-">
-
-
-
-
-
-{[
-
-{
-name:"Features",
-score:tool.featureScore || 9
-},
-
-{
-name:"Ease Of Use",
-score:tool.easeScore || 9
-},
-
-{
-name:"Value",
-score:tool.valueScore || 8
-},
-
-{
-name:"Performance",
-score:tool.performanceScore || 9
-}
-
-].map(item=>(
+{scoreData.map((item)=>(
 
 
 <div
@@ -655,7 +496,7 @@ key={item.name}
 className="
 rounded-2xl
 bg-slate-50
-p-5
+p-6
 "
 
 >
@@ -675,10 +516,7 @@ font-bold
 </span>
 
 
-
-<span className="
-text-blue-600
-">
+<span className="text-blue-600">
 
 {item.score}/10
 
@@ -686,8 +524,6 @@ text-blue-600
 
 
 </div>
-
-
 
 
 
@@ -709,7 +545,7 @@ bg-blue-600
 
 style={{
 
-width:`${item.score * 10}%`
+width:`${item.score*10}%`
 
 }}
 
@@ -717,7 +553,6 @@ width:`${item.score * 10}%`
 
 
 </div>
-
 
 
 </div>
@@ -737,31 +572,7 @@ width:`${item.score * 10}%`
 
 
 
-{/* PROS CONS */}
-
-
-
-<h2 className="
-mt-12
-text-3xl
-font-black
-">
-
-Pros & Cons
-
-</h2>
-
-
-
-
-<div className="
-mt-6
-grid
-gap-6
-md:grid-cols-2
-">
-
-
+<div className="mt-12 grid gap-6 md:grid-cols-2">
 
 
 
@@ -772,44 +583,28 @@ p-6
 ">
 
 
-<h3 className="
-font-black
-text-green-700
-">
+<h3 className="font-black text-green-700">
 
-✅ Pros
+Pros
 
 </h3>
 
 
 
-<ul className="
-mt-4
-space-y-3
-text-slate-700
-">
-
+<ul className="mt-4 space-y-2">
 
 {tool.pros?.map(item=>(
 
-
 <li key={item}>
-
 ✓ {item}
-
 </li>
 
-
 ))}
-
-
 
 </ul>
 
 
 </div>
-
-
 
 
 
@@ -822,38 +617,23 @@ p-6
 ">
 
 
-<h3 className="
-font-black
-text-red-700
-">
+<h3 className="font-black text-red-700">
 
-❌ Cons
+Cons
 
 </h3>
 
 
 
-
-<ul className="
-mt-4
-space-y-3
-text-slate-700
-">
-
+<ul className="mt-4 space-y-2">
 
 {tool.cons?.map(item=>(
 
-
 <li key={item}>
-
 • {item}
-
 </li>
 
-
 ))}
-
-
 
 </ul>
 
@@ -861,21 +641,11 @@ text-slate-700
 </div>
 
 
-
-
-
-
 </div>
 
 
 
 
-
-
-
-
-
-{/* FEATURES */}
 
 
 
@@ -891,15 +661,10 @@ Key Features
 
 
 
-<ul className="
-mt-5
-space-y-3
-text-slate-600
-">
+<ul className="mt-5 space-y-3 text-slate-600">
 
 
 {tool.features?.map(feature=>(
-
 
 <li key={feature}>
 
@@ -907,19 +672,14 @@ text-slate-600
 
 </li>
 
-
 ))}
-
 
 
 </ul>
 
 
 
-
-
-</div>
-
+</article>
 
 
 
@@ -927,22 +687,17 @@ text-slate-600
 
 
 
-
-{/* SIDEBAR */}
 
 
 <aside className="
 h-fit
 rounded-3xl
 bg-slate-50
-p-7
+p-8
 ">
 
 
-<h3 className="
-text-xl
-font-black
-">
+<h3 className="text-2xl font-black">
 
 Quick Facts
 
@@ -950,65 +705,47 @@ Quick Facts
 
 
 
-
-<div className="
-mt-6
-space-y-5
-">
+<div className="mt-6 space-y-5">
 
 
 <div>
 
-<p className="font-bold">
+<b>Category</b>
 
-Category
-
-</p>
-
-<p className="text-slate-600">
-
-{tool.category}
-
-</p>
+<p>{tool.category}</p>
 
 </div>
 
 
 
-
-
 <div>
 
-<p className="font-bold">
+<b>Rating</b>
 
-Rating
-
-</p>
-
-<p className="text-slate-600">
-
-⭐ {rating}/10
-
-</p>
+<p>⭐ {rating}/10</p>
 
 </div>
 
 
 
-
-
 <div>
 
-<p className="font-bold">
+<b>Best For</b>
 
-Best For
-
-</p>
-
-<p className="text-slate-600">
-
+<p>
 {tool.bestFor || "General users"}
+</p>
 
+</div>
+
+
+
+<div>
+
+<b>Pricing</b>
+
+<p>
+{tool.price || "Varies"}
 </p>
 
 </div>
@@ -1016,154 +753,12 @@ Best For
 
 
 </div>
-
-
-
-
 
 
 </aside>
 
 
 
-
-
-
-</div>
-
-
-</section>
-{/* PRICING SECTION */}
-
-
-<section className="
-bg-slate-50
-px-6
-py-20
-">
-
-
-<div className="
-mx-auto
-max-w-6xl
-">
-
-
-
-<h2 className="
-text-center
-text-4xl
-font-black
-">
-
-{tool.name} Pricing
-
-</h2>
-
-
-
-<p className="
-mx-auto
-mt-4
-max-w-2xl
-text-center
-text-slate-600
-">
-
-Review the pricing options and determine
-if this tool provides good value.
-
-</p>
-
-
-
-
-
-
-<div className="
-mx-auto
-mt-10
-max-w-xl
-rounded-3xl
-bg-white
-p-8
-shadow-sm
-">
-
-
-
-<div className="
-text-center
-">
-
-
-<h3 className="
-text-2xl
-font-black
-">
-
-Pricing Overview
-
-</h3>
-
-
-
-<p className="
-mt-4
-text-4xl
-font-black
-text-blue-600
-">
-
-{tool.price || "Pricing varies"}
-
-</p>
-
-
-
-
-</div>
-
-
-
-
-
-<ul className="
-mt-8
-space-y-3
-text-slate-600
-">
-
-
-<li>
-
-✓ Free trial availability
-
-</li>
-
-
-<li>
-
-✓ Compare plans before purchasing
-
-</li>
-
-
-<li>
-
-✓ Check features against alternatives
-
-</li>
-
-
-
-</ul>
-
-
-
-</div>
-
-
 </div>
 
 
@@ -1177,241 +772,17 @@ text-slate-600
 
 
 
-{/* ALTERNATIVES */}
+<section className="bg-slate-50 px-6 py-20">
 
 
+<div className="mx-auto max-w-5xl text-center">
 
-<section className="
-px-6
-py-20
-">
 
-
-<div className="
-mx-auto
-max-w-6xl
-">
-
-
-
-
-
-<h2 className="
-text-4xl
-font-black
-">
-
-Best {tool.name} Alternatives
-
-</h2>
-
-
-
-
-<p className="
-mt-3
-text-slate-600
-">
-
-Explore similar AI tools and compare
-features, pricing and performance.
-
-</p>
-
-
-
-
-
-
-
-<div className="
-mt-10
-grid
-gap-6
-md:grid-cols-3
-">
-
-
-
-{tools
-
-.filter(item=>
-
-item.slug !== tool.slug &&
-
-item.category === tool.category
-
-)
-
-.slice(0,3)
-
-.map(alternative=>(
-
-
-
-<Link
-
-key={alternative.slug}
-
-href={`/reviews/${alternative.slug}`}
-
-className="
-rounded-3xl
-border
-bg-white
-p-6
-transition
-hover:-translate-y-2
-hover:shadow-xl
-"
-
->
-
-
-<div className="
-flex
-justify-between
-">
-
-
-<span className="
-font-bold
-text-blue-600
-">
-
-Alternative
-
-</span>
-
-
-
-<span>
-
-⭐ {alternative.rating}
-
-</span>
-
-
-</div>
-
-
-
-
-
-
-<h3 className="
-mt-5
-text-xl
-font-black
-">
-
-{alternative.name}
-
-</h3>
-
-
-
-
-<p className="
-mt-3
-text-sm
-text-slate-600
-">
-
-{alternative.description}
-
-</p>
-
-
-
-
-<div className="
-mt-5
-font-bold
-text-blue-600
-">
-
-Read Review →
-
-</div>
-
-
-
-</Link>
-
-
-
-))}
-
-
-
-</div>
-
-
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-{/* AFFILIATE CTA */}
-
-
-
-<section className="
-px-6
-pb-20
-">
-
-
-<div className="
-mx-auto
-max-w-5xl
-rounded-3xl
-bg-blue-600
-p-12
-text-center
-text-white
-">
-
-
-
-<h2 className="
-text-4xl
-font-black
-">
+<h2 className="text-4xl font-black">
 
 Ready To Try {tool.name}?
 
 </h2>
-
-
-
-
-<p className="
-mx-auto
-mt-4
-max-w-2xl
-text-blue-100
-">
-
-Visit the official website and explore
-the latest plans, features and offers.
-
-</p>
-
-
-
 
 
 
@@ -1429,12 +800,11 @@ className="
 mt-8
 inline-block
 rounded-xl
-bg-white
+bg-blue-600
 px-8
 py-4
-font-black
-text-blue-600
-hover:bg-slate-100
+font-bold
+text-white
 "
 
 >
@@ -1447,266 +817,14 @@ Visit Official Website →
 
 
 
-
 <p className="
 mt-6
 text-sm
-text-blue-100
+text-slate-500
 ">
 
-NorthSky Reviews may earn a commission
-from qualifying affiliate purchases.
-
-</p>
-
-
-
-</div>
-
-
-</section>
-{/* FAQ SECTION */}
-
-
-<section className="
-px-6
-pb-20
-">
-
-
-<div className="
-mx-auto
-max-w-5xl
-">
-
-
-<h2 className="
-text-center
-text-4xl
-font-black
-">
-
-Frequently Asked Questions
-
-</h2>
-
-
-
-
-
-<div className="
-mt-10
-space-y-5
-">
-
-
-
-
-
-{[
-
-{
-
-q:`What is ${tool.name}?`,
-
-a:`${tool.name} is a ${tool.category} tool designed to help users improve productivity, automate tasks, and complete workflows faster.`
-
-},
-
-
-{
-
-q:`Is ${tool.name} worth it in 2026?`,
-
-a:`Based on features, usability, pricing and overall value, ${tool.name} receives a NorthSky rating of ${rating}/10.`
-
-},
-
-
-{
-
-q:`What are the best ${tool.name} alternatives?`,
-
-a:`Users should compare similar tools based on features, pricing, integrations and their specific needs.`
-
-}
-
-
-
-].map(item=>(
-
-
-<div
-
-key={item.q}
-
-className="
-rounded-2xl
-border
-p-6
-"
-
->
-
-
-<h3 className="
-font-black
-text-lg
-">
-
-{item.q}
-
-</h3>
-
-
-
-<p className="
-mt-3
-text-slate-600
-">
-
-{item.a}
-
-</p>
-
-
-</div>
-
-
-))}
-
-
-
-</div>
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-{/* FAQ STRUCTURED DATA */}
-
-
-<script
-
-type="application/ld+json"
-
-dangerouslySetInnerHTML={{
-
-__html:JSON.stringify({
-
-"@context":
-"https://schema.org",
-
-"@type":
-"FAQPage",
-
-mainEntity:[
-
-{
-
-"@type":
-"Question",
-
-"name":
-`What is ${tool.name}?`,
-
-acceptedAnswer:{
-
-"@type":
-"Answer",
-
-text:
-`${tool.name} is a ${tool.category} tool reviewed by NorthSky Reviews.`
-
-}
-
-},
-
-
-{
-
-"@type":
-"Question",
-
-"name":
-`Is ${tool.name} worth it in 2026?`,
-
-acceptedAnswer:{
-
-"@type":
-"Answer",
-
-text:
-`${tool.name} receives a NorthSky rating of ${rating}/10 based on features, usability and value.`
-
-}
-
-}
-
-
-]
-
-})
-
-}}
-
-/>
-
-
-
-
-
-
-
-{/* FINAL DISCLAIMER */}
-
-
-<section className="
-px-6
-pb-16
-">
-
-
-<div className="
-mx-auto
-max-w-4xl
-rounded-3xl
-bg-slate-100
-p-8
-text-center
-">
-
-
-<h3 className="
-font-black
-">
-
-Transparency
-
-</h3>
-
-
-
-<p className="
-mt-3
-text-sm
-text-slate-600
-">
-
-NorthSky Reviews provides independent analysis.
-Some links may be affiliate links, meaning we may earn
-a commission at no additional cost to you.
+NorthSky Reviews may earn commissions
+from qualifying purchases.
 
 </p>
 
