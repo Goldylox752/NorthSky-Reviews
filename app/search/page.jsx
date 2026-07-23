@@ -1,105 +1,167 @@
 import Link from "next/link";
+
 import { tools, categories } from "@/app/data/tools";
 import { comparisons } from "@/app/data/comparisons";
+import { guides } from "@/app/data/guides";
 
 
 export const metadata = {
 
-  title:
-    "Search AI Tools & Software | NorthSky Reviews",
+title:
+"Search AI Tools, Reviews & Software | NorthSky Reviews",
 
-  description:
-    "Search AI tools, software reviews, comparisons, and technology recommendations from NorthSky Reviews."
+description:
+"Search NorthSky Reviews for AI tools, software reviews, comparisons, guides, and technology recommendations.",
+
+alternates:{
+canonical:
+"https://northsky-reviews.vercel.app/search"
+}
 
 };
 
 
 
 
-export default async function SearchPage({searchParams}) {
+
+export default async function SearchPage({searchParams}){
 
 
-  const params =
-    await searchParams;
+const params =
+await searchParams;
 
 
-  const query =
-    params?.q || "";
+const query =
+params?.q || "";
 
 
-  const category =
-    params?.category || "";
-
-
-
-  const search =
-    query.toLowerCase();
+const category =
+params?.category || "";
 
 
 
-
-  let toolResults =
-    [...tools];
-
-
-
-  if(search){
-
-    toolResults =
-      toolResults.filter((tool)=>
-
-        tool.name
-        ?.toLowerCase()
-        .includes(search)
-
-        ||
-
-        tool.description
-        ?.toLowerCase()
-        .includes(search)
-
-        ||
-
-        tool.category
-        ?.toLowerCase()
-        .includes(search)
-
-      );
-
-  }
-
-
-
-  if(category){
-
-    toolResults =
-      toolResults.filter(
-
-        (tool)=>
-
-        tool.category === category
-
-      );
-
-  }
+const search =
+query.toLowerCase();
 
 
 
 
-  const comparisonResults =
-    comparisons.filter((item)=>
 
-      item.title
-      ?.toLowerCase()
-      .includes(search)
+function matches(item){
 
-      ||
 
-      item.description
-      ?.toLowerCase()
-      .includes(search)
+if(!search)
+return true;
 
-    );
+
+return [
+
+item.name,
+
+item.title,
+
+item.description,
+
+item.category,
+
+...(item.tags || []),
+
+...(item.keywords || [])
+
+]
+
+.filter(Boolean)
+
+.join(" ")
+
+.toLowerCase()
+
+.includes(search);
+
+
+}
+
+
+
+
+
+
+
+let toolResults =
+tools.filter(matches);
+
+
+
+if(category){
+
+
+toolResults =
+toolResults.filter(
+
+tool =>
+tool.category === category
+
+);
+
+}
+
+
+
+
+
+toolResults =
+toolResults.sort(
+
+(a,b)=>
+
+(b.rating || 0) -
+(a.rating || 0)
+
+);
+
+
+
+
+
+
+
+const comparisonResults =
+comparisons.filter(matches);
+
+
+
+
+
+const guideResults =
+guides.filter(matches);
+
+
+
+
+
+
+
+const schema = {
+
+
+"@context":
+"https://schema.org",
+
+
+"@type":
+"SearchResultsPage",
+
+
+name:
+"NorthSky Reviews Search",
+
+
+url:
+"https://northsky-reviews.vercel.app/search"
+
+
+};
+
 
 
 
@@ -108,7 +170,12 @@ export default async function SearchPage({searchParams}) {
 
 return (
 
-<main className="min-h-screen bg-white px-6 py-16">
+<main className="
+min-h-screen
+bg-white
+px-6
+py-16
+">
 
 
 <script
@@ -117,17 +184,8 @@ type="application/ld+json"
 
 dangerouslySetInnerHTML={{
 
-__html:JSON.stringify({
-
-"@context":"https://schema.org",
-
-"@type":"SearchResultsPage",
-
-"name":"NorthSky Reviews Search",
-
-"url":"https://northsky-reviews.vercel.app/search"
-
-})
+__html:
+JSON.stringify(schema)
 
 }}
 
@@ -137,22 +195,41 @@ __html:JSON.stringify({
 
 
 
-<div className="mx-auto max-w-7xl">
+
+<div className="
+mx-auto
+max-w-7xl
+">
 
 
-<h1 className="text-5xl font-black">
+
+
+
+<h1 className="
+text-5xl
+font-black
+">
 
 Search NorthSky Reviews
 
 </h1>
 
 
-<p className="mt-4 text-lg text-slate-600">
 
-Find AI tools, software reviews,
-comparisons, and technology guides.
+
+
+<p className="
+mt-4
+text-lg
+text-slate-600
+">
+
+Find AI tools, software,
+reviews, comparisons, and guides.
 
 </p>
+
+
 
 
 
@@ -162,7 +239,13 @@ comparisons, and technology guides.
 
 action="/search"
 
-className="mt-10 flex flex-col gap-4 md:flex-row"
+className="
+mt-10
+grid
+gap-4
+md:grid-cols-3
+"
+
 
 >
 
@@ -173,11 +256,17 @@ name="q"
 
 defaultValue={query}
 
-placeholder="Search ChatGPT, VPN, AI tools..."
+placeholder="Search ChatGPT, VPN, Shopify..."
 
-className="flex-1 rounded-xl border px-5 py-4"
+className="
+rounded-xl
+border
+px-5
+py-4
+"
 
 />
+
 
 
 
@@ -188,7 +277,12 @@ name="category"
 
 defaultValue={category}
 
-className="rounded-xl border px-5 py-4"
+className="
+rounded-xl
+border
+px-5
+py-4
+"
 
 >
 
@@ -200,7 +294,8 @@ All Categories
 </option>
 
 
-{categories.map((cat)=>(
+
+{categories.map(cat=>(
 
 <option
 
@@ -210,7 +305,7 @@ value={cat.name}
 
 >
 
-{cat.icon} {cat.name}
+{cat.icon || "🚀"} {cat.name}
 
 </option>
 
@@ -223,15 +318,24 @@ value={cat.name}
 
 
 
+
 <button
 
-className="rounded-xl bg-blue-600 px-8 py-4 font-bold text-white"
+className="
+rounded-xl
+bg-blue-600
+px-8
+py-4
+font-black
+text-white
+"
 
 >
 
 Search
 
 </button>
+
 
 
 </form>
@@ -243,56 +347,87 @@ Search
 
 
 
-<section className="mt-14">
+
+{/* TOOLS */}
 
 
-<h2 className="text-3xl font-black">
+<ResultSection
 
-AI Tools ({toolResults.length})
-
-</h2>
-
-
-
-{toolResults.length > 0 && (
-
-<div className="mt-8 grid gap-8 md:grid-cols-3">
-
-
-{toolResults.map((tool)=>(
-
-
-<div
-
-key={tool.slug}
-
-className="rounded-3xl border p-8 shadow-sm hover:shadow-xl"
+title={`Tools (${toolResults.length})`}
 
 >
 
 
-<div className="flex justify-between">
+<div className="
+grid
+gap-8
+md:grid-cols-3
+">
 
 
-<span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-700">
+{toolResults.map(tool=>(
+
+
+<article
+
+key={tool.slug}
+
+className="
+rounded-3xl
+border
+p-8
+transition
+hover:-translate-y-2
+hover:shadow-xl
+"
+
+>
+
+
+<div className="
+flex
+justify-between
+">
+
+
+<span className="
+rounded-full
+bg-blue-100
+px-3
+py-1
+text-xs
+font-bold
+text-blue-700
+">
 
 {tool.category}
 
 </span>
 
 
-<span className="font-bold text-green-600">
+
+<span className="
+font-black
+text-green-600
+">
 
 ⭐ {tool.rating}
 
 </span>
 
 
+
 </div>
 
 
 
-<h3 className="mt-5 text-2xl font-black">
+
+
+<h3 className="
+mt-5
+text-2xl
+font-black
+">
 
 {tool.name}
 
@@ -300,7 +435,12 @@ className="rounded-3xl border p-8 shadow-sm hover:shadow-xl"
 
 
 
-<p className="mt-4 text-slate-600">
+
+
+<p className="
+mt-3
+text-slate-600
+">
 
 {tool.description}
 
@@ -309,14 +449,18 @@ className="rounded-3xl border p-8 shadow-sm hover:shadow-xl"
 
 
 
-<div className="mt-6 flex gap-4">
 
 
 <Link
 
-href={`/ai/reviews/${tool.slug}`}
+href={`/reviews/${tool.slug}`}
 
-className="font-bold text-blue-600"
+className="
+mt-6
+block
+font-bold
+text-blue-600
+"
 
 >
 
@@ -326,27 +470,7 @@ Read Review →
 
 
 
-<a
-
-href={tool.link}
-
-target="_blank"
-
-rel="noopener noreferrer sponsored"
-
-className="font-bold text-green-600"
-
->
-
-Visit →
-
-</a>
-
-
-</div>
-
-
-</div>
+</article>
 
 
 ))}
@@ -354,11 +478,8 @@ Visit →
 
 </div>
 
-)}
 
-
-</section>
-
+</ResultSection>
 
 
 
@@ -366,21 +487,103 @@ Visit →
 
 
 
-<section className="mt-16">
 
 
-<h2 className="text-3xl font-black">
-
-Comparisons ({comparisonResults.length})
-
-</h2>
+{/* GUIDES */}
 
 
+<ResultSection
 
-<div className="mt-6 grid gap-6 md:grid-cols-2">
+title={`Guides (${guideResults.length})`}
+
+>
 
 
-{comparisonResults.map((item)=>(
+<div className="
+grid
+gap-6
+md:grid-cols-3
+">
+
+
+{guideResults.map(guide=>(
+
+
+<Link
+
+key={guide.slug}
+
+href={`/guides/${guide.slug}`}
+
+className="
+rounded-3xl
+border
+p-7
+hover:shadow-xl
+"
+
+>
+
+
+<h3 className="
+text-xl
+font-black
+">
+
+{guide.title}
+
+</h3>
+
+
+
+<p className="
+mt-3
+text-slate-600
+">
+
+{guide.description}
+
+</p>
+
+
+
+</Link>
+
+
+))}
+
+
+</div>
+
+
+</ResultSection>
+
+
+
+
+
+
+
+
+
+{/* COMPARISONS */}
+
+
+<ResultSection
+
+title={`Comparisons (${comparisonResults.length})`}
+
+>
+
+
+<div className="
+grid
+gap-6
+md:grid-cols-2
+">
+
+
+{comparisonResults.map(item=>(
 
 
 <Link
@@ -389,19 +592,31 @@ key={item.slug}
 
 href={`/comparisons/${item.slug}`}
 
-className="rounded-3xl border p-6 hover:shadow-xl"
+className="
+rounded-3xl
+border
+p-7
+hover:shadow-xl
+"
 
 >
 
 
-<h3 className="text-xl font-black">
+<h3 className="
+text-xl
+font-black
+">
 
 {item.title}
 
 </h3>
 
 
-<p className="mt-3 text-slate-600">
+
+<p className="
+mt-3
+text-slate-600
+">
 
 {item.description}
 
@@ -417,7 +632,10 @@ className="rounded-3xl border p-6 hover:shadow-xl"
 </div>
 
 
-</section>
+</ResultSection>
+
+
+
 
 
 
@@ -425,28 +643,47 @@ className="rounded-3xl border p-6 hover:shadow-xl"
 
 
 {toolResults.length === 0 &&
+guideResults.length === 0 &&
 comparisonResults.length === 0 && (
 
-<div className="mt-12 rounded-3xl bg-slate-50 p-10 text-center">
+
+<div className="
+mt-16
+rounded-3xl
+bg-slate-50
+p-10
+text-center
+">
 
 
-<h2 className="text-2xl font-black">
+<h2 className="
+text-3xl
+font-black
+">
 
-No results found
+No Results Found
 
 </h2>
 
 
-<p className="mt-3 text-slate-600">
 
-Try searching another AI tool or category.
+<p className="
+mt-3
+text-slate-600
+">
+
+Try searching another tool, category,
+or technology.
 
 </p>
 
 
 </div>
 
+
 )}
+
+
 
 
 
@@ -456,5 +693,39 @@ Try searching another AI tool or category.
 </main>
 
 );
+
+}
+
+
+
+
+
+function ResultSection({title,children}){
+
+
+return (
+
+<section className="
+mt-16
+">
+
+
+<h2 className="
+mb-8
+text-3xl
+font-black
+">
+
+{title}
+
+</h2>
+
+
+{children}
+
+
+</section>
+
+)
 
 }
