@@ -1,1843 +1,642 @@
 import Link from "next/link";
 
-
 export const metadata = {
-
-title:
-"NorthSky Reviews | Best VPNs, AI Tools, eSIMs & Software Reviews 2026",
-
-description:
-"Independent technology reviews covering VPNs, AI tools, eSIM providers, automation software, and digital products. Compare features, pricing, performance, and value.",
-
-keywords:[
-
-"best VPNs 2026",
-"AI tools reviews",
-"best eSIM providers",
-"software comparisons",
-"technology reviews",
-"NorthSky Reviews"
-
-],
-
-
-alternates:{
-
-canonical:
-"https://northsky-reviews.vercel.app"
-
-},
-
-
-openGraph:{
-
-title:
-"NorthSky Reviews | Independent Technology Reviews 2026",
-
-description:
-"Compare VPNs, AI software, eSIM providers, and technology products with detailed reviews.",
-
-url:
-"https://northsky-reviews.vercel.app",
-
-siteName:
-"NorthSky Reviews",
-
-type:
-"website"
-
-}
-
+  title: "NorthSky Reviews | Best AI Tools, Software & Technology Reviews 2026",
+  description:
+    "Compare the best AI tools, software, VPNs, web hosting, business apps, and technology products. Read expert reviews, pricing guides, rankings, and exclusive deals from NorthSky Reviews.",
 };
 
+export default function HomePage() {
+  return (
+    <>
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-blue-900 text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.18),transparent_45%)]" />
 
+        <div className="relative mx-auto max-w-7xl px-6 py-24 lg:flex lg:items-center lg:justify-between">
+          <div className="max-w-3xl">
+            <span className="inline-flex rounded-full border border-blue-500/40 bg-blue-500/10 px-4 py-2 text-sm font-semibold text-blue-300">
+              ⭐ Trusted Reviews • Comparisons • Deals
+            </span>
 
-const vpnData = [
+            <h1 className="mt-8 text-5xl font-extrabold leading-tight md:text-6xl">
+              Find the Best
+              <span className="text-blue-400"> AI Tools</span>,
+              Software &
+              Technology
+            </h1>
 
-{
-name:"NordVPN",
-rating:"9.7",
-badge:"BEST OVERALL",
-servers:"6400+",
-speed:"12%",
-href:"/reviews/nordvpn"
-},
+            <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
+              NorthSky Reviews helps you discover the highest-rated AI tools,
+              software, VPNs, business platforms, hosting providers, and
+              productivity apps. Compare features, pricing, alternatives, and
+              exclusive offers—all in one place.
+            </p>
 
-{
-name:"ExpressVPN",
-rating:"9.4",
-badge:"MOST CONSISTENT",
-servers:"3000+",
-speed:"18%",
-href:"/reviews/expressvpn"
-},
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link
+                href="/reviews"
+                className="rounded-xl bg-blue-600 px-7 py-4 font-semibold text-white transition hover:bg-blue-700"
+              >
+                Browse Reviews
+              </Link>
 
-{
-name:"Surfshark",
-rating:"9.1",
-badge:"BEST VALUE",
-servers:"3200+",
-speed:"15%",
-href:"/reviews/surfshark"
+              <Link
+                href="/comparisons"
+                className="rounded-xl border border-white/20 px-7 py-4 font-semibold transition hover:bg-white/10"
+              >
+                Compare Software
+              </Link>
+            </div>
+
+            <div className="mt-10 flex flex-wrap gap-6 text-sm text-slate-300">
+              <span>✓ Expert Reviews</span>
+              <span>✓ Updated for 2026</span>
+              <span>✓ Honest Comparisons</span>
+              <span>✓ Exclusive Deals</span>
+            </div>
+          </div>
+
+          <div className="mt-16 lg:mt-0 lg:max-w-md">
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
+              <span className="rounded-full bg-green-500/20 px-3 py-1 text-sm font-semibold text-green-300">
+                Featured Deal
+              </span>
+
+              <h2 className="mt-5 text-3xl font-bold">
+                Protect Your Privacy Online
+              </h2>
+
+              <p className="mt-4 text-slate-300">
+                Discover our recommended VPN for secure browsing, encrypted
+                connections, streaming, and online privacy.
+              </p>
+
+              <a
+                href="PASTE_YOUR_VPN_AFFILIATE_LINK_HERE"
+                target="_blank"
+                rel="nofollow sponsored noopener noreferrer"
+                className="mt-8 inline-flex rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
+              >
+                View VPN Deal →
+              </a>
+
+              <p className="mt-4 text-xs text-slate-400">
+                Disclosure: We may earn a commission if you purchase through our
+                affiliate links, at no extra cost to you.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
 }
-
-];
-
-
-
-
-export default function Home(){
-
-
-return (
-
-<main className="min-h-screen bg-white text-slate-900">
-
-
-
-<script
-
-type="application/ld+json"
-
-dangerouslySetInnerHTML={{
-
-__html:JSON.stringify({
-
-"@context":"https://schema.org",
-
-"@type":"WebSite",
-
-name:"NorthSky Reviews",
-
-url:"https://northsky-reviews.vercel.app",
-
-description:
-"Independent reviews of VPNs, AI tools, software and technology products."
-
-})
-
-}}
-
-/>
-
-
-
-
-
-{/* HERO */}
-
-
-<section className="
-bg-gradient-to-br
-from-slate-950
-via-blue-950
-to-indigo-950
-px-6
-py-28
-text-white
-">
-
-
-<div className="
-mx-auto
-max-w-6xl
-text-center
-">
-
-
-<span className="
-rounded-full
-bg-blue-500/20
-px-5
-py-2
-text-sm
-font-bold
-text-blue-300
-">
-
-⚡ Independent Technology Testing
-
-</span>
-
-
-
-<h1 className="
-mt-8
-text-5xl
-font-black
-md:text-7xl
-">
-
-The Internet's
-<br/>
-
-Most Trusted
-<span className="text-blue-400">
- Technology Reviews
-</span>
-
-</h1>
-
-
-
-<p className="
-mx-auto
-mt-8
-max-w-3xl
-text-xl
-leading-8
-text-slate-300
-">
-
-We test VPNs, AI tools, eSIM providers,
-automation software, and digital products
-to help you make smarter buying decisions.
-
-</p>
-
-
-
-<div className="
-mt-10
-flex
-flex-wrap
-justify-center
-gap-5
-">
-
-
-<Link
-
-href="/all-tools"
-
-className="
-rounded-xl
-bg-blue-600
-px-8
-py-4
-font-bold
-hover:bg-blue-700
-"
-
->
-
-Explore Reviews →
-
-</Link>
-
-
-
-<Link
-
-href="/comparisons"
-
-className="
-rounded-xl
-border
-border-white/30
-px-8
-py-4
-font-bold
-hover:bg-white/10
-"
-
->
-
-Compare Products
-
-</Link>
-
-
-
-</div>
-
-
-
-</div>
-
-
+{/* ================================
+    Popular Categories
+================================ */}
+
+<section className="bg-white py-24">
+  <div className="mx-auto max-w-7xl px-6">
+    <div className="max-w-3xl">
+      <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
+        Explore
+      </span>
+
+      <h2 className="mt-6 text-4xl font-bold text-slate-900 md:text-5xl">
+        Browse Reviews by Category
+      </h2>
+
+      <p className="mt-6 text-lg text-slate-600">
+        Whether you're searching for the best AI software, a secure VPN,
+        business tools, or cloud hosting, NorthSky Reviews helps you compare
+        features, pricing, alternatives, and exclusive deals.
+      </p>
+    </div>
+
+    <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+      <Link
+        href="/category/ai"
+        className="group rounded-2xl border border-slate-200 bg-white p-8 transition hover:-translate-y-1 hover:border-blue-500 hover:shadow-xl"
+      >
+        <div className="text-5xl">🤖</div>
+        <h3 className="mt-6 text-2xl font-bold text-slate-900">
+          AI Tools
+        </h3>
+        <p className="mt-3 text-slate-600">
+          Chatbots, writing assistants, coding tools, image generators,
+          automation platforms and productivity software.
+        </p>
+      </Link>
+
+      <Link
+        href="/category/vpn"
+        className="group rounded-2xl border border-slate-200 bg-white p-8 transition hover:-translate-y-1 hover:border-blue-500 hover:shadow-xl"
+      >
+        <div className="text-5xl">🔒</div>
+        <h3 className="mt-6 text-2xl font-bold text-slate-900">
+          VPN & Privacy
+        </h3>
+        <p className="mt-3 text-slate-600">
+          Compare VPN providers, password managers and cybersecurity tools to
+          stay protected online.
+        </p>
+      </Link>
+
+      <Link
+        href="/category/business"
+        className="group rounded-2xl border border-slate-200 bg-white p-8 transition hover:-translate-y-1 hover:border-blue-500 hover:shadow-xl"
+      >
+        <div className="text-5xl">💼</div>
+        <h3 className="mt-6 text-2xl font-bold text-slate-900">
+          Business Software
+        </h3>
+        <p className="mt-3 text-slate-600">
+          CRM platforms, accounting software, project management and workflow
+          automation solutions.
+        </p>
+      </Link>
+
+      <Link
+        href="/category/hosting"
+        className="group rounded-2xl border border-slate-200 bg-white p-8 transition hover:-translate-y-1 hover:border-blue-500 hover:shadow-xl"
+      >
+        <div className="text-5xl">☁️</div>
+        <h3 className="mt-6 text-2xl font-bold text-slate-900">
+          Web Hosting
+        </h3>
+        <p className="mt-3 text-slate-600">
+          Find reliable web hosting, VPS, cloud servers and website builders
+          for every budget.
+        </p>
+      </Link>
+
+      <Link
+        href="/category/marketing"
+        className="group rounded-2xl border border-slate-200 bg-white p-8 transition hover:-translate-y-1 hover:border-blue-500 hover:shadow-xl"
+      >
+        <div className="text-5xl">📈</div>
+        <h3 className="mt-6 text-2xl font-bold text-slate-900">
+          Marketing Tools
+        </h3>
+        <p className="mt-3 text-slate-600">
+          SEO software, email marketing platforms, social media tools and
+          advertising solutions.
+        </p>
+      </Link>
+
+      <Link
+        href="/deals"
+        className="group rounded-2xl border border-blue-600 bg-gradient-to-br from-blue-600 to-indigo-700 p-8 text-white transition hover:-translate-y-1 hover:shadow-2xl"
+      >
+        <div className="text-5xl">🔥</div>
+
+        <h3 className="mt-6 text-2xl font-bold">
+          Today's Best Deals
+        </h3>
+
+        <p className="mt-3 text-blue-100">
+          Save money with exclusive discounts, coupons and affiliate offers
+          from leading software companies.
+        </p>
+
+        <div className="mt-6 font-semibold">
+          View Deals →
+        </div>
+      </Link>
+
+    </div>
+  </div>
 </section>
+{/* ========================================
+    Editor's Picks
+======================================== */}
 
+<section className="bg-slate-50 py-24">
+  <div className="mx-auto max-w-7xl px-6">
 
+    <div className="text-center">
+      <span className="rounded-full bg-yellow-100 px-4 py-2 text-sm font-semibold text-yellow-700">
+        ⭐ Editor's Picks
+      </span>
 
+      <h2 className="mt-6 text-4xl font-bold text-slate-900 md:text-5xl">
+        Our Top Recommendations for 2026
+      </h2>
 
+      <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-600">
+        Every product below has been selected based on features, pricing,
+        reliability, ease of use, customer satisfaction, and overall value.
+      </p>
+    </div>
 
-{/* TRUST STATS */}
+    <div className="mt-16 grid gap-8 lg:grid-cols-3">
 
+      {/* AI */}
+      <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
+        <span className="text-5xl">🤖</span>
 
+        <h3 className="mt-6 text-2xl font-bold">
+          Best AI Tools
+        </h3>
 
-<section className="
-px-6
-py-16
-">
+        <p className="mt-4 text-slate-600">
+          Discover AI assistants, writing tools, coding platforms, image
+          generators, automation software, and productivity apps.
+        </p>
 
+        <Link
+          href="/best-ai-tools"
+          className="mt-8 inline-flex font-semibold text-blue-600 hover:text-blue-700"
+        >
+          Explore AI Tools →
+        </Link>
+      </div>
 
-<div className="
-mx-auto
-max-w-6xl
-grid
-gap-6
-md:grid-cols-4
-">
+      {/* VPN */}
+      <div className="rounded-3xl border-2 border-blue-600 bg-white p-8 shadow-lg">
 
+        <span className="rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-700">
+          Featured
+        </span>
 
-{[
+        <div className="mt-4 text-5xl">
+          🔒
+        </div>
 
-["250+","Products Reviewed"],
+        <h3 className="mt-6 text-2xl font-bold">
+          Recommended VPN
+        </h3>
 
-["50+","Software Comparisons"],
+        <p className="mt-4 text-slate-600">
+          Protect your privacy, secure public Wi-Fi, stream safely, and encrypt
+          your internet connection with our recommended VPN.
+        </p>
 
-["10+","Categories"],
+        <a
+          href="PASTE_YOUR_VPN_AFFILIATE_LINK_HERE"
+          target="_blank"
+          rel="nofollow sponsored noopener noreferrer"
+          className="mt-8 inline-flex rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
+        >
+          Claim VPN Deal
+        </a>
 
-["2026","Updated Rankings"]
+        <p className="mt-4 text-xs text-slate-500">
+          Affiliate disclosure: We may earn a commission if you purchase
+          through our links at no extra cost to you.
+        </p>
 
-].map(item=>(
+      </div>
 
+      {/* Hosting */}
+      <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
 
-<div
+        <span className="text-5xl">☁️</span>
 
-key={item[1]}
+        <h3 className="mt-6 text-2xl font-bold">
+          Best Web Hosting
+        </h3>
 
-className="
-rounded-3xl
-border
-p-8
-text-center
-"
+        <p className="mt-4 text-slate-600">
+          Compare shared hosting, VPS, WordPress hosting, dedicated servers,
+          and cloud hosting providers.
+        </p>
 
+        <Link
+          href="/hosting"
+          className="mt-8 inline-flex font-semibold text-blue-600 hover:text-blue-700"
+        >
+          Compare Hosting →
+        </Link>
 
->
+      </div>
 
+    </div>
 
-<h2 className="
-text-4xl
-font-black
-text-blue-600
-">
+    {/* Quick Links */}
 
-{item[0]}
+    <div className="mt-20 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 
-</h2>
+      <Link
+        href="/comparisons"
+        className="rounded-xl border bg-white p-6 text-center font-semibold hover:border-blue-600 hover:shadow-md"
+      >
+        AI Comparisons →
+      </Link>
 
+      <Link
+        href="/vpn"
+        className="rounded-xl border bg-white p-6 text-center font-semibold hover:border-blue-600 hover:shadow-md"
+      >
+        VPN Reviews →
+      </Link>
 
-<p className="
-mt-3
-font-bold
-text-slate-600
-">
+      <Link
+        href="/deals"
+        className="rounded-xl border bg-white p-6 text-center font-semibold hover:border-blue-600 hover:shadow-md"
+      >
+        Software Deals →
+      </Link>
 
-{item[1]}
+      <Link
+        href="/reviews"
+        className="rounded-xl border bg-white p-6 text-center font-semibold hover:border-blue-600 hover:shadow-md"
+      >
+        Browse All Reviews →
+      </Link>
 
-</p>
+    </div>
 
-
-</div>
-
-
-))}
-
-
-
-</div>
-
-
+  </div>
 </section>
-  {/* FEATURED VPN REVIEWS */}
-
-
-<section className="
-bg-slate-50
-px-6
-py-24
-">
-
-
-<div className="
-mx-auto
-max-w-7xl
-">
-
-
-<div className="
-flex
-items-center
-justify-between
-">
-
-
-<h2 className="
-text-4xl
-font-black
-">
-
-🏆 Best VPNs 2026
-
-</h2>
-
-
-<Link
-
-href="/categories/vpn"
-
-className="
-font-bold
-text-blue-600
-"
-
->
-
-View All VPNs →
-
-</Link>
-
-
-</div>
-
-
-
-
-
-<p className="
-mt-4
-text-slate-600
-">
-
-Compare privacy, speed, streaming support,
-security features, and pricing.
-
-</p>
-
-
-
-
-
-
-
-<div className="
-mt-10
-grid
-gap-8
-md:grid-cols-3
-">
-
-
-
-{vpnData.map((vpn,index)=>(
-
-
-<div
-
-key={vpn.name}
-
-className="
-rounded-3xl
-bg-white
-p-8
-shadow-sm
-transition
-hover:-translate-y-2
-hover:shadow-xl
-"
-
->
-
-
-<div className="
-flex
-justify-between
-">
-
-
-<span className="
-rounded-full
-bg-blue-100
-px-3
-py-1
-text-sm
-font-bold
-text-blue-700
-">
-
-#{index+1}
-
-</span>
-
-
-<span className="
-font-black
-text-green-600
-">
-
-⭐ {vpn.rating}
-
-</span>
-
-
-</div>
-
-
-
-
-<h3 className="
-mt-6
-text-3xl
-font-black
-">
-
-{vpn.name}
-
-</h3>
-
-
-
-<p className="
-mt-3
-text-sm
-font-bold
-text-blue-600
-">
-
-{vpn.badge}
-
-</p>
-
-
-
-
-<div className="
-mt-6
-space-y-3
-text-slate-600
-">
-
-
-<p>
-
-🌎 Servers:
-<span className="font-bold">
-{" "}{vpn.servers}
-</span>
-
-</p>
-
-
-<p>
-
-⚡ Speed loss:
-<span className="font-bold">
-{" "}{vpn.speed}
-</span>
-
-</p>
-
-
-</div>
-
-
-
-
-
-<Link
-
-href={vpn.href}
-
-className="
-mt-8
-block
-rounded-xl
-bg-blue-600
-px-5
-py-3
-text-center
-font-bold
-text-white
-hover:bg-blue-700
-"
-
->
-
-Read Full Review →
-
-</Link>
-
-
-
-
-</div>
-
-
-))}
-
-
-</div>
-
-
-</div>
-
-
+{/* ========================================
+    Featured Comparisons
+======================================== */}
+
+<section className="py-24 bg-white">
+  <div className="mx-auto max-w-7xl px-6">
+
+    <div className="text-center">
+      <span className="rounded-full bg-indigo-100 px-4 py-2 text-sm font-semibold text-indigo-700">
+        ⚖️ Software Comparisons
+      </span>
+
+      <h2 className="mt-6 text-4xl font-bold text-slate-900 md:text-5xl">
+        Compare the Best Software Side-by-Side
+      </h2>
+
+      <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-600">
+        We break down pricing, features, ease of use, integrations, AI
+        capabilities, and overall value to help you choose the right software.
+      </p>
+    </div>
+
+    <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+
+      <Link
+        href="/comparisons/chatgpt-vs-claude"
+        className="group rounded-3xl border border-slate-200 bg-white p-8 transition hover:-translate-y-2 hover:border-blue-500 hover:shadow-xl"
+      >
+        <span className="text-5xl">🤖</span>
+
+        <h3 className="mt-6 text-2xl font-bold">
+          ChatGPT vs Claude
+        </h3>
+
+        <p className="mt-4 text-slate-600">
+          Compare features, pricing, reasoning ability, coding performance,
+          and which AI assistant is best for your workflow.
+        </p>
+
+        <div className="mt-8 font-semibold text-blue-600">
+          Read Comparison →
+        </div>
+      </Link>
+
+      <Link
+        href="/comparisons/nordvpn-vs-surfshark"
+        className="group rounded-3xl border border-slate-200 bg-white p-8 transition hover:-translate-y-2 hover:border-blue-500 hover:shadow-xl"
+      >
+        <span className="text-5xl">🔒</span>
+
+        <h3 className="mt-6 text-2xl font-bold">
+          NordVPN vs Surfshark
+        </h3>
+
+        <p className="mt-4 text-slate-600">
+          Compare speed, privacy, streaming, pricing, and security features
+          to find the right VPN.
+        </p>
+
+        <div className="mt-8 font-semibold text-blue-600">
+          Read Comparison →
+        </div>
+      </Link>
+
+      <Link
+        href="/comparisons/notion-vs-clickup"
+        className="group rounded-3xl border border-slate-200 bg-white p-8 transition hover:-translate-y-2 hover:border-blue-500 hover:shadow-xl"
+      >
+        <span className="text-5xl">📋</span>
+
+        <h3 className="mt-6 text-2xl font-bold">
+          Notion vs ClickUp
+        </h3>
+
+        <p className="mt-4 text-slate-600">
+          Which productivity platform is better for teams, projects,
+          collaboration, and documentation?
+        </p>
+
+        <div className="mt-8 font-semibold text-blue-600">
+          Read Comparison →
+        </div>
+      </Link>
+
+      <Link
+        href="/comparisons/canva-vs-adobe-express"
+        className="group rounded-3xl border border-slate-200 bg-white p-8 transition hover:-translate-y-2 hover:border-blue-500 hover:shadow-xl"
+      >
+        <span className="text-5xl">🎨</span>
+
+        <h3 className="mt-6 text-2xl font-bold">
+          Canva vs Adobe Express
+        </h3>
+
+        <p className="mt-4 text-slate-600">
+          Compare templates, AI tools, pricing, and creative features for
+          designers and marketers.
+        </p>
+
+        <div className="mt-8 font-semibold text-blue-600">
+          Read Comparison →
+        </div>
+      </Link>
+
+      <Link
+        href="/comparisons/hostinger-vs-siteground"
+        className="group rounded-3xl border border-slate-200 bg-white p-8 transition hover:-translate-y-2 hover:border-blue-500 hover:shadow-xl"
+      >
+        <span className="text-5xl">☁️</span>
+
+        <h3 className="mt-6 text-2xl font-bold">
+          Hostinger vs SiteGround
+        </h3>
+
+        <p className="mt-4 text-slate-600">
+          Compare performance, uptime, WordPress features, customer support,
+          and overall hosting value.
+        </p>
+
+        <div className="mt-8 font-semibold text-blue-600">
+          Read Comparison →
+        </div>
+      </Link>
+
+      <Link
+        href="/comparisons"
+        className="rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-700 p-8 text-white transition hover:shadow-2xl"
+      >
+        <span className="text-5xl">🚀</span>
+
+        <h3 className="mt-6 text-2xl font-bold">
+          View All Comparisons
+        </h3>
+
+        <p className="mt-4 text-blue-100">
+          Browse dozens of detailed software, AI, VPN, hosting, and business
+          software comparisons.
+        </p>
+
+        <div className="mt-8 font-semibold">
+          Explore All →
+        </div>
+      </Link>
+
+    </div>
+
+  </div>
 </section>
+{/* ========================================
+    Today's Best Deals
+======================================== */}
+
+<section className="bg-slate-900 py-24 text-white">
+  <div className="mx-auto max-w-7xl px-6">
+
+    <div className="text-center">
+      <span className="rounded-full bg-yellow-400/20 px-4 py-2 text-sm font-semibold text-yellow-300">
+        🔥 Today's Best Deals
+      </span>
+
+      <h2 className="mt-6 text-4xl font-bold md:text-5xl">
+        Save on Top-Rated Software & Services
+      </h2>
+
+      <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-300">
+        We've rounded up some of the best offers on AI tools, VPNs, web hosting,
+        productivity software, and business platforms. These deals are updated
+        regularly to help you get more value for your money.
+      </p>
+    </div>
+
+    <div className="mt-16 grid gap-8 lg:grid-cols-4">
+
+      {/* VPN Deal */}
+      <div className="rounded-3xl bg-white p-8 text-slate-900 shadow-xl">
+        <div className="text-5xl">🔒</div>
+
+        <h3 className="mt-5 text-2xl font-bold">
+          Featured VPN
+        </h3>
+
+        <p className="mt-4 text-slate-600">
+          Protect your privacy, secure public Wi-Fi, and browse with confidence
+          using our recommended VPN.
+        </p>
+
+        <a
+          href="PASTE_YOUR_VPN_AFFILIATE_LINK_HERE"
+          target="_blank"
+          rel="nofollow sponsored noopener noreferrer"
+          className="mt-8 inline-flex rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-700"
+        >
+          View Deal →
+        </a>
+      </div>
+
+      {/* AI */}
+      <div className="rounded-3xl bg-white p-8 text-slate-900 shadow-xl">
+        <div className="text-5xl">🤖</div>
+
+        <h3 className="mt-5 text-2xl font-bold">
+          AI Software
+        </h3>
+
+        <p className="mt-4 text-slate-600">
+          Discover exclusive offers on AI writing, coding, automation, and
+          productivity tools.
+        </p>
+
+        <Link
+          href="/deals/ai"
+          className="mt-8 inline-flex font-semibold text-blue-600 hover:text-blue-700"
+        >
+          Browse AI Deals →
+        </Link>
+      </div>
+
+      {/* Hosting */}
+      <div className="rounded-3xl bg-white p-8 text-slate-900 shadow-xl">
+        <div className="text-5xl">☁️</div>
+
+        <h3 className="mt-5 text-2xl font-bold">
+          Web Hosting
+        </h3>
+
+        <p className="mt-4 text-slate-600">
+          Compare hosting providers, WordPress plans, VPS servers, and cloud
+          infrastructure offers.
+        </p>
+
+        <Link
+          href="/deals/hosting"
+          className="mt-8 inline-flex font-semibold text-blue-600 hover:text-blue-700"
+        >
+          View Hosting Deals →
+        </Link>
+      </div>
+
+      {/* Business */}
+      <div className="rounded-3xl bg-white p-8 text-slate-900 shadow-xl">
+        <div className="text-5xl">💼</div>
+
+        <h3 className="mt-5 text-2xl font-bold">
+          Business Tools
+        </h3>
+
+        <p className="mt-4 text-slate-600">
+          Save on CRM platforms, accounting software, project management tools,
+          and business automation.
+        </p>
 
+        <Link
+          href="/deals"
+          className="mt-8 inline-flex font-semibold text-blue-600 hover:text-blue-700"
+        >
+          Browse Deals →
+        </Link>
+      </div>
 
+    </div>
 
+    {/* Bottom Stats */}
 
+    <div className="mt-20 grid gap-8 rounded-3xl border border-white/10 bg-white/5 p-10 text-center md:grid-cols-4">
 
+      <div>
+        <div className="text-4xl font-bold text-blue-400">500+</div>
+        <p className="mt-2 text-slate-300">Products Reviewed</p>
+      </div>
 
+      <div>
+        <div className="text-4xl font-bold text-blue-400">100+</div>
+        <p className="mt-2 text-slate-300">Expert Comparisons</p>
+      </div>
 
+      <div>
+        <div className="text-4xl font-bold text-blue-400">50+</div>
+        <p className="mt-2 text-slate-300">Buying Guides</p>
+      </div>
 
+      <div>
+        <div className="text-4xl font-bold text-blue-400">Daily</div>
+        <p className="mt-2 text-slate-300">Deal Updates</p>
+      </div>
 
-{/* AI TOOLS SECTION */}
+    </div>
 
-
-
-<section className="
-px-6
-py-24
-">
-
-
-<div className="
-mx-auto
-max-w-6xl
-text-center
-">
-
-
-<h2 className="
-text-4xl
-font-black
-">
-
-🤖 Best AI Tools 2026
-
-</h2>
-
-
-
-<p className="
-mx-auto
-mt-4
-max-w-2xl
-text-slate-600
-">
-
-Discover AI software for writing,
-coding, business automation,
-design, and productivity.
-
-</p>
-
-
-
-
-
-
-
-<div className="
-mt-12
-grid
-gap-6
-md:grid-cols-4
-">
-
-
-
-{[
-
-
-{
-title:"AI Writing",
-link:"/categories/ai-writing",
-icon:"✍️"
-},
-
-
-{
-title:"AI Coding",
-link:"/categories/ai-coding",
-icon:"💻"
-},
-
-
-{
-title:"AI Images",
-link:"/categories/ai-image",
-icon:"🎨"
-},
-
-
-{
-title:"AI Business",
-link:"/categories/ai-business",
-icon:"🏢"
-}
-
-
-].map(item=>(
-
-
-<Link
-
-key={item.title}
-
-href={item.link}
-
-className="
-rounded-3xl
-border
-p-8
-transition
-hover:-translate-y-2
-hover:shadow-xl
-"
-
->
-
-
-<div className="
-text-4xl
-">
-
-{item.icon}
-
-</div>
-
-
-<h3 className="
-mt-5
-text-xl
-font-black
-">
-
-{item.title}
-
-</h3>
-
-
-<p className="
-mt-3
-text-blue-600
-font-bold
-">
-
-Explore →
-
-</p>
-
-
-</Link>
-
-
-))}
-
-
-</div>
-
-
-</div>
-
-
+  </div>
 </section>
-
-
-
-
-
-
-
-
-
-{/* COMPARISON SECTION */}
-
-
-
-<section className="
-bg-slate-950
-px-6
-py-24
-text-white
-">
-
-
-<div className="
-mx-auto
-max-w-6xl
-">
-
-
-<h2 className="
-text-center
-text-4xl
-font-black
-">
-
-Compare Before You Buy
-
-</h2>
-
-
-<p className="
-mx-auto
-mt-5
-max-w-2xl
-text-center
-text-slate-300
-">
-
-Side-by-side comparisons showing
-features, pricing, strengths,
-weaknesses, and alternatives.
-
-</p>
-
-
-
-
-
-<div className="
-mt-10
-grid
-gap-6
-md:grid-cols-3
-">
-
-
-
-{[
-
-
-[
-"ChatGPT vs Claude",
-"/comparisons/chatgpt-vs-claude"
-],
-
-
-[
-"Zapier vs Make",
-"/comparisons/zapier-vs-make"
-],
-
-
-[
-"NordVPN vs ExpressVPN",
-"/comparisons/nordvpn-vs-expressvpn"
-]
-
-
-].map(item=>(
-
-
-<Link
-
-key={item[0]}
-
-href={item[1]}
-
-className="
-rounded-3xl
-border
-border-white/20
-p-8
-hover:bg-white/10
-"
-
-
->
-
-
-<h3 className="
-text-xl
-font-black
-">
-
-⚖️ {item[0]}
-
-</h3>
-
-
-<p className="
-mt-4
-text-blue-300
-font-bold
-">
-
-Compare →
-
-</p>
-
-
-</Link>
-
-
-))}
-
-
-
-</div>
-
-
-</div>
-
-
-</section>
-  {/* BUYING GUIDES */}
-
-
-<section className="
-px-6
-py-24
-">
-
-
-<div className="
-mx-auto
-max-w-7xl
-">
-
-
-<div className="
-flex
-items-center
-justify-between
-">
-
-
-<h2 className="
-text-4xl
-font-black
-">
-
-📚 Expert Buying Guides
-
-</h2>
-
-
-
-<Link
-
-href="/guides"
-
-className="
-font-bold
-text-blue-600
-"
-
->
-
-View All Guides →
-
-</Link>
-
-
-
-</div>
-
-
-
-
-
-<p className="
-mt-4
-text-slate-600
-">
-
-Detailed guides helping you choose
-the right software and technology.
-
-</p>
-
-
-
-
-
-
-<div className="
-mt-12
-grid
-gap-8
-md:grid-cols-3
-">
-
-
-
-{[
-
-
-{
-
-title:
-"Best AI Tools 2026",
-
-description:
-"Compare the top AI software for productivity, coding, business, and creativity.",
-
-link:
-"/best/best-ai-tools-2026",
-
-icon:
-"🤖"
-
-},
-
-
-{
-
-title:
-"Best VPNs 2026",
-
-description:
-"Find the fastest and most secure VPN providers for privacy and streaming.",
-
-link:
-"/best/best-vpns-2026",
-
-icon:
-"🔒"
-
-},
-
-
-{
-
-title:
-"Best eSIM Providers 2026",
-
-description:
-"Compare global eSIM providers for travel, connectivity, and mobile data.",
-
-link:
-"/comparisons/best-esim-providers",
-
-icon:
-"🌎"
-
-}
-
-
-
-].map(item=>(
-
-
-<Link
-
-key={item.title}
-
-href={item.link}
-
-className="
-rounded-3xl
-border
-p-8
-transition
-hover:-translate-y-2
-hover:shadow-xl
-"
-
->
-
-
-<div className="
-text-4xl
-">
-
-{item.icon}
-
-</div>
-
-
-<h3 className="
-mt-5
-text-2xl
-font-black
-">
-
-{item.title}
-
-</h3>
-
-
-<p className="
-mt-4
-text-slate-600
-">
-
-{item.description}
-
-</p>
-
-
-
-<span className="
-mt-6
-block
-font-bold
-text-blue-600
-">
-
-Read Guide →
-
-</span>
-
-
-</Link>
-
-
-))}
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-{/* METHODOLOGY */}
-
-
-
-<section className="
-bg-slate-50
-px-6
-py-24
-">
-
-
-<div className="
-mx-auto
-max-w-6xl
-text-center
-">
-
-
-<h2 className="
-text-4xl
-font-black
-">
-
-How NorthSky Reviews Products
-
-</h2>
-
-
-
-<p className="
-mx-auto
-mt-5
-max-w-3xl
-text-slate-600
-">
-
-Every ranking is based on research,
-features, pricing, usability,
-security, performance, and overall value.
-
-</p>
-
-
-
-
-
-
-<div className="
-mt-12
-grid
-gap-6
-md:grid-cols-4
-">
-
-
-
-{[
-
-
-[
-"🔍",
-"Research",
-"We analyze features, pricing, and real-world performance."
-],
-
-
-[
-"⚡",
-"Testing",
-"We evaluate products using practical workflows."
-],
-
-
-[
-"📊",
-"Scoring",
-"We rank tools using transparent criteria."
-],
-
-
-[
-"⭐",
-"Recommendations",
-"We highlight products that provide the best value."
-]
-
-
-].map(item=>(
-
-
-<div
-
-key={item[1]}
-
-className="
-rounded-3xl
-bg-white
-p-8
-shadow-sm
-"
-
->
-
-
-<div className="
-text-4xl
-">
-
-{item[0]}
-
-</div>
-
-
-<h3 className="
-mt-5
-font-black
-text-xl
-">
-
-{item[1]}
-
-</h3>
-
-
-
-<p className="
-mt-3
-text-sm
-text-slate-600
-">
-
-{item[2]}
-
-</p>
-
-
-</div>
-
-
-))}
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-{/* TRUST CTA */}
-
-
-
-<section className="
-px-6
-py-24
-">
-
-
-<div className="
-mx-auto
-max-w-5xl
-rounded-3xl
-bg-gradient-to-r
-from-blue-600
-to-indigo-700
-p-12
-text-center
-text-white
-">
-
-
-<h2 className="
-text-4xl
-font-black
-">
-
-Find The Right Technology Faster
-
-</h2>
-
-
-
-<p className="
-mx-auto
-mt-5
-max-w-2xl
-text-blue-100
-">
-
-Explore independent reviews,
-software comparisons,
-and expert recommendations.
-
-</p>
-
-
-
-
-
-<div className="
-mt-8
-flex
-flex-wrap
-justify-center
-gap-5
-">
-
-
-<Link
-
-href="/all-tools"
-
-className="
-rounded-xl
-bg-white
-px-8
-py-4
-font-black
-text-blue-600
-"
-
->
-
-Browse All Tools
-
-</Link>
-
-
-
-<Link
-
-href="/contact"
-
-className="
-rounded-xl
-border
-border-white/40
-px-8
-py-4
-font-bold
-"
-
->
-
-Contact NorthSky
-
-</Link>
-
-
-
-</div>
-
-
-</div>
-
-
-</section>
-  {/* NEWSLETTER */}
-
-
-<section className="
-bg-slate-950
-px-6
-py-24
-text-white
-">
-
-
-<div className="
-mx-auto
-max-w-5xl
-text-center
-">
-
-
-<h2 className="
-text-4xl
-font-black
-">
-
-Stay Updated With NorthSky Reviews
-
-</h2>
-
-
-
-<p className="
-mx-auto
-mt-5
-max-w-2xl
-text-slate-300
-">
-
-Get the latest technology rankings,
-software comparisons, and buying guides
-delivered when new reviews are published.
-
-</p>
-
-
-
-
-
-<form
-
-className="
-mx-auto
-mt-8
-flex
-max-w-xl
-flex-col
-gap-4
-sm:flex-row
-"
-
->
-
-
-<input
-
-type="email"
-
-placeholder="Enter your email"
-
-className="
-flex-1
-rounded-xl
-bg-white
-px-5
-py-4
-text-slate-900
-outline-none
-"
-
-/>
-
-
-
-<button
-
-type="submit"
-
-className="
-rounded-xl
-bg-blue-600
-px-8
-py-4
-font-bold
-hover:bg-blue-700
-"
-
->
-
-Subscribe →
-
-</button>
-
-
-</form>
-
-
-
-
-
-<p className="
-mt-5
-text-sm
-text-slate-400
-">
-
-No spam. Only technology insights
-and product updates.
-
-</p>
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-{/* FOOTER */}
-
-
-
-<footer className="
-border-t
-bg-white
-px-6
-py-16
-text-slate-900
-">
-
-
-<div className="
-mx-auto
-max-w-7xl
-grid
-gap-10
-md:grid-cols-4
-">
-
-
-
-
-
-<div>
-
-
-<h3 className="
-text-2xl
-font-black
-">
-
-NorthSky Reviews
-
-</h3>
-
-
-
-<p className="
-mt-4
-text-slate-600
-">
-
-Independent reviews helping you
-choose better technology.
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-
-<div>
-
-
-<h4 className="
-font-black
-">
-
-Reviews
-
-</h4>
-
-
-
-<ul className="
-mt-4
-space-y-3
-text-slate-600
-">
-
-
-<li>
-
-<Link href="/reviews">
-
-All Reviews
-
-</Link>
-
-</li>
-
-
-
-<li>
-
-<Link href="/categories/vpn">
-
-VPN Reviews
-
-</Link>
-
-</li>
-
-
-
-<li>
-
-<Link href="/categories/automation">
-
-Automation Tools
-
-</Link>
-
-</li>
-
-
-
-<li>
-
-<Link href="/all-tools">
-
-All Tools
-
-</Link>
-
-</li>
-
-
-
-</ul>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div>
-
-
-<h4 className="
-font-black
-">
-
-Resources
-
-</h4>
-
-
-
-<ul className="
-mt-4
-space-y-3
-text-slate-600
-">
-
-
-<li>
-
-<Link href="/guides">
-
-Buying Guides
-
-</Link>
-
-</li>
-
-
-
-<li>
-
-<Link href="/comparisons">
-
-Comparisons
-
-</Link>
-
-</li>
-
-
-
-<li>
-
-<Link href="/methodology">
-
-Methodology
-
-</Link>
-
-</li>
-
-
-
-<li>
-
-<Link href="/about">
-
-About
-
-</Link>
-
-</li>
-
-
-
-</ul>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div>
-
-
-<h4 className="
-font-black
-">
-
-Legal
-
-</h4>
-
-
-
-<ul className="
-mt-4
-space-y-3
-text-slate-600
-">
-
-
-<li>
-
-<Link href="/privacy">
-
-Privacy Policy
-
-</Link>
-
-</li>
-
-
-
-<li>
-
-<Link href="/terms">
-
-Terms
-
-</Link>
-
-</li>
-
-
-
-<li>
-
-<Link href="/affiliate-disclosure">
-
-Affiliate Disclosure
-
-</Link>
-
-</li>
-
-
-
-<li>
-
-<Link href="/contact">
-
-Contact
-
-</Link>
-
-</li>
-
-
-</ul>
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-
-<div className="
-mx-auto
-mt-12
-max-w-7xl
-border-t
-pt-8
-text-center
-text-sm
-text-slate-500
-">
-
-
-<p>
-
-© 2026 NorthSky Reviews.
-All rights reserved.
-
-</p>
-
-
-
-<p className="
-mt-3
-">
-
-Some links may be affiliate links.
-We may earn commissions at no additional cost
-to you. Our rankings are based on research,
-features, and value.
-
-</p>
-
-
-</div>
-
-
-
-</footer>
