@@ -1,15 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+@import "tailwindcss";
 
 /* ========================================
    NorthSky Reviews Global Styles
 ======================================== */
 
-
 :root {
-
   --background: #ffffff;
   --foreground: #0f172a;
 
@@ -17,35 +12,29 @@
   --primary-light: #3b82f6;
 
   --dark: #020617;
-
   --muted: #64748b;
 
   --border: #e2e8f0;
-
 }
 
 
+/* ========================================
+   Base Reset
+======================================== */
 
 * {
-
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-
 }
-
 
 
 html {
-
   scroll-behavior: smooth;
-
 }
 
 
-
 body {
-
   background: var(--background);
   color: var(--foreground);
 
@@ -61,38 +50,28 @@ body {
   line-height: 1.6;
 
   -webkit-font-smoothing: antialiased;
-
 }
-
 
 
 a {
-
   color: inherit;
   text-decoration: none;
-
 }
-
 
 
 button,
 input,
 textarea,
 select {
-
   font: inherit;
-
 }
 
 
-
 /* ========================================
-   Layout Container
+   Container
 ======================================== */
 
-
 .container {
-
   width: 100%;
   max-width: 1280px;
 
@@ -101,58 +80,41 @@ select {
 
   padding-left: 24px;
   padding-right: 24px;
-
 }
-
 
 
 /* ========================================
    Typography
 ======================================== */
 
-
 h1,
 h2,
 h3,
 h4 {
-
   letter-spacing: -0.03em;
-
 }
-
 
 
 h1 {
-
   font-weight: 900;
-
 }
-
 
 
 h2 {
-
   font-weight: 800;
-
 }
-
 
 
 p {
-
   color: #475569;
-
 }
-
 
 
 /* ========================================
    Buttons
 ======================================== */
 
-
 .btn {
-
   display: inline-flex;
 
   align-items: center;
@@ -170,47 +132,34 @@ p {
     transform .2s ease,
     background .2s ease,
     box-shadow .2s ease;
-
 }
-
 
 
 .btn:hover {
-
   transform: translateY(-2px);
-
 }
 
 
-
 .btn-primary {
-
   background: var(--primary);
 
   color: white;
 
   box-shadow:
     0 10px 25px rgba(37,99,235,.25);
-
 }
-
 
 
 .btn-primary:hover {
-
   background: var(--primary-light);
-
 }
-
 
 
 /* ========================================
    Cards
 ======================================== */
 
-
 .card {
-
   background: white;
 
   border: 1px solid var(--border);
@@ -219,287 +168,174 @@ p {
 
   padding: 28px;
 
-
   box-shadow:
     0 10px 30px rgba(15,23,42,.06);
 
-
   transition:
-
     transform .25s ease,
     box-shadow .25s ease,
     border-color .25s ease;
-
 }
-
 
 
 .card:hover {
-
   transform: translateY(-6px);
 
-  border-color:
-    rgba(37,99,235,.35);
-
+  border-color: rgba(37,99,235,.35);
 
   box-shadow:
     0 20px 45px rgba(15,23,42,.12);
-
 }
 
 
-
 /* ========================================
-   Hero Section
+   Hero
 ======================================== */
 
-
 .hero {
-
   color: white;
 
   background:
-
     radial-gradient(
       circle at top right,
       rgba(59,130,246,.35),
       transparent 40%
     ),
-
     linear-gradient(
       135deg,
       #020617,
       #1e3a8a
     );
-
 }
 
 
-
 /* ========================================
-   Affiliate Badge
+   Badge
 ======================================== */
 
-
 .badge {
-
   display: inline-flex;
 
   align-items: center;
 
-  padding:
+  padding: 6px 14px;
 
-    6px 14px;
+  border-radius: 999px;
 
-  border-radius:
+  background: rgba(37,99,235,.1);
 
-    999px;
+  color: #2563eb;
 
-  background:
+  font-size: .875rem;
 
-    rgba(37,99,235,.1);
-
-  color:
-
-    #2563eb;
-
-  font-size:
-
-    .875rem;
-
-  font-weight:
-
-    700;
-
+  font-weight: 700;
 }
-
 
 
 /* ========================================
    Reviews Stars
 ======================================== */
 
-
 .stars {
+  color: #f59e0b;
 
-  color:
-
-    #f59e0b;
-
-  letter-spacing:
-
-    3px;
-
+  letter-spacing: 3px;
 }
 
 
-
 /* ========================================
-   Inputs
+   Forms
 ======================================== */
-
 
 input,
 textarea,
 select {
+  border: 1px solid #cbd5e1;
 
+  border-radius: 12px;
 
-  border:
-
-    1px solid #cbd5e1;
-
-
-  border-radius:
-
-    12px;
-
-
-  outline:
-
-    none;
-
+  outline: none;
 
   transition:
-
     border-color .2s ease,
     box-shadow .2s ease;
-
-
 }
-
 
 
 input:focus,
 textarea:focus,
 select:focus {
-
-
-  border-color:
-
-    #2563eb;
-
+  border-color: #2563eb;
 
   box-shadow:
-
     0 0 0 4px rgba(37,99,235,.12);
-
-
 }
-
 
 
 /* ========================================
    Links
 ======================================== */
 
-
 .link-primary {
+  color: #2563eb;
 
-  color:
-
-    #2563eb;
-
-  font-weight:
-
-    600;
-
-
+  font-weight: 600;
 }
-
 
 
 .link-primary:hover {
-
-  color:
-
-    #1d4ed8;
-
+  color: #1d4ed8;
 }
-
 
 
 /* ========================================
    Animations
 ======================================== */
 
-
 .fade-up {
-
   animation:
-
     fadeUp .5s ease forwards;
-
 }
-
 
 
 @keyframes fadeUp {
 
-
   from {
-
     opacity: 0;
 
     transform:
       translateY(20px);
-
   }
 
-
   to {
-
     opacity: 1;
 
     transform:
       translateY(0);
-
   }
 
-
 }
-
 
 
 /* ========================================
    Responsive
 ======================================== */
 
-
-@media (max-width:768px) {
-
+@media (max-width: 768px) {
 
   .container {
-
-    padding-left:
-
-      16px;
-
-    padding-right:
-
-      16px;
-
+    padding-left: 16px;
+    padding-right: 16px;
   }
-
 
 
   h1 {
-
-    font-size:
-
-      2.25rem;
-
+    font-size: 2.25rem;
   }
-
 
 
   h2 {
-
-    font-size:
-
-      1.75rem;
-
+    font-size: 1.75rem;
   }
-
-
 
 }
