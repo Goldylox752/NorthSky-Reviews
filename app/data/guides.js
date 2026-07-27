@@ -1,5 +1,4 @@
 export const guides = [
-
   {
     slug: "best-ai-tools-2026",
 
@@ -11,17 +10,19 @@ export const guides = [
 
     category: "AI Tools",
 
+    featured: true,
+
     keywords: [
       "best AI tools 2026",
       "AI software",
       "AI productivity tools",
-      "ChatGPT alternatives"
+      "ChatGPT alternatives",
     ],
 
     products: [
       "chatgpt",
-      "claude"
-    ]
+      "claude",
+    ],
   },
 
 
@@ -36,16 +37,18 @@ export const guides = [
 
     category: "Business AI",
 
+    featured: true,
+
     keywords: [
       "AI tools for business",
       "business automation AI",
-      "AI productivity software"
+      "AI productivity software",
     ],
 
     products: [
       "chatgpt",
-      "claude"
-    ]
+      "claude",
+    ],
   },
 
 
@@ -60,15 +63,17 @@ export const guides = [
 
     category: "VPN",
 
+    featured: true,
+
     keywords: [
       "best VPN Canada 2026",
       "VPN reviews Canada",
-      "private internet access"
+      "private internet access",
     ],
 
     products: [
-      "nordvpn"
-    ]
+      "nordvpn",
+    ],
   },
 
 
@@ -83,15 +88,17 @@ export const guides = [
 
     category: "Travel Technology",
 
+    featured: true,
+
     keywords: [
       "best eSIM 2026",
       "travel eSIM",
-      "international data plans"
+      "international data plans",
     ],
 
     products: [
-      "saily"
-    ]
+      "saily",
+    ],
   },
 
 
@@ -106,15 +113,17 @@ export const guides = [
 
     category: "Website Tools",
 
+    featured: false,
+
     keywords: [
       "best website builders 2026",
       "website software",
-      "ecommerce platforms"
+      "ecommerce platforms",
     ],
 
     products: [
-      "shopify"
-    ]
+      "shopify",
+    ],
   },
 
 
@@ -129,15 +138,17 @@ export const guides = [
 
     category: "Automation",
 
+    featured: false,
+
     keywords: [
       "best automation tools 2026",
       "workflow automation",
-      "AI automation software"
+      "AI automation software",
     ],
 
     products: [
-      "chatgpt"
-    ]
+      "chatgpt",
+    ],
   },
 
 
@@ -152,18 +163,19 @@ export const guides = [
 
     category: "AI Coding",
 
+    featured: true,
+
     keywords: [
       "AI coding tools",
       "AI programming assistants",
-      "developer AI"
+      "developer AI",
     ],
 
     products: [
       "chatgpt",
-      "claude"
-    ]
-  }
-
+      "claude",
+    ],
+  },
 ];
 
 
