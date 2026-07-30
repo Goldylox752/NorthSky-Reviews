@@ -1,344 +1,398 @@
-import Link from "next/link";
-
 export const metadata = {
-  title: "Privacy Policy | NorthSky Reviews",
+
+  title:
+    "Privacy Policy | NorthSky Reviews",
 
   description:
-    "Read the NorthSky Reviews privacy policy to understand how we collect, use, and protect visitor information.",
+    "Read the NorthSky Reviews privacy policy explaining how we collect, use, and protect visitor information.",
 
-  alternates: {
+  keywords:[
+    "NorthSky Reviews privacy policy",
+    "website privacy",
+    "AI software reviews privacy",
+    "data protection"
+  ],
+
+  alternates:{
     canonical:
-      "https://northsky-reviews.vercel.app/privacy",
-  },
+      "https://northsky-reviews.vercel.app/privacy"
+  }
+
 };
 
 
-export default function PrivacyPage() {
 
+export default function PrivacyPage(){
 
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "PrivacyPolicy",
 
-    name:
-      "NorthSky Reviews Privacy Policy",
+const schema = {
 
-    url:
-      "https://northsky-reviews.vercel.app/privacy",
+"@context":"https://schema.org",
 
-    publisher: {
-      "@type": "Organization",
-      name:
-        "NorthSky Reviews",
-    },
+"@type":"PrivacyPolicy",
 
-  };
+"name":
+"NorthSky Reviews Privacy Policy",
 
+"description":
+"Privacy policy explaining how NorthSky Reviews handles visitor information.",
 
+"url":
+"https://northsky-reviews.vercel.app/privacy"
 
-  return (
+};
 
-    <main className="min-h-screen bg-white text-slate-900">
 
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(schema),
-        }}
-      />
+return (
 
+<main className="min-h-screen bg-white text-slate-900">
 
 
-      {/* HERO */}
+<script
 
-      <section className="bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-900 px-6 py-24 text-center text-white">
+type="application/ld+json"
 
-        <div className="mx-auto max-w-5xl">
+dangerouslySetInnerHTML={{
 
+__html:JSON.stringify(schema)
 
-          <span className="rounded-full bg-blue-500/20 px-5 py-2 text-sm font-bold text-blue-300">
+}}
 
-            🔒 Privacy Policy
+/>
 
-          </span>
 
 
 
-          <h1 className="mt-8 text-5xl font-black md:text-6xl">
 
-            Your Privacy Matters
+<section className="bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-900 px-6 py-24 text-center text-white">
 
-          </h1>
 
+<div className="mx-auto max-w-5xl">
 
 
-          <p className="mx-auto mt-6 max-w-3xl text-xl text-slate-300">
+<span className="rounded-full bg-blue-500/20 px-5 py-2 text-sm font-bold text-blue-300">
 
-            NorthSky Reviews respects your privacy and is committed to
-            protecting information collected through our website.
+🔒 Privacy Policy
 
-          </p>
+</span>
 
 
-        </div>
 
-      </section>
+<h1 className="mt-8 text-5xl font-black md:text-6xl">
 
+Your Privacy Matters
 
+</h1>
 
 
 
-      {/* CONTENT */}
+<p className="mx-auto mt-6 max-w-3xl text-xl text-slate-300">
 
-      <section className="px-6 py-20">
+Learn how NorthSky Reviews collects,
+uses, and protects information when you
+visit our website.
 
+</p>
 
-        <div className="mx-auto max-w-4xl space-y-12">
 
+</div>
 
 
-          <div>
+</section>
 
-            <h2 className="text-3xl font-black">
-              Information We Collect
-            </h2>
 
 
-            <p className="mt-5 text-lg leading-8 text-slate-600">
 
-              NorthSky Reviews may collect limited information when you visit
-              our website, subscribe to updates, contact us, or interact with
-              our content.
 
-            </p>
 
 
-            <p className="mt-5 text-lg leading-8 text-slate-600">
+<section className="mx-auto max-w-5xl px-6 py-20 space-y-12">
 
-              This information may include contact information you voluntarily
-              provide, such as your email address, as well as anonymous usage
-              data collected through analytics tools.
 
-            </p>
 
-          </div>
 
 
+<div>
 
+<h2 className="text-3xl font-black">
 
+Information We Collect
 
-          <div>
+</h2>
 
-            <h2 className="text-3xl font-black">
-              How We Use Information
-            </h2>
 
+<p className="mt-4 text-lg leading-8 text-slate-600">
 
-            <p className="mt-5 text-lg leading-8 text-slate-600">
+NorthSky Reviews may collect information
+provided voluntarily by visitors, including
+email addresses submitted through contact
+forms, newsletter subscriptions, or business
+inquiries.
 
-              Information collected may be used to:
+</p>
 
-            </p>
 
+<p className="mt-4 text-lg leading-8 text-slate-600">
 
-            <ul className="mt-5 list-disc space-y-3 pl-6 text-lg text-slate-600">
+We may also collect limited technical
+information such as browser type, device
+information, analytics data, and website
+usage patterns.
 
-              <li>
-                Improve website performance and user experience
-              </li>
+</p>
 
-              <li>
-                Respond to questions and requests
-              </li>
 
-              <li>
-                Send updates if you choose to subscribe
-              </li>
+</div>
 
-              <li>
-                Analyze website traffic and content performance
-              </li>
 
-              <li>
-                Improve our reviews and recommendations
-              </li>
 
-            </ul>
 
-          </div>
 
 
 
+<div>
 
+<h2 className="text-3xl font-black">
 
-          <div>
+How We Use Information
 
-            <h2 className="text-3xl font-black">
-              Analytics & Cookies
-            </h2>
+</h2>
 
 
-            <p className="mt-5 text-lg leading-8 text-slate-600">
+<ul className="mt-5 space-y-3 text-lg text-slate-600">
 
-              NorthSky Reviews may use analytics technologies and cookies to
-              understand how visitors use our website, measure performance,
-              and improve content.
 
-            </p>
+<li>
+✓ Respond to questions and inquiries
+</li>
 
 
-            <p className="mt-5 text-lg leading-8 text-slate-600">
+<li>
+✓ Improve website performance and content
+</li>
 
-              Cookies are small files stored on your device that help websites
-              provide a better experience.
 
-            </p>
+<li>
+✓ Analyze visitor usage and trends
+</li>
 
-          </div>
 
+<li>
+✓ Provide software reviews and updates
+</li>
 
 
+</ul>
 
 
-          <div>
+</div>
 
-            <h2 className="text-3xl font-black">
-              Affiliate Links
-            </h2>
 
 
-            <p className="mt-5 text-lg leading-8 text-slate-600">
 
-              Some pages on NorthSky Reviews may contain affiliate links.
-              When you purchase through these links, we may earn a commission
-              at no additional cost to you.
 
-            </p>
 
 
-            <p className="mt-5 text-lg leading-8 text-slate-600">
+<div>
 
-              Affiliate relationships help support our research and content
-              creation. Learn more on our{" "}
+<h2 className="text-3xl font-black">
 
-              <Link
-                href="/affiliate-disclosure"
-                className="font-bold text-blue-600 hover:underline"
-              >
-                affiliate disclosure page
-              </Link>.
+Cookies & Analytics
 
-            </p>
+</h2>
 
-          </div>
 
+<p className="mt-4 text-lg leading-8 text-slate-600">
 
+NorthSky Reviews may use cookies and analytics
+services to understand how visitors interact
+with our website.
 
+</p>
 
 
-          <div>
+<p className="mt-4 text-lg leading-8 text-slate-600">
 
-            <h2 className="text-3xl font-black">
-              Third-Party Services
-            </h2>
+These technologies help us improve user
+experience, measure website performance,
+and create better content.
 
+</p>
 
-            <p className="mt-5 text-lg leading-8 text-slate-600">
 
-              We may use third-party services such as analytics providers,
-              advertising partners, affiliate platforms, and technology tools
-              to operate and improve our website.
+</div>
 
-            </p>
 
 
-            <p className="mt-5 text-lg leading-8 text-slate-600">
 
-              These services may collect information according to their own
-              privacy policies.
 
-            </p>
 
-          </div>
 
+<div>
 
+<h2 className="text-3xl font-black">
 
+Affiliate Links
 
+</h2>
 
-          <div>
 
-            <h2 className="text-3xl font-black">
-              Data Security
-            </h2>
+<p className="mt-4 text-lg leading-8 text-slate-600">
 
+Some pages may contain affiliate links.
+If you purchase a product through these links,
+we may earn a commission at no additional cost
+to you.
 
-            <p className="mt-5 text-lg leading-8 text-slate-600">
+</p>
 
-              We take reasonable measures to protect information submitted to
-              NorthSky Reviews. However, no online service can guarantee
-              complete security.
 
-            </p>
+<p className="mt-4 text-lg leading-8 text-slate-600">
 
-          </div>
+Affiliate relationships do not influence our
+editorial opinions or software evaluations.
 
+</p>
 
 
+</div>
 
 
-          <div>
 
-            <h2 className="text-3xl font-black">
-              Contact Us
-            </h2>
 
 
-            <p className="mt-5 text-lg leading-8 text-slate-600">
 
-              If you have questions about this privacy policy, contact us:
 
-            </p>
+<div>
 
+<h2 className="text-3xl font-black">
 
-            <a
+Third-Party Services
 
-              href="mailto:contact@northskyreviews.com"
+</h2>
 
-              className="mt-4 inline-block font-bold text-blue-600 hover:underline"
 
-            >
+<p className="mt-4 text-lg leading-8 text-slate-600">
 
-              contact@northskyreviews.com
+NorthSky Reviews may link to external websites,
+software providers, advertising partners,
+and third-party services.
 
-            </a>
+</p>
 
-          </div>
 
+<p className="mt-4 text-lg leading-8 text-slate-600">
 
+We are not responsible for the privacy practices
+or policies of external websites.
 
+</p>
 
 
-          <div>
+</div>
 
-            <p className="text-sm text-slate-500">
 
-              Last updated: July 2026
 
-            </p>
 
-          </div>
 
 
 
-        </div>
+<div>
 
+<h2 className="text-3xl font-black">
 
-      </section>
+Data Security
 
+</h2>
 
-    </main>
 
-  );
+<p className="mt-4 text-lg leading-8 text-slate-600">
+
+We take reasonable steps to protect information
+submitted to NorthSky Reviews. However, no
+internet transmission can be guaranteed to be
+100% secure.
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div>
+
+<h2 className="text-3xl font-black">
+
+Contact Us
+
+</h2>
+
+
+<p className="mt-4 text-lg leading-8 text-slate-600">
+
+If you have questions about this privacy policy,
+contact NorthSky Reviews.
+
+</p>
+
+
+<a
+
+href="mailto:byronsanche@zohomailcloud.ca"
+
+className="mt-5 inline-block font-bold text-blue-600 hover:underline"
+
+>
+
+byronsanche@zohomailcloud.ca →
+
+</a>
+
+
+</div>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+<section className="bg-slate-950 px-6 py-16 text-center text-white">
+
+
+<h2 className="text-3xl font-black">
+
+Explore NorthSky Reviews
+
+</h2>
+
+
+<p className="mx-auto mt-4 max-w-2xl text-slate-300">
+
+Discover AI tools, software reviews,
+comparisons, and technology guides.
+
+</p>
+
+
+</section>
+
+
+
+</main>
+
+);
 
 }
