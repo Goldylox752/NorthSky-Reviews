@@ -1,136 +1,409 @@
+import Link from "next/link";
+
+
 export const metadata = {
-  title: "Affiliate Disclosure | NorthSky Reviews",
+
+  title:
+    "Affiliate Disclosure | NorthSky Reviews",
+
   description:
-    "Learn how NorthSky Reviews uses affiliate partnerships and how we maintain transparent, independent software reviews.",
+    "Learn how NorthSky Reviews uses affiliate links, partnerships, and recommendations while maintaining editorial independence.",
+
+  keywords:[
+    "NorthSky Reviews affiliate disclosure",
+    "software affiliate links",
+    "AI tool partnerships",
+    "technology reviews disclosure"
+  ],
+
+  alternates:{
+    canonical:
+      "https://northsky-reviews.vercel.app/affiliate-disclosure"
+  }
+
 };
 
-export default function AffiliateDisclosurePage() {
-  return (
-    <main className="affiliate-page">
-
-      <section className="affiliate-hero">
-
-        <h1>
-          Affiliate Disclosure
-        </h1>
-
-        <p>
-          Transparency is important to NorthSky Reviews. This page explains
-          how affiliate partnerships work and how they support our research,
-          testing, and technology reviews.
-        </p>
-
-      </section>
 
 
-
-      <section className="affiliate-content">
-
-
-        <h2>
-          How Affiliate Links Work
-        </h2>
-
-        <p>
-          Some links on NorthSky Reviews may be affiliate links. This means
-          that if you click a link and purchase a product or service, we may
-          receive a commission from the company at no additional cost to you.
-        </p>
+export default function AffiliateDisclosurePage(){
 
 
-        <p>
-          Affiliate commissions help support the operation of NorthSky Reviews,
-          including researching software, maintaining our website, creating
-          comparisons, and publishing educational content.
-        </p>
+const schema = {
+
+"@context":"https://schema.org",
+
+"@type":"WebPage",
+
+"name":
+"NorthSky Reviews Affiliate Disclosure",
+
+"description":
+"Affiliate relationship disclosure for NorthSky Reviews.",
+
+"url":
+"https://northsky-reviews.vercel.app/affiliate-disclosure"
+
+};
 
 
 
-        <h2>
-          Our Commitment to Independence
-        </h2>
+return (
 
-        <p>
-          Our reviews are created using our own evaluation process. Companies
-          cannot purchase higher rankings, better scores, or positive reviews.
-          Our recommendations are based on product features, performance,
-          usability, pricing, security, and overall value.
-        </p>
+<main className="min-h-screen bg-white text-slate-900">
 
 
+<script
 
-        <h2>
-          How We Evaluate Products
-        </h2>
+type="application/ld+json"
 
-        <p>
-          NorthSky Reviews evaluates technology products using a consistent
-          methodology that may include:
-        </p>
+dangerouslySetInnerHTML={{
 
+__html:JSON.stringify(schema)
 
-        <ul>
+}}
 
-          <li>
-            Product features and capabilities
-          </li>
-
-          <li>
-            Performance and reliability
-          </li>
-
-          <li>
-            User experience and ease of use
-          </li>
-
-          <li>
-            Pricing and overall value
-          </li>
-
-          <li>
-            Security and privacy considerations
-          </li>
-
-          <li>
-            Long-term usefulness
-          </li>
-
-        </ul>
+/>
 
 
 
-        <h2>
-          Advertising Relationships
-        </h2>
-
-        <p>
-          NorthSky Reviews may participate in affiliate programs operated by
-          software companies, technology platforms, and other trusted partners.
-          These relationships allow us to recommend products while keeping our
-          content free for readers.
-        </p>
 
 
+<section className="bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-900 px-6 py-24 text-center text-white">
 
-        <h2>
-          Your Trust Matters
-        </h2>
 
-        <p>
-          Our goal is to help you discover better software and make informed
-          technology decisions. We will continue working to provide honest,
-          useful, and transparent reviews.
-        </p>
+<div className="mx-auto max-w-5xl">
+
+
+<span className="rounded-full bg-blue-500/20 px-5 py-2 text-sm font-bold text-blue-300">
+
+🤝 Transparency
+
+</span>
 
 
 
-        <p>
-          Last updated: July 2026
-        </p>
+<h1 className="mt-8 text-5xl font-black md:text-6xl">
+
+Affiliate Disclosure
+
+</h1>
 
 
-      </section>
 
-    </main>
-  );
+<p className="mx-auto mt-6 max-w-3xl text-xl text-slate-300">
+
+How NorthSky Reviews handles affiliate
+relationships and product recommendations.
+
+</p>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<section className="mx-auto max-w-5xl px-6 py-20 space-y-12">
+
+
+
+
+
+<div>
+
+<h2 className="text-3xl font-black">
+
+Our Commitment To Transparency
+
+</h2>
+
+
+<p className="mt-4 text-lg leading-8 text-slate-600">
+
+NorthSky Reviews believes transparency is
+important when recommending software,
+AI tools, and technology products.
+
+</p>
+
+
+<p className="mt-4 text-lg leading-8 text-slate-600">
+
+Some links on this website may be affiliate
+links. This means we may receive a commission
+if you purchase a product through certain links.
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div>
+
+<h2 className="text-3xl font-black">
+
+How Affiliate Links Work
+
+</h2>
+
+
+<p className="mt-4 text-lg leading-8 text-slate-600">
+
+When you click an affiliate link and complete
+a purchase or signup, the company may provide
+NorthSky Reviews with compensation.
+
+</p>
+
+
+<p className="mt-4 text-lg leading-8 text-slate-600">
+
+The price you pay is not increased because of
+using an affiliate link.
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div>
+
+<h2 className="text-3xl font-black">
+
+Editorial Independence
+
+</h2>
+
+
+<p className="mt-4 text-lg leading-8 text-slate-600">
+
+Affiliate partnerships do not determine our
+ratings, rankings, reviews, or recommendations.
+
+</p>
+
+
+<p className="mt-4 text-lg leading-8 text-slate-600">
+
+Our reviews are based on research, product
+features, usability, pricing, performance,
+and overall value.
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div>
+
+<h2 className="text-3xl font-black">
+
+Products We Review
+
+</h2>
+
+
+<ul className="mt-5 space-y-3 text-lg text-slate-600">
+
+
+<li>
+✓ Artificial intelligence software
+</li>
+
+
+<li>
+✓ SaaS platforms
+</li>
+
+
+<li>
+✓ Productivity applications
+</li>
+
+
+<li>
+✓ Business technology tools
+</li>
+
+
+<li>
+✓ Automation software
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+
+
+
+
+
+<div>
+
+<h2 className="text-3xl font-black">
+
+Advertising & Partnerships
+
+</h2>
+
+
+<p className="mt-4 text-lg leading-8 text-slate-600">
+
+NorthSky Reviews may work with software
+companies, affiliate programs, and technology
+partners.
+
+</p>
+
+
+<p className="mt-4 text-lg leading-8 text-slate-600">
+
+Partnerships allow us to continue creating
+free reviews, comparisons, and educational
+content.
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div>
+
+<h2 className="text-3xl font-black">
+
+Questions?
+
+</h2>
+
+
+<p className="mt-4 text-lg leading-8 text-slate-600">
+
+If you have questions about our affiliate
+relationships or editorial standards,
+contact us.
+
+</p>
+
+
+<a
+
+href="mailto:byronsanche@zohomailcloud.ca"
+
+className="mt-5 inline-block font-bold text-blue-600 hover:underline"
+
+>
+
+byronsanche@zohomailcloud.ca →
+
+</a>
+
+
+</div>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+<section className="bg-slate-950 px-6 py-16 text-center text-white">
+
+
+<h2 className="text-3xl font-black">
+
+Explore NorthSky Reviews
+
+</h2>
+
+
+<p className="mx-auto mt-4 max-w-2xl text-slate-300">
+
+Discover AI software reviews,
+comparisons, and technology guides.
+
+</p>
+
+
+
+<div className="mt-8 flex flex-wrap justify-center gap-5">
+
+
+<Link
+
+href="/reviews"
+
+className="rounded-xl bg-blue-600 px-8 py-4 font-bold"
+
+>
+
+Read Reviews →
+
+</Link>
+
+
+
+<Link
+
+href="/methodology"
+
+className="rounded-xl border border-white/30 px-8 py-4 font-bold"
+
+>
+
+Review Methodology →
+
+</Link>
+
+
+</div>
+
+
+</section>
+
+
+
+</main>
+
+);
+
 }
