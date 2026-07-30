@@ -39,9 +39,11 @@ export default function Footer() {
 
             <p className="mt-5 leading-7 text-slate-400">
 
-              NorthSky Reviews helps people discover the best AI software,
-              business tools, automation platforms, and technology products
-              through independent reviews, comparisons, and buying guides.
+              NorthSky Reviews is an independent technology
+              publication helping people discover AI tools,
+              software platforms, SaaS products, and business
+              technology through reviews, comparisons, and
+              buying guides.
 
             </p>
 
@@ -74,6 +76,8 @@ export default function Footer() {
 
 
 
+
+
           {/* EXPLORE */}
 
           <div>
@@ -95,6 +99,13 @@ export default function Footer() {
 
 
               <li>
+                <Link href="/all-tools" className="hover:text-white">
+                  All Software
+                </Link>
+              </li>
+
+
+              <li>
                 <Link href="/reviews" className="hover:text-white">
                   Reviews
                 </Link>
@@ -109,15 +120,15 @@ export default function Footer() {
 
 
               <li>
-                <Link href="/categories" className="hover:text-white">
-                  Categories
+                <Link href="/guides" className="hover:text-white">
+                  Guides
                 </Link>
               </li>
 
 
               <li>
-                <Link href="/best" className="hover:text-white">
-                  Best Software
+                <Link href="/deals" className="hover:text-white">
+                  Software Deals
                 </Link>
               </li>
 
@@ -126,6 +137,8 @@ export default function Footer() {
 
 
           </div>
+
+
 
 
 
@@ -153,7 +166,7 @@ export default function Footer() {
 
               <li>
                 <Link href="/authors/northsky-team" className="hover:text-white">
-                  Our Team
+                  NorthSky Team
                 </Link>
               </li>
 
@@ -168,6 +181,20 @@ export default function Footer() {
               <li>
                 <Link href="/contact" className="hover:text-white">
                   Contact
+                </Link>
+              </li>
+
+
+              <li>
+                <Link href="/privacy" className="hover:text-white">
+                  Privacy Policy
+                </Link>
+              </li>
+
+
+              <li>
+                <Link href="/terms" className="hover:text-white">
+                  Terms
                 </Link>
               </li>
 
@@ -188,6 +215,8 @@ export default function Footer() {
 
 
 
+
+
           {/* NEWSLETTER */}
 
           <div>
@@ -200,8 +229,8 @@ export default function Footer() {
 
             <p className="mb-5 text-slate-400">
 
-              Get the latest AI software reviews,
-              rankings, and technology insights.
+              Get AI software reviews,
+              technology updates, and buying guides.
 
             </p>
 
@@ -210,20 +239,35 @@ export default function Footer() {
             <form className="space-y-3">
 
 
-              <label className="sr-only" htmlFor="email">
+              <label
+                className="sr-only"
+                htmlFor="footer-email"
+              >
                 Email address
               </label>
 
 
               <input
 
-                id="email"
+                id="footer-email"
 
                 type="email"
 
                 placeholder="Your email"
 
-                className="w-full rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-white placeholder:text-slate-500 focus:border-blue-500 focus:outline-none"
+                className="
+                w-full
+                rounded-xl
+                border
+                border-slate-700
+                bg-slate-900
+                px-4
+                py-3
+                text-white
+                placeholder:text-slate-500
+                focus:border-blue-500
+                focus:outline-none
+                "
 
               />
 
@@ -231,9 +275,19 @@ export default function Footer() {
 
               <button
 
-                type="submit"
+                type="button"
 
-                className="w-full rounded-xl bg-blue-600 px-4 py-3 font-bold text-white transition hover:bg-blue-700"
+                className="
+                w-full
+                rounded-xl
+                bg-blue-600
+                px-4
+                py-3
+                font-bold
+                text-white
+                transition
+                hover:bg-blue-700
+                "
 
               >
 
@@ -243,6 +297,22 @@ export default function Footer() {
 
 
             </form>
+
+
+
+            <p className="mt-5 text-sm text-slate-500">
+
+              Business inquiries:
+              <br />
+
+              <a
+                href="mailto:byronsanche@zohomailcloud.ca"
+                className="text-blue-400 hover:underline"
+              >
+                byronsanche@zohomailcloud.ca
+              </a>
+
+            </p>
 
 
           </div>
@@ -255,7 +325,6 @@ export default function Footer() {
 
 
 
-        {/* BOTTOM */}
 
 
         <div className="mt-16 border-t border-slate-800 pt-8">
@@ -266,7 +335,8 @@ export default function Footer() {
 
             <p className="text-sm text-slate-500">
 
-              © {year} NorthSky Reviews. All rights reserved.
+              © {year} NorthSky Reviews.
+              All rights reserved.
 
             </p>
 
