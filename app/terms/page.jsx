@@ -7,18 +7,18 @@ export const metadata = {
     "Terms of Service | NorthSky Reviews",
 
   description:
-    "Read the NorthSky Reviews terms of service outlining website usage, reviews, affiliate relationships, and user responsibilities.",
+    "Read the NorthSky Reviews terms of service covering website usage, software reviews, affiliate relationships, and user responsibilities.",
 
   keywords:[
     "NorthSky Reviews terms",
     "website terms of service",
-    "technology reviews terms",
+    "software review terms",
     "affiliate website terms"
   ],
 
   alternates:{
     canonical:
-    "https://northsky-reviews.vercel.app/terms"
+      "https://northsky-reviews.vercel.app/terms"
   }
 
 };
@@ -41,19 +41,7 @@ const schema = {
 "Terms and conditions for using NorthSky Reviews.",
 
 "url":
-"https://northsky-reviews.vercel.app/terms",
-
-"publisher":{
-
-"@type":"Organization",
-
-"name":
-"NorthSky Reviews",
-
-"url":
-"https://northsky-reviews.vercel.app"
-
-}
+"https://northsky-reviews.vercel.app/terms"
 
 };
 
@@ -104,8 +92,8 @@ Terms of Service
 
 <p className="mx-auto mt-6 max-w-3xl text-xl text-slate-300">
 
-The rules and conditions that apply when
-using NorthSky Reviews.
+The terms and conditions for using
+NorthSky Reviews.
 
 </p>
 
@@ -130,18 +118,28 @@ using NorthSky Reviews.
 <div>
 
 <h2 className="text-3xl font-black">
+
 Acceptance of Terms
+
 </h2>
 
 
 <p className="mt-4 text-lg leading-8 text-slate-600">
 
-By accessing or using NorthSky Reviews, you agree
-to these Terms of Service and related policies.
-If you do not agree with these terms, please
-discontinue use of this website.
+By accessing or using NorthSky Reviews,
+you agree to these Terms of Service and
+our website policies.
 
 </p>
+
+
+<p className="mt-4 text-lg leading-8 text-slate-600">
+
+If you do not agree with these terms,
+please discontinue use of the website.
+
+</p>
+
 
 </div>
 
@@ -154,26 +152,30 @@ discontinue use of this website.
 <div>
 
 <h2 className="text-3xl font-black">
+
 Website Purpose
+
 </h2>
 
 
 <p className="mt-4 text-lg leading-8 text-slate-600">
 
-NorthSky Reviews provides technology reviews,
-AI software comparisons, rankings, educational
-content, and product research.
+NorthSky Reviews provides educational
+content including AI software reviews,
+technology comparisons, rankings, and
+buying guides.
 
 </p>
 
 
 <p className="mt-4 text-lg leading-8 text-slate-600">
 
-Our content is provided for informational purposes
-only and should not be considered professional,
-financial, legal, or purchasing advice.
+Our content is intended for informational
+purposes only and should not be considered
+professional, financial, or purchasing advice.
 
 </p>
+
 
 </div>
 
@@ -186,26 +188,29 @@ financial, legal, or purchasing advice.
 <div>
 
 <h2 className="text-3xl font-black">
-Reviews & Rankings
+
+Reviews & Recommendations
+
 </h2>
 
 
 <p className="mt-4 text-lg leading-8 text-slate-600">
 
-Reviews and rankings are created using editorial
-research, available product information, features,
-pricing, usability, performance, and overall value.
+NorthSky Reviews evaluates software based
+on available features, usability, pricing,
+performance, value, and intended audience.
 
 </p>
 
 
 <p className="mt-4 text-lg leading-8 text-slate-600">
 
-Software products change frequently. Features,
-pricing, availability, and services may change
-after publication.
+Software products change frequently.
+Pricing, features, availability, and services
+may change after publication.
 
 </p>
+
 
 </div>
 
@@ -218,39 +223,43 @@ after publication.
 <div>
 
 <h2 className="text-3xl font-black">
-Affiliate Links & Partnerships
+
+Affiliate Relationships
+
 </h2>
 
 
 <p className="mt-4 text-lg leading-8 text-slate-600">
 
-Some pages may contain affiliate links. NorthSky
-Reviews may earn a commission when users purchase
-products through certain links.
+Some links on NorthSky Reviews may be
+affiliate links. We may earn commissions
+when users purchase products through these
+links.
 
 </p>
 
 
 <p className="mt-4 text-lg leading-8 text-slate-600">
 
-Affiliate relationships do not influence our
-ratings, rankings, or editorial opinions.
+Affiliate partnerships do not guarantee
+positive reviews or rankings. Editorial
+opinions remain independent.
 
-Learn more through our{" "}
+</p>
+
 
 <Link
 
 href="/affiliate-disclosure"
 
-className="font-bold text-blue-600 hover:underline"
+className="mt-5 inline-block font-bold text-blue-600 hover:underline"
 
 >
 
-Affiliate Disclosure
+Read Affiliate Disclosure →
 
-</Link>.
+</Link>
 
-</p>
 
 </div>
 
@@ -263,25 +272,29 @@ Affiliate Disclosure
 <div>
 
 <h2 className="text-3xl font-black">
+
 Third-Party Websites
+
 </h2>
 
 
 <p className="mt-4 text-lg leading-8 text-slate-600">
 
-NorthSky Reviews may link to external websites,
-software providers, and services.
+NorthSky Reviews may contain links to
+external websites, software providers,
+and services.
 
 </p>
 
 
 <p className="mt-4 text-lg leading-8 text-slate-600">
 
-We are not responsible for third-party content,
-pricing changes, availability, privacy policies,
-or terms of external websites.
+We are not responsible for third-party
+content, pricing, availability, security,
+or privacy practices.
 
 </p>
+
 
 </div>
 
@@ -294,30 +307,38 @@ or terms of external websites.
 <div>
 
 <h2 className="text-3xl font-black">
+
 User Responsibilities
+
 </h2>
 
 
 <ul className="mt-5 space-y-3 text-lg text-slate-600">
 
+
 <li>
 ✓ Use the website responsibly
 </li>
 
+
 <li>
-✓ Do not attempt to compromise website security
+✓ Do not attempt to disrupt website security
 </li>
+
 
 <li>
 ✓ Do not misuse website content
 </li>
 
+
 <li>
-✓ Verify software information before purchasing
+✓ Verify product information before purchasing
 </li>
+
 
 </ul>
 
+
 </div>
 
 
@@ -329,17 +350,21 @@ User Responsibilities
 <div>
 
 <h2 className="text-3xl font-black">
+
 Intellectual Property
+
 </h2>
 
 
 <p className="mt-4 text-lg leading-8 text-slate-600">
 
-Original content, branding, graphics, design,
-and materials published by NorthSky Reviews are
-protected by applicable intellectual property laws.
+All original content, branding, graphics,
+design elements, and materials published
+by NorthSky Reviews are protected by
+applicable intellectual property laws.
 
 </p>
+
 
 </div>
 
@@ -352,19 +377,23 @@ protected by applicable intellectual property laws.
 <div>
 
 <h2 className="text-3xl font-black">
+
 Limitation of Liability
+
 </h2>
 
 
 <p className="mt-4 text-lg leading-8 text-slate-600">
 
-NorthSky Reviews provides information on an
-"as available" basis.
+NorthSky Reviews provides information on
+an "as available" basis.
 
-We do not guarantee that all information will
-always be complete, accurate, current, or error-free.
+We do not guarantee that all information
+is always complete, accurate, current,
+or error-free.
 
 </p>
+
 
 </div>
 
@@ -377,64 +406,59 @@ always be complete, accurate, current, or error-free.
 <div>
 
 <h2 className="text-3xl font-black">
-Privacy
+
+Changes To These Terms
+
 </h2>
 
 
 <p className="mt-4 text-lg leading-8 text-slate-600">
 
-Your privacy is important to us.
+We may update these Terms of Service as
+the website grows, technology changes,
+or new requirements are introduced.
 
-Please review our{" "}
+</p>
 
-<Link
 
-href="/privacy"
+</div>
 
-className="font-bold text-blue-600 hover:underline"
+
+
+
+
+
+
+<div>
+
+<h2 className="text-3xl font-black">
+
+Contact NorthSky Reviews
+
+</h2>
+
+
+<p className="mt-4 text-lg leading-8 text-slate-600">
+
+Questions about these terms can be sent to:
+
+</p>
+
+
+<a
+
+href="mailto:byronsanche@zohomailcloud.ca"
+
+className="mt-4 inline-block font-bold text-blue-600 hover:underline"
 
 >
 
-Privacy Policy
+byronsanche@zohomailcloud.ca →
 
-</Link>
+</a>
 
-to understand how information is handled.
-
-</p>
 
 </div>
-
-
-
-
-
-
-
-<div>
-
-<h2 className="text-3xl font-black">
-Changes To These Terms
-</h2>
-
-
-<p className="mt-4 text-lg leading-8 text-slate-600">
-
-NorthSky Reviews may update these Terms of Service
-as the website grows, features change, or legal
-requirements evolve.
-
-</p>
-
-</div>
-
-
-
-<p className="text-sm text-slate-500">
-
-Last updated: July 2026
-
-</p>
 
 
 
@@ -446,43 +470,35 @@ Last updated: July 2026
 
 
 
-<section className="bg-slate-50 px-6 py-20 text-center">
+<section className="bg-slate-50 px-6 py-16 text-center">
 
 
-<div className="mx-auto max-w-4xl">
+<h2 className="text-3xl font-black">
 
-
-<h2 className="text-4xl font-black">
-
-Questions About These Terms?
+Explore NorthSky Reviews
 
 </h2>
 
 
-<p className="mt-5 text-lg text-slate-600">
+<p className="mt-4 text-slate-600">
 
-If you have questions about our terms,
-privacy practices, or website policies,
-contact the NorthSky Reviews team.
+Discover AI tools, reviews, comparisons,
+and technology guides.
 
 </p>
 
 
-
 <Link
 
-href="/contact"
+href="/reviews"
 
-className="mt-8 inline-block rounded-xl bg-blue-600 px-8 py-4 font-bold text-white hover:bg-blue-700"
+className="mt-8 inline-block rounded-xl bg-blue-600 px-8 py-4 font-bold text-white"
 
 >
 
-Contact Us →
+Read Reviews →
 
 </Link>
-
-
-</div>
 
 
 </section>
