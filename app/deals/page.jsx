@@ -4,22 +4,22 @@ import Link from "next/link";
 export const metadata = {
 
   title:
-    "Best AI Software Deals 2026 | NorthSky Reviews",
+    "Best Software Deals & Discounts 2026 | NorthSky Reviews",
 
   description:
-    "Discover the best AI software deals, SaaS discounts, lifetime deals, and productivity tool offers curated by NorthSky Reviews.",
+    "Discover the best AI software deals, SaaS discounts, productivity tools, and technology offers curated by NorthSky Reviews.",
 
   keywords:[
-    "AI software deals",
+    "software deals",
     "AI tool discounts",
     "SaaS deals",
-    "software lifetime deals",
-    "best AI tools discounts"
+    "best software offers 2026",
+    "technology discounts"
   ],
 
   alternates:{
     canonical:
-    "https://northsky-reviews.vercel.app/deals"
+      "https://northsky-reviews.vercel.app/deals"
   }
 
 };
@@ -29,45 +29,104 @@ export const metadata = {
 export default function DealsPage(){
 
 
+const schema = {
+
+"@context":"https://schema.org",
+
+"@type":"CollectionPage",
+
+"name":
+"NorthSky Reviews Software Deals",
+
+"description":
+"Curated AI software deals, SaaS discounts, and technology offers.",
+
+"url":
+"https://northsky-reviews.vercel.app/deals",
+
+"publisher":{
+
+"@type":"Organization",
+
+"name":
+"NorthSky Reviews",
+
+"url":
+"https://northsky-reviews.vercel.app"
+
+}
+
+};
+
+
+
 const deals = [
 
 {
-name:"ChatGPT Plus",
-category:"AI Assistant",
-discount:"Free Plan Available",
+
+name:
+"NordVPN",
+
+category:
+"Online Security",
+
 description:
-"Explore one of the most popular AI assistants for writing, research, coding, and productivity.",
-link:"/reviews/chatgpt"
+"Protect your online privacy with a leading VPN service.",
+
+badge:
+"Popular Privacy Deal"
+
 },
 
 
 {
-name:"Claude",
-category:"AI Writing",
-discount:"Free Plan Available",
+
+name:
+"NordPass",
+
+category:
+"Password Management",
+
 description:
-"Advanced AI assistant known for writing quality, reasoning, and long-form content.",
-link:"/reviews/claude"
+"Securely store passwords and manage digital accounts.",
+
+badge:
+"Security Pick"
+
 },
 
 
 {
-name:"AI Business Tools",
-category:"Business Software",
-discount:"Top Picks",
+
+name:
+"Saily",
+
+category:
+"Travel eSIM",
+
 description:
-"Discover automation, marketing, and productivity software for modern businesses.",
-link:"/ai"
+"Stay connected worldwide with affordable mobile data plans.",
+
+badge:
+"Travel Technology"
+
 },
 
 
 {
-name:"Software Comparisons",
-category:"Buying Guides",
-discount:"Save Before Buying",
+
+name:
+"AI Productivity Tools",
+
+category:
+"Artificial Intelligence",
+
 description:
-"Compare popular software platforms before choosing your next tool.",
-link:"/comparisons"
+"Explore powerful AI assistants, writing tools, and automation software.",
+
+badge:
+"AI Deals"
+
 }
 
 
@@ -77,30 +136,9 @@ link:"/comparisons"
 
 
 
-const schema = {
-
-"@context":"https://schema.org",
-
-"@type":"CollectionPage",
-
-"name":
-"AI Software Deals",
-
-"description":
-"Curated AI software deals and technology offers.",
-
-"url":
-"https://northsky-reviews.vercel.app/deals"
-
-};
-
-
-
-
 return (
 
 <main className="min-h-screen bg-white text-slate-900">
-
 
 
 <script
@@ -114,6 +152,8 @@ __html:JSON.stringify(schema)
 }}
 
 />
+
+
 
 
 
@@ -135,17 +175,17 @@ __html:JSON.stringify(schema)
 
 <h1 className="mt-8 text-5xl font-black md:text-6xl">
 
-Best AI Software Deals 2026
+Best Software Deals & Offers
 
 </h1>
 
 
 
-<p className="mx-auto mt-6 max-w-3xl text-xl text-slate-300">
+<p className="mx-auto mt-6 max-w-3xl text-xl leading-8 text-slate-300">
 
-Discover software discounts, AI tool offers,
-and recommended platforms that deliver the best
-value for your money.
+Discover discounted AI tools, SaaS platforms,
+security software, and technology products
+selected by NorthSky Reviews.
 
 </p>
 
@@ -154,6 +194,8 @@ value for your money.
 
 
 </section>
+
+
 
 
 
@@ -177,9 +219,8 @@ Featured Deals
 
 <p className="mt-5 text-lg text-slate-600">
 
-Our team researches AI software, SaaS platforms,
-and technology products to help you find better
-tools at better value.
+We highlight useful technology products that
+provide strong value for individuals and businesses.
 
 </p>
 
@@ -197,14 +238,14 @@ tools at better value.
 
 key={deal.name}
 
-className="rounded-3xl border border-slate-200 p-8 shadow-sm transition hover:shadow-lg"
+className="rounded-3xl border border-slate-200 p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
 
 >
 
 
 <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-bold text-blue-700">
 
-{deal.category}
+{deal.badge}
 
 </span>
 
@@ -218,15 +259,15 @@ className="rounded-3xl border border-slate-200 p-8 shadow-sm transition hover:sh
 
 
 
-<p className="mt-3 font-bold text-green-600">
+<p className="mt-2 font-semibold text-blue-600">
 
-{deal.discount}
+{deal.category}
 
 </p>
 
 
 
-<p className="mt-4 text-slate-600">
+<p className="mt-5 leading-7 text-slate-600">
 
 {deal.description}
 
@@ -236,13 +277,13 @@ className="rounded-3xl border border-slate-200 p-8 shadow-sm transition hover:sh
 
 <Link
 
-href={deal.link}
+href="/reviews"
 
 className="mt-6 inline-block rounded-xl bg-blue-600 px-6 py-3 font-bold text-white hover:bg-blue-700"
 
 >
 
-View Details →
+Read Review →
 
 </Link>
 
@@ -268,6 +309,8 @@ View Details →
 
 
 
+
+
 <section className="bg-slate-50 px-6 py-20">
 
 
@@ -276,18 +319,29 @@ View Details →
 
 <h2 className="text-4xl font-black">
 
-Why Use NorthSky Deals?
+How We Select Deals
 
 </h2>
 
 
-<div className="mt-10 grid gap-8 md:grid-cols-3">
+
+<p className="mt-6 text-lg leading-8 text-slate-600">
+
+NorthSky Reviews evaluates software based on
+features, usability, pricing, reliability,
+security, and overall value.
+
+</p>
+
+
+
+<div className="mt-10 grid gap-6 md:grid-cols-3">
 
 
 <div className="rounded-3xl bg-white p-8">
 
 <div className="text-4xl">
-🔎
+🔍
 </div>
 
 <h3 className="mt-4 text-xl font-black">
@@ -295,8 +349,7 @@ Research
 </h3>
 
 <p className="mt-3 text-slate-600">
-We analyze software features, pricing,
-and value.
+We analyze products and pricing before recommending tools.
 </p>
 
 </div>
@@ -314,8 +367,7 @@ Compare
 </h3>
 
 <p className="mt-3 text-slate-600">
-Find alternatives before committing
-to software.
+We compare alternatives to identify strong options.
 </p>
 
 </div>
@@ -333,11 +385,10 @@ Recommend
 </h3>
 
 <p className="mt-3 text-slate-600">
-Discover tools selected for real-world use.
+We highlight products offering strong user value.
 </p>
 
 </div>
-
 
 
 </div>
@@ -354,7 +405,9 @@ Discover tools selected for real-world use.
 
 
 
-<section className="px-6 py-20 text-center">
+
+
+<section className="bg-slate-950 px-6 py-20 text-center text-white">
 
 
 <h2 className="text-4xl font-black">
@@ -364,18 +417,28 @@ Explore More Software
 </h2>
 
 
+
+<p className="mx-auto mt-5 max-w-2xl text-slate-300">
+
+Browse reviews, comparisons, and AI software rankings.
+
+</p>
+
+
+
+
 <div className="mt-8 flex flex-wrap justify-center gap-5">
 
 
 <Link
 
-href="/ai"
+href="/reviews"
 
-className="rounded-xl bg-blue-600 px-8 py-4 font-bold text-white"
+className="rounded-xl bg-blue-600 px-8 py-4 font-bold"
 
 >
 
-Browse AI Tools
+View Reviews →
 
 </Link>
 
@@ -383,13 +446,13 @@ Browse AI Tools
 
 <Link
 
-href="/comparisons"
+href="/ai"
 
-className="rounded-xl border border-slate-300 px-8 py-4 font-bold"
+className="rounded-xl border border-white/30 px-8 py-4 font-bold"
 
 >
 
-Compare Software
+Explore AI Tools →
 
 </Link>
 
@@ -406,6 +469,5 @@ Compare Software
 </main>
 
 );
-
 
 }
