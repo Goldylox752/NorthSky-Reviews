@@ -1,9 +1,7 @@
 import Link from "next/link";
 
 
-const siteUrl =
-  "https://northsky-reviews.vercel.app";
-
+const siteUrl = "https://northsky-reviews.vercel.app";
 
 
 export const metadata = {
@@ -14,47 +12,29 @@ export const metadata = {
   description:
     "Discover the best AI tools, SaaS platforms, automation software, VPNs, and business technology ranked by features, performance, pricing, security, and value.",
 
-  keywords: [
-
+  keywords:[
     "best AI tools 2026",
     "best software rankings",
     "best SaaS tools",
     "AI software comparison",
     "best automation tools",
     "technology rankings"
-
   ],
 
-  alternates: {
-
-    canonical:
-      `${siteUrl}/best`
-
+  alternates:{
+    canonical:`${siteUrl}/best`
   },
 
-
-  openGraph: {
-
-    title:
-      "Best AI Tools & Software Rankings 2026",
-
+  openGraph:{
+    title:"Best AI Tools & Software Rankings 2026",
     description:
       "NorthSky Reviews ranks the best technology products using research, comparisons, and editorial analysis.",
-
-    url:
-      `${siteUrl}/best`,
-
-    siteName:
-      "NorthSky Reviews",
-
-    type:
-      "website"
-
+    url:`${siteUrl}/best`,
+    siteName:"NorthSky Reviews",
+    type:"website"
   }
 
 };
-
-
 
 
 
@@ -68,7 +48,6 @@ description:
 link:"/ai"
 },
 
-
 {
 title:"Best AI Writing Tools",
 icon:"✍️",
@@ -76,7 +55,6 @@ description:
 "Compare AI writing assistants for content creation, marketing, research, and productivity.",
 link:"/categories/ai-writing"
 },
-
 
 {
 title:"Best AI Coding Tools",
@@ -86,7 +64,6 @@ description:
 link:"/categories/ai-coding"
 },
 
-
 {
 title:"Best AI Image Generators",
 icon:"🎨",
@@ -94,7 +71,6 @@ description:
 "Find AI image creation platforms for designers, creators, and businesses.",
 link:"/categories/ai-image"
 },
-
 
 {
 title:"Best Automation Software",
@@ -104,7 +80,6 @@ description:
 link:"/categories/automation"
 },
 
-
 {
 title:"Best VPN Services",
 icon:"🔐",
@@ -113,7 +88,6 @@ description:
 link:"/comparisons/best-vpns-canada"
 },
 
-
 {
 title:"Best Productivity Software",
 icon:"🚀",
@@ -121,7 +95,6 @@ description:
 "Find project management, collaboration, communication, and productivity tools.",
 link:"/categories/productivity"
 },
-
 
 {
 title:"Best Business Software",
@@ -134,6 +107,15 @@ link:"/categories/business-software"
 ];
 
 
+const rankingFactors = [
+
+"Features",
+"Performance",
+"Pricing",
+"Security",
+"Value"
+
+];
 
 
 
@@ -142,49 +124,33 @@ link:"/categories/business-software"
 export default function BestPage(){
 
 
-
 const schema = {
 
-"@context":
-"https://schema.org",
+"@context":"https://schema.org",
 
+"@type":"CollectionPage",
 
-"@type":
-"CollectionPage",
-
-
-"name":
-"Best Software Rankings 2026",
-
+"name":"Best Software Rankings 2026",
 
 "description":
 "NorthSky Reviews rankings of the best AI tools, SaaS platforms, and technology products.",
 
-
-"url":
-`${siteUrl}/best`,
-
-
+"url":`${siteUrl}/best`,
 
 publisher:{
 
-"@type":
-"Organization",
+"@type":"Organization",
 
-"name":
-"NorthSky Reviews",
+"name":"NorthSky Reviews",
 
-"url":
-siteUrl
+"url":siteUrl
 
 },
 
 
-
 mainEntity:{
 
-"@type":
-"ItemList",
+"@type":"ItemList",
 
 itemListElement:
 
@@ -192,17 +158,13 @@ rankings.map((item,index)=>(
 
 {
 
-"@type":
-"ListItem",
+"@type":"ListItem",
 
-position:
-index + 1,
+position:index + 1,
 
-name:
-item.title,
+name:item.title,
 
-url:
-`${siteUrl}${item.link}`
+url:`${siteUrl}${item.link}`
 
 }
 
@@ -211,8 +173,6 @@ url:
 }
 
 };
-
-
 
 
 
@@ -227,16 +187,11 @@ type="application/ld+json"
 
 dangerouslySetInnerHTML={{
 
-__html:
-JSON.stringify(schema)
+__html:JSON.stringify(schema)
 
 }}
 
 />
-
-
-
-
 
 
 
@@ -252,10 +207,7 @@ text-white
 ">
 
 
-<div className="
-mx-auto
-max-w-5xl
-">
+<div className="mx-auto max-w-5xl">
 
 
 <span className="
@@ -273,8 +225,6 @@ text-blue-300
 </span>
 
 
-
-
 <h1 className="
 mt-8
 text-5xl
@@ -287,8 +237,6 @@ Best AI Tools & Software 2026
 </h1>
 
 
-
-
 <p className="
 mx-auto
 mt-6
@@ -298,15 +246,13 @@ leading-8
 text-slate-300
 ">
 
-Discover the highest-rated software products
-through expert research, comparisons,
-feature analysis, and value scoring.
+Discover the highest-rated software products through expert research,
+comparisons, feature analysis, and value scoring.
 
 </p>
 
 
 </div>
-
 
 </section>
 
@@ -314,20 +260,10 @@ feature analysis, and value scoring.
 
 
 
+<section className="px-6 py-20">
 
 
-
-
-<section className="
-px-6
-py-20
-">
-
-
-<div className="
-mx-auto
-max-w-7xl
-">
+<div className="mx-auto max-w-7xl">
 
 
 <h2 className="
@@ -341,9 +277,6 @@ Top Software Rankings
 </h2>
 
 
-
-
-
 <div className="
 mt-12
 grid
@@ -353,7 +286,6 @@ md:grid-cols-3
 
 
 {rankings.map((item)=>(
-
 
 <Link
 
@@ -375,14 +307,11 @@ hover:border-blue-500
 >
 
 
-<div className="
-text-5xl
-">
+<div className="text-5xl">
 
 {item.icon}
 
 </div>
-
 
 
 <h3 className="
@@ -396,8 +325,6 @@ font-black
 </h3>
 
 
-
-
 <p className="
 mt-4
 leading-7
@@ -407,8 +334,6 @@ text-slate-600
 {item.description}
 
 </p>
-
-
 
 
 <div className="
@@ -422,8 +347,86 @@ View Rankings →
 </div>
 
 
-
 </Link>
+
+))}
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section className="
+bg-slate-50
+px-6
+py-20
+">
+
+
+<div className="mx-auto max-w-6xl">
+
+
+<h2 className="
+text-center
+text-4xl
+font-black
+">
+
+How NorthSky Ranks Software
+
+</h2>
+
+
+
+<div className="
+mt-12
+grid
+gap-6
+md:grid-cols-5
+">
+
+
+{rankingFactors.map((item)=>(
+
+
+<div
+
+key={item}
+
+className="
+rounded-3xl
+bg-white
+p-7
+text-center
+shadow-sm
+"
+
+>
+
+<div className="text-3xl">
+⭐
+</div>
+
+
+<h3 className="
+mt-4
+font-black
+">
+
+{item}
+
+</h3>
+
+
+</div>
 
 
 ))}
@@ -441,117 +444,7 @@ View Rankings →
 
 
 
-
-
-
-
-<section className="
-bg-slate-50
-px-6
-py-20
-">
-
-
-<div className="
-mx-auto
-max-w-6xl
-">
-
-
-<h2 className="
-text-center
-text-4xl
-font-black
-">
-
-How NorthSky Ranks Software
-
-</h2>
-
-
-
-
-<div className="
-mt-12
-grid
-gap-6
-md:grid-cols-5
-">
-
-
-[
-
-"Features",
-"Performance",
-"Pricing",
-"Security",
-"Value"
-
-].map((item)=>(
-
-
-<div
-
-key={item}
-
-className="
-rounded-3xl
-bg-white
-p-7
-text-center
-shadow-sm
-"
-
->
-
-
-<div className="
-text-3xl
-">
-
-⭐
-
-</div>
-
-
-
-<h3 className="
-mt-4
-font-black
-">
-
-{item}
-
-</h3>
-
-
-
-</div>
-
-
-))
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<section className="
-px-6
-py-20
-">
+<section className="px-6 py-20">
 
 
 <div className="
@@ -565,15 +458,11 @@ text-white
 ">
 
 
-<h2 className="
-text-4xl
-font-black
-">
+<h2 className="text-4xl font-black">
 
 Independent Technology Rankings
 
 </h2>
-
 
 
 <p className="
@@ -583,9 +472,8 @@ leading-8
 text-slate-300
 ">
 
-NorthSky Reviews evaluates software based on
-features, usability, pricing, security,
-performance, and overall user value.
+NorthSky Reviews evaluates software based on features,
+usability, pricing, security, performance, and overall value.
 
 </p>
 
@@ -594,63 +482,6 @@ performance, and overall user value.
 
 
 </section>
-
-
-
-
-
-
-
-
-
-<section className="
-px-6
-pb-20
-">
-
-
-<div className="
-mx-auto
-max-w-4xl
-rounded-3xl
-bg-slate-100
-p-8
-text-center
-">
-
-
-<h3 className="
-font-black
-">
-
-NorthSky Transparency
-
-</h3>
-
-
-
-<p className="
-mt-3
-text-sm
-leading-6
-text-slate-600
-">
-
-Some links on NorthSky Reviews may be affiliate
-links. Rankings remain based on editorial
-evaluation and research.
-
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-
 
 
 
@@ -665,16 +496,11 @@ text-white
 ">
 
 
-<h2 className="
-text-4xl
-font-black
-">
+<h2 className="text-4xl font-black">
 
 Find Your Next Software Tool
 
 </h2>
-
-
 
 
 <p className="
@@ -689,12 +515,9 @@ and technology categories.
 </p>
 
 
-
-
 <div className="
 mt-8
 flex
-flex-wrap
 justify-center
 gap-5
 ">
@@ -745,8 +568,6 @@ Read Reviews →
 
 
 </section>
-
-
 
 
 
