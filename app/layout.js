@@ -35,7 +35,6 @@ export const metadata = {
   ],
 
   creator: "NorthSky Reviews",
-
   publisher: "NorthSky Reviews",
 
   alternates: {
@@ -50,13 +49,9 @@ export const metadata = {
     title: "NorthSky Reviews | AI Tools, Software & Technology Reviews",
     description:
       "Expert reviews and comparisons of AI software, automation tools, and technology products.",
-
     url: "https://northsky-reviews.vercel.app",
-
     siteName: "NorthSky Reviews",
-
     locale: "en_CA",
-
     type: "website",
   },
 
@@ -94,15 +89,12 @@ export default function RootLayout({ children }) {
           name="fo-verify"
           content="b2dc6c38-a3b8-44d3-b6d1-9d5389957786"
         />
-
         <meta name="theme-color" content="#2563eb" />
       </head>
 
       <body className="min-h-screen bg-white text-slate-900 antialiased">
         <Navbar />
-
         <main>{children}</main>
-
         <Footer />
       </body>
     </html>
