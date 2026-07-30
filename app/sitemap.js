@@ -7,236 +7,217 @@ const baseUrl =
   "https://northsky-reviews.vercel.app";
 
 
-export default function sitemap() {
 
+export default function sitemap(){
 
-  const lastModified = new Date();
 
+const lastModified =
+  new Date();
 
 
-  const staticPages = [
 
 
-    {
-      url: "",
-      changeFrequency: "daily",
-      priority: 1,
-    },
 
+const staticPages = [
 
-    {
-      url: "/ai",
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
 
+{
+url:"",
+changeFrequency:"daily",
+priority:1
+},
 
-    {
-      url: "/best",
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
 
 
-    {
-      url: "/deals",
-      changeFrequency: "weekly",
-      priority: 0.85,
-    },
+{
+url:"/ai",
+changeFrequency:"weekly",
+priority:0.9
+},
 
 
-    {
-      url: "/all-tools",
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
 
+{
+url:"/best",
+changeFrequency:"weekly",
+priority:0.9
+},
 
-    {
-      url: "/reviews",
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
 
 
-    {
-      url: "/comparisons",
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
+{
+url:"/deals",
+changeFrequency:"weekly",
+priority:0.85
+},
 
 
-    {
-      url: "/guides",
-      changeFrequency: "weekly",
-      priority: 0.85,
-    },
 
+{
+url:"/all-tools",
+changeFrequency:"weekly",
+priority:0.9
+},
 
-    {
-      url: "/categories",
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
 
 
-    {
-      url: "/about",
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
+{
+url:"/reviews",
+changeFrequency:"weekly",
+priority:0.85
+},
 
 
-    {
-      url: "/authors/northsky-team",
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
 
+{
+url:"/comparisons",
+changeFrequency:"weekly",
+priority:0.85
+},
 
-    {
-      url: "/methodology",
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
 
 
-    {
-      url: "/contact",
-      changeFrequency: "monthly",
-      priority: 0.5,
-    },
+{
+url:"/guides",
+changeFrequency:"weekly",
+priority:0.85
+},
 
 
-    {
-      url: "/privacy",
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
 
+{
+url:"/categories",
+changeFrequency:"weekly",
+priority:0.8
+},
 
-    {
-      url: "/terms",
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
 
 
-    {
-      url: "/affiliate-disclosure",
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
+{
+url:"/about",
+changeFrequency:"monthly",
+priority:0.6
+},
 
 
-  ];
 
+{
+url:"/authors/northsky-team",
+changeFrequency:"monthly",
+priority:0.6
+},
 
 
 
+{
+url:"/methodology",
+changeFrequency:"monthly",
+priority:0.6
+},
 
-  const pages = staticPages.map((page) => ({
 
-    url:
-      `${baseUrl}${page.url}`,
 
-    lastModified,
+{
+url:"/contact",
+changeFrequency:"monthly",
+priority:0.5
+},
 
-    changeFrequency:
-      page.changeFrequency,
 
-    priority:
-      page.priority,
 
-  }));
+{
+url:"/privacy",
+changeFrequency:"yearly",
+priority:0.3
+},
 
 
 
+{
+url:"/terms",
+changeFrequency:"yearly",
+priority:0.3
+},
 
 
 
+{
+url:"/affiliate-disclosure",
+changeFrequency:"yearly",
+priority:0.3
+}
 
-  const reviewPages =
-    (tools || []).map((tool) => ({
 
-      url:
-        `${baseUrl}/reviews/${tool.slug}`,
 
-      lastModified,
+];
 
-      changeFrequency:
-        "monthly",
 
-      priority:
-        0.8,
 
-    }));
 
 
 
 
+const pages = staticPages.map((page)=>({
 
+url:
+`${baseUrl}${page.url}`,
 
+lastModified,
 
-  const categoryPages =
-    (categories || []).map((category) => ({
+changeFrequency:
+page.changeFrequency,
 
-      url:
-        `${baseUrl}/categories/${category.slug}`,
+priority:
+page.priority
 
-      lastModified,
+}));
 
-      changeFrequency:
-        "weekly",
 
-      priority:
-        0.75,
 
-    }));
 
 
 
 
 
+const reviewPages =
+(tools ?? []).map((tool)=>({
 
+url:
+`${baseUrl}/reviews/${tool.slug}`,
 
-  const comparisonPages =
-    (comparisons || []).map((item) => ({
+lastModified,
 
-      url:
-        `${baseUrl}/comparisons/${item.slug}`,
+changeFrequency:
+"monthly",
 
-      lastModified,
+priority:
+0.8
 
-      changeFrequency:
-        "monthly",
+}));
 
-      priority:
-        0.8,
 
-    }));
 
 
 
 
 
 
+const categoryPages =
+(categories ?? []).map((category)=>({
 
-  const guidePages =
-    (guides || []).map((guide) => ({
+url:
+`${baseUrl}/categories/${category.slug}`,
 
-      url:
-        `${baseUrl}/guides/${guide.slug}`,
+lastModified,
 
-      lastModified,
+changeFrequency:
+"weekly",
 
-      changeFrequency:
-        "weekly",
+priority:
+0.75
 
-      priority:
-        0.85,
+}));
 
-    }));
 
 
 
@@ -244,18 +225,65 @@ export default function sitemap() {
 
 
 
-  return [
+const comparisonPages =
+(comparisons ?? []).map((item)=>({
 
-    ...pages,
+url:
+`${baseUrl}/comparisons/${item.slug}`,
 
-    ...reviewPages,
+lastModified,
 
-    ...categoryPages,
+changeFrequency:
+"monthly",
 
-    ...comparisonPages,
+priority:
+0.8
 
-    ...guidePages,
+}));
 
-  ];
+
+
+
+
+
+
+
+const guidePages =
+(guides ?? []).map((guide)=>({
+
+url:
+`${baseUrl}/guides/${guide.slug}`,
+
+lastModified,
+
+changeFrequency:
+"weekly",
+
+priority:
+0.85
+
+}));
+
+
+
+
+
+
+
+
+return [
+
+...pages,
+
+...reviewPages,
+
+...categoryPages,
+
+...comparisonPages,
+
+...guidePages
+
+];
+
 
 }
