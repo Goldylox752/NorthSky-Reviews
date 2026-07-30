@@ -1,6 +1,8 @@
 import Link from "next/link";
 
+
 export const metadata = {
+
   title:
     "Contact NorthSky Reviews | Partnerships, Feedback & Questions",
 
@@ -19,14 +21,18 @@ export const metadata = {
     canonical:
       "https://northsky-reviews.vercel.app/contact",
   },
+
 };
+
 
 
 export default function ContactPage() {
 
 
   const schema = {
+
     "@context": "https://schema.org",
+
     "@type": "ContactPage",
 
     name:
@@ -39,12 +45,27 @@ export default function ContactPage() {
       "https://northsky-reviews.vercel.app/contact",
 
     publisher: {
+
       "@type": "Organization",
+
       name:
         "NorthSky Reviews",
 
       url:
         "https://northsky-reviews.vercel.app",
+
+    },
+
+    contactPoint: {
+
+      "@type": "ContactPoint",
+
+      email:
+        "byronsanche@zohomailcloud.ca",
+
+      contactType:
+        "customer support",
+
     },
 
   };
@@ -65,9 +86,8 @@ export default function ContactPage() {
 
 
 
-      {/* HERO */}
-
       <section className="bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-900 px-6 py-24 text-center text-white">
+
 
         <div className="mx-auto max-w-5xl">
 
@@ -93,21 +113,19 @@ export default function ContactPage() {
             Have a question, software suggestion, partnership opportunity,
             or correction request?
 
-            Our team is always interested in hearing from technology
-            companies, developers, and readers.
+            Contact Byron Sanche at NorthSky Reviews.
 
           </p>
 
 
         </div>
 
+
       </section>
 
 
 
 
-
-      {/* CONTACT TYPES */}
 
       <section className="px-6 py-20">
 
@@ -134,7 +152,7 @@ export default function ContactPage() {
               <p className="mt-4 leading-7 text-slate-600">
 
                 Interested in collaborating with NorthSky Reviews?
-                Contact us about partnerships, sponsorships,
+                Contact us about sponsorships, partnerships,
                 and technology collaborations.
 
               </p>
@@ -161,7 +179,9 @@ export default function ContactPage() {
               <p className="mt-4 leading-7 text-slate-600">
 
                 Have an AI tool, SaaS platform, or technology product
-                you would like our team to evaluate?
+                you would like reviewed?
+
+                Send us your submission.
 
               </p>
 
@@ -188,7 +208,8 @@ export default function ContactPage() {
               <p className="mt-4 leading-7 text-slate-600">
 
                 Found outdated information or an error?
-                Send us feedback so we can keep our reviews accurate.
+
+                Let us know so we can keep our reviews accurate.
 
               </p>
 
@@ -208,8 +229,6 @@ export default function ContactPage() {
 
 
 
-
-      {/* EMAIL */}
 
       <section className="bg-slate-50 px-6 py-20">
 
@@ -232,7 +251,7 @@ export default function ContactPage() {
 
               For business inquiries, affiliate partnerships,
               product submissions, content updates, and review requests,
-              contact the NorthSky Reviews team.
+              contact Byron Sanche.
 
             </p>
 
@@ -240,15 +259,15 @@ export default function ContactPage() {
 
             <a
 
-              href="mailto:contact@northskyreviews.com"
+              href="mailto:byronsanche@zohomailcloud.ca"
 
-              aria-label="Email NorthSky Reviews"
+              aria-label="Email Byron Sanche at NorthSky Reviews"
 
               className="mt-8 inline-block rounded-xl bg-blue-600 px-8 py-4 font-bold text-white transition hover:bg-blue-700"
 
             >
 
-              contact@northskyreviews.com →
+              byronsanche@zohomailcloud.ca →
 
             </a>
 
@@ -264,8 +283,6 @@ export default function ContactPage() {
 
 
 
-
-      {/* TRUST LINKS */}
 
       <section className="px-6 py-16">
 
@@ -293,43 +310,28 @@ export default function ContactPage() {
 
 
             <Link
-
               href="/about"
-
               className="rounded-xl border border-slate-300 px-8 py-4 font-bold hover:bg-slate-50"
-
             >
-
               About Us
-
             </Link>
 
 
 
             <Link
-
               href="/methodology"
-
               className="rounded-xl border border-slate-300 px-8 py-4 font-bold hover:bg-slate-50"
-
             >
-
               Review Methodology
-
             </Link>
 
 
 
             <Link
-
               href="/affiliate-disclosure"
-
               className="rounded-xl border border-slate-300 px-8 py-4 font-bold hover:bg-slate-50"
-
             >
-
               Affiliate Disclosure
-
             </Link>
 
 
@@ -344,8 +346,6 @@ export default function ContactPage() {
 
 
 
-
-      {/* CTA */}
 
       <section className="bg-slate-950 px-6 py-20 text-center text-white">
 
@@ -371,29 +371,19 @@ export default function ContactPage() {
 
 
           <Link
-
             href="/reviews"
-
             className="rounded-xl bg-blue-600 px-8 py-4 font-bold"
-
           >
-
             Read Reviews →
-
           </Link>
 
 
 
           <Link
-
             href="/comparisons"
-
             className="rounded-xl border border-white/30 px-8 py-4 font-bold"
-
           >
-
             Compare Tools →
-
           </Link>
 
 
