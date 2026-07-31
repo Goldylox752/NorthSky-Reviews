@@ -10,6 +10,21 @@ const nextConfig = {
       },
     ],
   },
+
+  async redirects() {
+    return [
+      {
+        source: "/category",
+        destination: "/category/ai",
+        permanent: true,
+      },
+      {
+        source: "/categories",
+        destination: "/category/ai",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
