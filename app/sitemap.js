@@ -1,4 +1,4 @@
-import { tools, categories } from "@/app/data/tools";
+import { tools } from "@/app/data/tools";
 import { comparisons } from "@/app/data/comparisons";
 import { guides } from "@/app/data/guides";
 
@@ -12,7 +12,7 @@ export default function sitemap(){
 
 
 const lastModified =
-  new Date();
+new Date();
 
 
 
@@ -20,37 +20,11 @@ const lastModified =
 
 const staticPages = [
 
-
 {
 url:"",
 changeFrequency:"daily",
 priority:1
 },
-
-
-
-{
-url:"/ai",
-changeFrequency:"weekly",
-priority:0.9
-},
-
-
-
-{
-url:"/best",
-changeFrequency:"weekly",
-priority:0.9
-},
-
-
-
-{
-url:"/deals",
-changeFrequency:"weekly",
-priority:0.85
-},
-
 
 
 {
@@ -60,37 +34,39 @@ priority:0.9
 },
 
 
-
 {
 url:"/reviews",
 changeFrequency:"weekly",
-priority:0.85
+priority:0.9
 },
-
 
 
 {
 url:"/comparisons",
 changeFrequency:"weekly",
-priority:0.85
+priority:0.9
 },
-
 
 
 {
 url:"/guides",
 changeFrequency:"weekly",
-priority:0.85
+priority:0.9
 },
 
+
+{
+url:"/deals",
+changeFrequency:"weekly",
+priority:0.85
+},
 
 
 {
 url:"/categories",
 changeFrequency:"weekly",
-priority:0.8
+priority:0.85
 },
-
 
 
 {
@@ -100,7 +76,6 @@ priority:0.6
 },
 
 
-
 {
 url:"/authors/northsky-team",
 changeFrequency:"monthly",
@@ -108,13 +83,11 @@ priority:0.6
 },
 
 
-
 {
 url:"/methodology",
 changeFrequency:"monthly",
-priority:0.6
+priority:0.7
 },
-
 
 
 {
@@ -124,13 +97,11 @@ priority:0.5
 },
 
 
-
 {
 url:"/privacy",
 changeFrequency:"yearly",
 priority:0.3
 },
-
 
 
 {
@@ -140,14 +111,11 @@ priority:0.3
 },
 
 
-
 {
 url:"/affiliate-disclosure",
 changeFrequency:"yearly",
 priority:0.3
 }
-
-
 
 ];
 
@@ -157,18 +125,45 @@ priority:0.3
 
 
 
-const pages = staticPages.map((page)=>({
+
+const categoryPages = [
+
+"ai",
+
+"vpn",
+
+"hosting",
+
+"business",
+
+"travel",
+
+"cybersecurity",
+
+"password-managers",
+
+"productivity",
+
+"saas",
+
+"marketing",
+
+"developer-tools",
+
+"finance-software"
+
+].map((slug)=>({
 
 url:
-`${baseUrl}${page.url}`,
+`${baseUrl}/category/${slug}`,
 
 lastModified,
 
 changeFrequency:
-page.changeFrequency,
+"weekly",
 
 priority:
-page.priority
+0.85
 
 }));
 
@@ -179,7 +174,9 @@ page.priority
 
 
 
+
 const reviewPages =
+
 (tools ?? []).map((tool)=>({
 
 url:
@@ -191,32 +188,10 @@ changeFrequency:
 "monthly",
 
 priority:
-0.8
+0.85
 
 }));
 
-
-
-
-
-
-
-
-const categoryPages =
-(categories ?? []).map((category)=>({
-
-url:
-`${baseUrl}/categories/${category.slug}`,
-
-lastModified,
-
-changeFrequency:
-"weekly",
-
-priority:
-0.75
-
-}));
 
 
 
@@ -226,10 +201,11 @@ priority:
 
 
 const comparisonPages =
-(comparisons ?? []).map((item)=>({
+
+(comparisons ?? []).map((comparison)=>({
 
 url:
-`${baseUrl}/comparisons/${item.slug}`,
+`${baseUrl}/comparisons/${comparison.slug}`,
 
 lastModified,
 
@@ -248,7 +224,9 @@ priority:
 
 
 
+
 const guidePages =
+
 (guides ?? []).map((guide)=>({
 
 url:
@@ -271,13 +249,39 @@ priority:
 
 
 
+
+const staticUrls =
+
+staticPages.map((page)=>({
+
+url:
+`${baseUrl}${page.url}`,
+
+lastModified,
+
+changeFrequency:
+page.changeFrequency,
+
+priority:
+page.priority
+
+}));
+
+
+
+
+
+
+
+
+
 return [
 
-...pages,
-
-...reviewPages,
+...staticUrls,
 
 ...categoryPages,
+
+...reviewPages,
 
 ...comparisonPages,
 
