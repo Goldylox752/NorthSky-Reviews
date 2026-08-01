@@ -6,23 +6,44 @@ slug:"saily-esim-discount",
 title:
 "Saily eSIM Travel Deal 2026",
 
+provider:
+"Saily",
+
 category:
 "Travel Connectivity",
 
 icon:
 "📱",
 
+image:
+"/images/travel/saily-esim.jpg",
+
 badge:
 "Best eSIM Pick",
 
+featured:
+true,
+
 rating:
 "★★★★★",
+
+offer:
+"Save on global mobile data plans",
 
 description:
 "Stay connected worldwide with affordable Saily eSIM plans. Avoid expensive roaming fees and activate mobile data before your trip.",
 
 shortDescription:
 "Global mobile data plans for travelers who want affordable connectivity.",
+
+destinations:[
+
+"Europe",
+"Asia",
+"USA",
+"Worldwide"
+
+],
 
 features:[
 
@@ -56,9 +77,10 @@ link:
 "#",
 
 related:[
-"travel-esim",
-"travel-apps",
-"travel-tech"
+
+"nordvpn-travel-offer",
+"travel-gadget-deals"
+
 ]
 
 },
@@ -71,23 +93,41 @@ slug:"nordvpn-travel-offer",
 title:
 "NordVPN Travel Security Deal 2026",
 
+provider:
+"NordVPN",
+
 category:
 "Travel Security",
 
 icon:
 "🔒",
 
+image:
+"/images/travel/nordvpn.jpg",
+
 badge:
 "Privacy Pick",
 
+featured:
+true,
+
 rating:
 "★★★★★",
+
+offer:
+"Secure your connection while traveling",
 
 description:
 "Protect your personal information while traveling with secure VPN access on airports, hotels, cafes, and public WiFi networks.",
 
 shortDescription:
 "Secure your internet connection while traveling worldwide.",
+
+destinations:[
+
+"Worldwide"
+
+],
 
 features:[
 
@@ -121,9 +161,10 @@ link:
 "#",
 
 related:[
-"travel-security",
-"travel-apps",
-"travel-tech"
+
+"saily-esim-discount",
+"travel-gadget-deals"
+
 ]
 
 },
@@ -136,23 +177,41 @@ slug:"cheap-flight-deals",
 title:
 "Cheap Flight Deals 2026",
 
+provider:
+"NorthSky Travel",
+
 category:
 "Flights",
 
 icon:
 "✈️",
 
+image:
+"/images/travel/flights.jpg",
+
 badge:
 "Flight Savings",
 
+featured:
+false,
+
 rating:
 "★★★★☆",
+
+offer:
+"Find cheaper airfare",
 
 description:
 "Discover tools, strategies, and booking services that help travelers find cheaper airfare and better flight options.",
 
 shortDescription:
 "Find better flight prices and save on airfare.",
+
+destinations:[
+
+"Worldwide"
+
+],
 
 features:[
 
@@ -186,9 +245,10 @@ link:
 "/travel/flights",
 
 related:[
+
 "hotel-discounts",
-"travel-apps",
-"airport-services"
+"airport-transfer-deals"
+
 ]
 
 },
@@ -201,23 +261,41 @@ slug:"hotel-discounts",
 title:
 "Hotel Discounts & Travel Stays 2026",
 
+provider:
+"Travel Partners",
+
 category:
 "Hotels",
 
 icon:
 "🏨",
 
+image:
+"/images/travel/hotels.jpg",
+
 badge:
 "Hotel Deals",
 
+featured:
+true,
+
 rating:
 "★★★★☆",
+
+offer:
+"Save on hotels and accommodations",
 
 description:
 "Compare hotel prices, accommodation platforms, rewards programs, and travel stay discounts.",
 
 shortDescription:
 "Save on hotels, resorts, and vacation accommodations.",
+
+destinations:[
+
+"Worldwide"
+
+],
 
 features:[
 
@@ -251,9 +329,10 @@ link:
 "#",
 
 related:[
+
 "cheap-flight-deals",
-"travel-experiences",
-"travel-apps"
+"airport-transfer-deals"
+
 ]
 
 },
@@ -266,23 +345,41 @@ slug:"travel-gadget-deals",
 title:
 "Best Travel Gadget Deals 2026",
 
+provider:
+"NorthSky Reviews",
+
 category:
 "Travel Technology",
 
 icon:
 "🎒",
 
+image:
+"/images/travel/gadgets.jpg",
+
 badge:
 "Tech Picks",
 
+featured:
+false,
+
 rating:
 "★★★★★",
+
+offer:
+"Upgrade your travel setup",
 
 description:
 "Discover essential travel technology including chargers, adapters, power banks, smart accessories, and travel gear.",
 
 shortDescription:
 "Technology and accessories designed for smarter travel.",
+
+destinations:[
+
+"Worldwide"
+
+],
 
 features:[
 
@@ -316,9 +413,10 @@ link:
 "/travel/gear",
 
 related:[
-"travel-tech",
-"travel-apps",
-"travel-esim"
+
+"saily-esim-discount",
+"nordvpn-travel-offer"
+
 ]
 
 },
@@ -331,23 +429,41 @@ slug:"airport-transfer-deals",
 title:
 "Airport Transfer Deals 2026",
 
+provider:
+"Travel Partners",
+
 category:
 "Transportation",
 
 icon:
 "🚆",
 
+image:
+"/images/travel/transfers.jpg",
+
 badge:
 "Travel Extras",
 
+featured:
+false,
+
 rating:
 "★★★★☆",
+
+offer:
+"Easy airport transportation",
 
 description:
 "Find airport transportation options including transfers, shuttles, and travel convenience services.",
 
 shortDescription:
 "Make airport arrivals and departures easier.",
+
+destinations:[
+
+"Worldwide"
+
+],
 
 features:[
 
@@ -381,9 +497,10 @@ link:
 "#",
 
 related:[
-"travel-guides",
-"travel-apps",
-"cheap-flight-deals"
+
+"cheap-flight-deals",
+"hotel-discounts"
+
 ]
 
 }
