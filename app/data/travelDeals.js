@@ -27,8 +27,17 @@ true,
 rating:
 "★★★★★",
 
-offer:
+discount:
 "Save on global mobile data plans",
+
+expires:
+"2026-12-31",
+
+seoTitle:
+"Saily eSIM Deal 2026 | Affordable International Travel Data",
+
+seoDescription:
+"Save on Saily eSIM travel plans and stay connected worldwide without expensive roaming fees.",
 
 description:
 "Stay connected worldwide with affordable Saily eSIM plans. Avoid expensive roaming fees and activate mobile data before your trip.",
@@ -48,11 +57,8 @@ destinations:[
 features:[
 
 "Instant eSIM activation",
-
 "Global destination coverage",
-
 "No physical SIM card required",
-
 "Affordable travel data plans"
 
 ],
@@ -60,9 +66,7 @@ features:[
 benefits:[
 
 "Save money compared to roaming",
-
 "Stay connected internationally",
-
 "Easy setup before departure"
 
 ],
@@ -74,6 +78,9 @@ affiliate:
 true,
 
 link:
+"/travel/deals/saily-esim-discount",
+
+affiliateUrl:
 "#",
 
 related:[
@@ -114,8 +121,17 @@ true,
 rating:
 "★★★★★",
 
-offer:
-"Secure your connection while traveling",
+discount:
+"Secure travel privacy offer",
+
+expires:
+"2026-12-31",
+
+seoTitle:
+"NordVPN Travel Deal 2026 | Secure Your Internet Abroad",
+
+seoDescription:
+"Protect your privacy while traveling with NordVPN security tools for hotels, airports, and public WiFi.",
 
 description:
 "Protect your personal information while traveling with secure VPN access on airports, hotels, cafes, and public WiFi networks.",
@@ -132,11 +148,8 @@ destinations:[
 features:[
 
 "Encrypted internet connection",
-
 "Public WiFi protection",
-
 "Global server network",
-
 "Multiple device support"
 
 ],
@@ -144,9 +157,7 @@ features:[
 benefits:[
 
 "Improve online privacy",
-
 "Secure travel browsing",
-
 "Protect personal accounts"
 
 ],
@@ -158,6 +169,9 @@ affiliate:
 true,
 
 link:
+"/travel/deals/nordvpn-travel-offer",
+
+affiliateUrl:
 "#",
 
 related:[
@@ -198,8 +212,14 @@ false,
 rating:
 "★★★★☆",
 
-offer:
+discount:
 "Find cheaper airfare",
+
+seoTitle:
+"Cheap Flight Deals 2026 | Save Money On Flights",
+
+seoDescription:
+"Discover flight booking strategies, comparison tools, and ways to save money on airfare.",
 
 description:
 "Discover tools, strategies, and booking services that help travelers find cheaper airfare and better flight options.",
@@ -216,11 +236,8 @@ destinations:[
 features:[
 
 "Flight comparison tools",
-
 "Price tracking strategies",
-
 "Flexible booking options",
-
 "Travel savings tips"
 
 ],
@@ -228,9 +245,7 @@ features:[
 benefits:[
 
 "Reduce flight costs",
-
 "Find better routes",
-
 "Plan trips smarter"
 
 ],
@@ -243,6 +258,9 @@ false,
 
 link:
 "/travel/flights",
+
+affiliateUrl:
+null,
 
 related:[
 
@@ -282,8 +300,17 @@ true,
 rating:
 "★★★★☆",
 
-offer:
+discount:
 "Save on hotels and accommodations",
+
+expires:
+"2026-12-31",
+
+seoTitle:
+"Hotel Deals 2026 | Best Travel Stay Discounts",
+
+seoDescription:
+"Compare hotel deals, accommodation platforms, rewards programs, and travel discounts.",
 
 description:
 "Compare hotel prices, accommodation platforms, rewards programs, and travel stay discounts.",
@@ -300,11 +327,8 @@ destinations:[
 features:[
 
 "Hotel price comparisons",
-
 "Accommodation deals",
-
 "Rewards programs",
-
 "Flexible booking options"
 
 ],
@@ -312,9 +336,7 @@ features:[
 benefits:[
 
 "Find better hotel prices",
-
 "Compare accommodation",
-
 "Save during travel"
 
 ],
@@ -326,6 +348,9 @@ affiliate:
 true,
 
 link:
+"/travel/deals/hotel-discounts",
+
+affiliateUrl:
 "#",
 
 related:[
@@ -366,8 +391,14 @@ false,
 rating:
 "★★★★★",
 
-offer:
+discount:
 "Upgrade your travel setup",
+
+seoTitle:
+"Best Travel Gadgets 2026 | Smart Travel Technology",
+
+seoDescription:
+"Discover chargers, adapters, power banks, and technology accessories for travelers.",
 
 description:
 "Discover essential travel technology including chargers, adapters, power banks, smart accessories, and travel gear.",
@@ -384,11 +415,8 @@ destinations:[
 features:[
 
 "Travel chargers",
-
 "Universal adapters",
-
 "Portable power",
-
 "Smart travel accessories"
 
 ],
@@ -396,9 +424,7 @@ features:[
 benefits:[
 
 "Improve travel convenience",
-
 "Stay powered anywhere",
-
 "Upgrade your travel setup"
 
 ],
@@ -411,6 +437,9 @@ false,
 
 link:
 "/travel/gear",
+
+affiliateUrl:
+null,
 
 related:[
 
@@ -450,8 +479,14 @@ false,
 rating:
 "★★★★☆",
 
-offer:
+discount:
 "Easy airport transportation",
+
+seoTitle:
+"Airport Transfer Deals 2026 | Travel Transportation",
+
+seoDescription:
+"Find airport transfers, shuttles, and transportation services for easier travel.",
 
 description:
 "Find airport transportation options including transfers, shuttles, and travel convenience services.",
@@ -468,11 +503,8 @@ destinations:[
 features:[
 
 "Airport pickup options",
-
 "Local transportation",
-
 "Travel convenience",
-
 "Booking flexibility"
 
 ],
@@ -480,9 +512,7 @@ features:[
 benefits:[
 
 "Reduce travel stress",
-
 "Save arrival time",
-
 "Plan transportation ahead"
 
 ],
@@ -494,6 +524,9 @@ affiliate:
 true,
 
 link:
+"/travel/deals/airport-transfer-deals",
+
+affiliateUrl:
 "#",
 
 related:[
