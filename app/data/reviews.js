@@ -1,34 +1,91 @@
 export const reviews = [
 
-{
-slug:"nordvpn-review",
+  {
+    slug: "nordvpn-review",
 
-title:"NordVPN Review 2026",
+    title: "NordVPN Review 2026",
 
-category:"VPN",
+    category: "VPN",
 
-rating:"★★★★★",
+    badge: "Best VPN Overall",
 
-badge:"Best VPN Overall",
+    rating: "★★★★★",
 
-price:"Starting at $3.99/month",
+    price: "Starting at $3.99/month",
 
-affiliate:
-"https://your-affiliate-link",
+    affiliate:
+      "YOUR_AFFILIATE_LINK",
 
-pros:[
-"Fast speeds",
-"Strong privacy features",
-"Large server network"
-],
+    image:
+      "/images/reviews/nordvpn.jpg",
 
-cons:[
-"No free plan",
-"Advanced features require subscription"
-],
+    description:
+      "NordVPN is one of the most popular VPN services, offering strong security, fast speeds, and privacy features for everyday users.",
 
-description:
-"NorthSky Reviews tested NordVPN for speed, security, streaming, and everyday privacy."
-}
+    pros: [
+      "Excellent connection speeds",
+      "Strong privacy protection",
+      "Large global server network"
+    ],
 
-]
+    cons: [
+      "No free plan",
+      "Premium features require subscription"
+    ],
+
+    features: [
+      "VPN encryption",
+      "Threat protection",
+      "Streaming support",
+      "Multiple device connections"
+    ],
+
+    verdict:
+      "NordVPN is a strong choice for users looking for privacy, security, and reliable performance."
+  },
+
+
+  {
+    slug: "saily-esim-review",
+
+    title: "Saily eSIM Review 2026",
+
+    category: "Travel Tech",
+
+    badge: "Best Travel eSIM",
+
+    rating: "★★★★★",
+
+    price:
+      "Affordable global data plans",
+
+    affiliate:
+      "YOUR_AFFILIATE_LINK",
+
+    image:
+      "/images/reviews/saily.jpg",
+
+    description:
+      "Saily provides affordable eSIM data plans for travelers who want easy mobile connectivity worldwide.",
+
+    pros:[
+      "Easy activation",
+      "Affordable travel data",
+      "No physical SIM required"
+    ],
+
+    cons:[
+      "Requires compatible device"
+    ],
+
+    features:[
+      "Global coverage",
+      "Instant activation",
+      "Travel-friendly pricing"
+    ],
+
+    verdict:
+      "Saily is a great option for travelers who need reliable mobile data without expensive roaming fees."
+  }
+
+];
