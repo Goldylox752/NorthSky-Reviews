@@ -1,18 +1,19 @@
 import Link from "next/link";
-const siteUrl = "https://northsky-reviews.vercel.app";
+const siteUrl = "https://north-sky-reviews.vercel.app";
 export const metadata = {
-  title: "Best AI, Software & Travel Deals 2026 | NorthSky Reviews",
+  title: "Best Software Deals & Discounts 2026 | NorthSky Reviews",
   description:
-    "Discover the best AI tools, software discounts, VPN offers, travel promotions, and technology deals curated by NorthSky Reviews.",
+    "Find the best AI, software, VPN, travel technology, and online security deals curated by NorthSky Reviews.",
   keywords: [
-    "AI software deals",
-    "SaaS discounts",
+    "software deals 2026",
+    "AI deals",
     "VPN deals",
     "NordVPN deal",
-    "travel deals",
-    "Klook promo codes",
-    "technology offers",
-    "best deals 2026",
+    "software discounts",
+    "technology deals",
+    "travel technology deals",
+    "eSIM deals",
+    "promo codes",
   ],
   metadataBase: new URL(siteUrl),
   alternates: {
@@ -21,119 +22,140 @@ export const metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
   openGraph: {
-    title: "Best AI, Software & Travel Deals 2026 | NorthSky Reviews",
+    title: "Best Software Deals & Discounts 2026 | NorthSky Reviews",
     description:
-      "Find software discounts, VPN offers, AI deals, travel promotions, and technology deals.",
+      "Discover software discounts, VPN offers, AI tools, travel technology deals, and technology promotions.",
     url: `${siteUrl}/deals`,
     siteName: "NorthSky Reviews",
     locale: "en_CA",
     type: "website",
+    images: [
+      {
+        url: `${siteUrl}/og/deals.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "NorthSky Reviews Software Deals",
+      },
+    ],
   },
 };
 const deals = [
   {
     name: "NordVPN",
-    category: "Online Security",
+    category: "VPN & Online Security",
+    badge: "🔥 Featured Deal",
+    icon: "🔒",
     description:
-      "Protect your online connection with VPN privacy and security features.",
-    badge: "🔒 Featured Security Deal",
+      "Protect your online activity with VPN security, privacy tools, and access to servers around the world.",
+    rating: "9.5/10",
+    review: "/reviews/nordvpn",
     affiliate:
       "https://go.nordvpn.net/aff_c?offer_id=725&aff_id=143955",
+  },
+  {
+    name: "NordVPN",
+    category: "VPN Promotion",
+    badge: "⭐ Alternative Offer",
+    icon: "🛡️",
+    description:
+      "Explore another NordVPN promotional offer and choose the plan that best fits your needs.",
+    rating: "9.5/10",
     review: "/reviews/nordvpn",
-    external: true,
+    affiliate:
+      "https://go.nordvpn.net/aff_c?offer_id=1002&aff_id=143955",
   },
   {
     name: "NordPass",
-    category: "Password Management",
+    category: "Password Manager",
+    badge: "🔐 Security Pick",
+    icon: "🔑",
     description:
-      "Securely manage passwords and digital accounts with a dedicated password manager.",
-    badge: "🛡️ Security Pick",
-    url: "/reviews/nordpass",
+      "Securely store passwords, manage digital accounts, and improve your online security.",
+    rating: "Recommended",
+    review: "/reviews/nordpass",
   },
   {
     name: "Saily",
     category: "Travel eSIM",
+    badge: "✈️ Travel Tech",
+    icon: "📱",
     description:
-      "Stay connected while travelling with international mobile data plans.",
-    badge: "📱 Travel Tech",
-    url: "/reviews/saily",
-  },
-  {
-    name: "Qianhai Snow World",
-    category: "China Travel",
-    description:
-      "Buy One Get One Free ski pass promotion using the listed promotional code.",
-    badge: "❄️ B1G1 Deal",
-    url: "/deals/qianhai-snow-world",
-  },
-  {
-    name: "Guangzhou Bonski",
-    category: "China Travel",
-    description:
-      "Buy One Get One Free Advanced Trail Unlimited Ski Pass promotion.",
-    badge: "⛷️ B1G1 Deal",
-    url: "/deals/guangzhou-bonski",
-  },
-  {
-    name: "KLIA Ekspres Kuala Lumpur",
-    category: "Airport Transfer",
-    description:
-      "Save on Kuala Lumpur airport express tickets with the available promotion.",
-    badge: "✈️ Travel Deal",
-    url: "/deals/klia-ekspres-kuala-lumpur",
-  },
-  {
-    name: "JR Tokyo Wide Pass",
-    category: "Japan Rail",
-    description:
-      "Explore selected JR Tokyo Wide Pass packages and available promotions.",
-    badge: "🚄 Japan Deal",
-    url: "/deals/jr-tokyo-wide-pass",
-  },
-  {
-    name: "Osaka Amazing Pass",
-    category: "Japan Attractions",
-    description:
-      "Save on selected Osaka attractions with the available promotion.",
-    badge: "🎡 Japan Deal",
-    url: "/deals/osaka-amazing-pass",
-  },
-  {
-    name: "TOKYO SKYTREE® Ticket",
-    category: "Tokyo Attractions",
-    description:
-      "Find available discounts and promotions for Tokyo SKYTREE® tickets.",
-    badge: "🗼 Tokyo Deal",
-    url: "/deals/tokyo-skytree-ticket",
+      "Stay connected while traveling with flexible eSIM data plans for destinations around the world.",
+    rating: "Travel Pick",
+    review: "/reviews/saily",
   },
   {
     name: "AI Productivity Tools",
     category: "Artificial Intelligence",
+    badge: "🤖 AI Picks",
+    icon: "🧠",
     description:
-      "Discover AI assistants, automation platforms, coding tools, and productivity software.",
-    badge: "🤖 AI Deals",
-    url: "/ai",
+      "Explore AI assistants, writing tools, coding platforms, automation software, and productivity tools.",
+    rating: "Top AI Picks",
+    review: "/ai",
+  },
+  {
+    name: "Travel Technology",
+    category: "Travel",
+    badge: "🌎 Travel Deals",
+    icon: "✈️",
+    description:
+      "Discover eSIMs, travel apps, attraction passes, airport transfers, and other travel technology.",
+    rating: "Explore Deals",
+    review: "/category/travel",
   },
 ];
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  name: "NorthSky Reviews Deals",
-  description:
-    "Curated AI software deals, VPN offers, travel promotions, and technology discounts.",
-  url: `${siteUrl}/deals`,
-  publisher: {
-    "@type": "Organization",
-    name: "NorthSky Reviews",
-    url: siteUrl,
+const dealCategories = [
+  {
+    icon: "🤖",
+    title: "AI Deals",
+    text: "AI assistants, automation, writing, coding, and productivity software.",
+    href: "/ai",
   },
-};
+  {
+    icon: "🔒",
+    title: "VPN & Security",
+    text: "VPNs, password managers, privacy software, and cybersecurity tools.",
+    href: "/category/vpn",
+  },
+  {
+    icon: "💼",
+    title: "Business Software",
+    text: "CRM, productivity, automation, finance, and business platforms.",
+    href: "/category/business",
+  },
+  {
+    icon: "✈️",
+    title: "Travel Technology",
+    text: "eSIMs, travel apps, transportation, and attraction deals.",
+    href: "/category/travel",
+  },
+];
 export default function DealsPage() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "NorthSky Reviews Deals",
+    description:
+      "Curated software, AI, VPN, security, and travel technology deals.",
+    url: `${siteUrl}/deals`,
+    publisher: {
+      "@type": "Organization",
+      name: "NorthSky Reviews",
+      url: siteUrl,
+    },
+  };
   return (
     <main className="min-h-screen bg-white text-slate-900">
-      {/* SEO SCHEMA */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -141,174 +163,188 @@ export default function DealsPage() {
         }}
       />
       {/* HERO */}
-      <section className="bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-900 px-6 py-24 text-center text-white">
-        <div className="mx-auto max-w-5xl">
-          <span className="rounded-full bg-blue-500/20 px-5 py-2 text-sm font-bold text-blue-300">
+      <section className="bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-800 px-6 py-24 text-white">
+        <div className="mx-auto max-w-6xl text-center">
+          <span className="inline-flex rounded-full bg-blue-500/20 px-5 py-2 text-sm font-bold text-blue-300">
             🔥 NorthSky Deals
           </span>
           <h1 className="mt-7 text-5xl font-black md:text-6xl">
-            Best Deals & Discounts 2026
+            Best Software Deals & Discounts
           </h1>
-          <p className="mx-auto mt-6 max-w-3xl text-xl leading-8 text-slate-300">
-            Discover AI tools, software discounts, VPN offers, travel
-            promotions, and technology deals selected by NorthSky Reviews.
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-300 md:text-xl">
+            Discover worthwhile deals on AI tools, VPNs, security software,
+            business platforms, travel technology, and more.
           </p>
+          <div className="mt-9 flex flex-wrap justify-center gap-4">
+            <a
+              href="#featured-deals"
+              className="rounded-xl bg-blue-500 px-7 py-4 font-black transition hover:bg-blue-600"
+            >
+              View Featured Deals →
+            </a>
+            <Link
+              href="/reviews"
+              className="rounded-xl border border-white/30 px-7 py-4 font-black transition hover:bg-white/10"
+            >
+              Read Reviews
+            </Link>
+          </div>
         </div>
       </section>
-      {/* DEALS */}
-      <section className="px-6 py-20">
+      {/* FEATURED DEALS */}
+      <section id="featured-deals" className="px-6 py-20">
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
-            <h2 className="text-4xl font-black">
-              Featured Deals
+            <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-bold text-blue-700">
+              Featured Offers
+            </span>
+            <h2 className="mt-5 text-4xl font-black">
+              Deals Worth Checking Out
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
-              Explore current promotions, recommended products, and
-              technology offers.
+              Our featured offers across security, AI, software, and travel
+              technology.
             </p>
           </div>
-          <div className="mt-12 grid gap-7 md:grid-cols-2">
+          <div className="mt-12 grid gap-7 md:grid-cols-2 lg:grid-cols-3">
             {deals.map((deal) => (
-              <div
-                key={deal.name}
-                className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+              <article
+                key={`${deal.name}-${deal.badge}`}
+                className="flex flex-col rounded-3xl border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
               >
-                <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-bold text-blue-700">
-                  {deal.badge}
-                </span>
+                <div className="flex items-start justify-between gap-4">
+                  <div className="text-4xl">{deal.icon}</div>
+                  <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-black text-blue-700">
+                    {deal.badge}
+                  </span>
+                </div>
                 <h3 className="mt-6 text-2xl font-black">
                   {deal.name}
                 </h3>
                 <p className="mt-2 font-bold text-blue-600">
                   {deal.category}
                 </p>
-                <p className="mt-5 leading-7 text-slate-600">
+                <p className="mt-4 flex-1 leading-7 text-slate-600">
                   {deal.description}
                 </p>
-                {deal.external ? (
-                  <div className="mt-7 flex flex-wrap gap-3">
+                <div className="mt-6 rounded-xl bg-slate-50 p-4">
+                  <span className="text-sm font-bold text-slate-500">
+                    Rating
+                  </span>
+                  <div className="mt-1 font-black">
+                    ⭐ {deal.rating}
+                  </div>
+                </div>
+                <div className="mt-6 grid gap-3">
+                  {deal.affiliate && (
                     <a
                       href={deal.affiliate}
                       target="_blank"
-                      rel="nofollow sponsored noopener"
-                      className="rounded-xl bg-blue-600 px-6 py-3 font-bold text-white hover:bg-blue-700"
+                      rel="nofollow sponsored noopener noreferrer"
+                      className="rounded-xl bg-blue-600 px-5 py-3 text-center font-black text-white transition hover:bg-blue-700"
                     >
-                      Check Deal →
+                      Get Deal →
                     </a>
-                    <Link
-                      href={deal.review}
-                      className="rounded-xl border border-slate-200 px-6 py-3 font-bold hover:bg-slate-50"
-                    >
-                      Read Review
-                    </Link>
-                  </div>
-                ) : (
+                  )}
                   <Link
-                    href={deal.url}
-                    className="mt-7 inline-block rounded-xl bg-blue-600 px-6 py-3 font-bold text-white hover:bg-blue-700"
+                    href={deal.review}
+                    className="rounded-xl border border-slate-200 px-5 py-3 text-center font-bold transition hover:bg-slate-50"
                   >
-                    View Deal →
+                    {deal.affiliate ? "Read Review" : "Explore →"}
                   </Link>
-                )}
-              </div>
+                </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
-      {/* DEAL TYPES */}
+      {/* CATEGORIES */}
       <section className="bg-slate-50 px-6 py-20">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-6xl">
           <div className="text-center">
             <h2 className="text-4xl font-black">
-              Find Deals By Category
+              Browse Deals By Category
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-slate-600">
-              Browse NorthSky recommendations across software, security,
-              AI, and travel technology.
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
+              Find offers based on what you're looking for.
             </p>
           </div>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 md:grid-cols-3">
-            {[
-              ["🤖", "AI Tools", "/ai"],
-              ["🔒", "VPN & Privacy", "/category/vpn"],
-              ["💼", "Business Software", "/category/business"],
-              ["🛡️", "Cybersecurity", "/category/cybersecurity"],
-              ["✈️", "Travel Technology", "/category/travel"],
-              ["⚡", "Productivity", "/category/productivity"],
-            ].map(([icon, title, url]) => (
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {dealCategories.map((category) => (
               <Link
-                key={title}
-                href={url}
-                className="rounded-2xl border bg-white p-6 transition hover:border-blue-500 hover:shadow-lg"
+                key={category.title}
+                href={category.href}
+                className="rounded-3xl border bg-white p-7 transition hover:-translate-y-1 hover:border-blue-500 hover:shadow-lg"
               >
-                <div className="text-4xl">
-                  {icon}
-                </div>
-                <h3 className="mt-4 font-black">
-                  {title}
+                <div className="text-4xl">{category.icon}</div>
+                <h3 className="mt-5 text-xl font-black">
+                  {category.title}
                 </h3>
-                <p className="mt-2 text-sm font-bold text-blue-600">
-                  Explore →
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {category.text}
                 </p>
+                <div className="mt-5 font-black text-blue-600">
+                  Explore →
+                </div>
               </Link>
             ))}
           </div>
         </div>
       </section>
-      {/* HOW WE SELECT */}
-      <section className="bg-slate-950 px-6 py-20 text-white">
+      {/* WHY NORTHSKY */}
+      <section className="px-6 py-20">
         <div className="mx-auto max-w-5xl text-center">
-          <span className="text-sm font-bold text-blue-400">
-            OUR DEAL STANDARDS
+          <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-bold text-blue-700">
+            Our Approach
           </span>
-          <h2 className="mt-3 text-4xl font-black">
-            How We Select Deals
+          <h2 className="mt-5 text-4xl font-black">
+            How We Choose Deals
           </h2>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {[
-              [
-                "🔍",
-                "Research",
-                "We review products, pricing, features, and promotions.",
-              ],
-              [
-                "⚖️",
-                "Compare",
-                "We consider alternatives and overall value.",
-              ],
-              [
-                "⭐",
-                "Recommend",
-                "We highlight offers that are worth exploring.",
-              ],
-            ].map(([icon, title, text]) => (
-              <div
-                key={title}
-                className="rounded-3xl bg-white/10 p-8"
-              >
-                <div className="text-4xl">
-                  {icon}
-                </div>
-                <h3 className="mt-4 text-xl font-black">
-                  {title}
-                </h3>
-                <p className="mt-3 text-slate-300">
-                  {text}
-                </p>
-              </div>
-            ))}
+          <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+            We look at pricing, features, usability, security, reputation,
+            and overall value when deciding what deserves a place on
+            NorthSky Reviews.
+          </p>
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            <div className="rounded-3xl border p-7">
+              <div className="text-4xl">🔍</div>
+              <h3 className="mt-4 text-xl font-black">
+                Research
+              </h3>
+              <p className="mt-3 text-slate-600">
+                We examine products, features, pricing, and available offers.
+              </p>
+            </div>
+            <div className="rounded-3xl border p-7">
+              <div className="text-4xl">⚖️</div>
+              <h3 className="mt-4 text-xl font-black">
+                Compare
+              </h3>
+              <p className="mt-3 text-slate-600">
+                We compare alternatives to identify strong overall value.
+              </p>
+            </div>
+            <div className="rounded-3xl border p-7">
+              <div className="text-4xl">⭐</div>
+              <h3 className="mt-4 text-xl font-black">
+                Recommend
+              </h3>
+              <p className="mt-3 text-slate-600">
+                We highlight products and offers worth exploring.
+              </p>
+            </div>
           </div>
         </div>
       </section>
       {/* CTA */}
-      <section className="px-6 py-20">
-        <div className="mx-auto max-w-5xl rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-700 p-10 text-center text-white md:p-14">
-          <h2 className="text-4xl font-black">
-            Research Before You Buy
+      <section className="px-6 pb-20">
+        <div className="mx-auto max-w-6xl rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-700 p-12 text-center text-white md:p-16">
+          <h2 className="text-4xl font-black md:text-5xl">
+            Find Your Next Great Deal
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-blue-100">
-            Check our reviews and comparisons before taking advantage of
-            a software or technology deal.
+          <p className="mx-auto mt-5 max-w-2xl text-lg text-blue-100">
+            Explore NorthSky Reviews for software reviews, comparisons,
+            rankings, buying guides, and technology deals.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
@@ -318,10 +354,10 @@ export default function DealsPage() {
               Browse Reviews →
             </Link>
             <Link
-              href="/comparisons"
+              href="/categories"
               className="rounded-xl border border-white/40 px-7 py-4 font-black"
             >
-              Compare Products →
+              Explore Categories →
             </Link>
           </div>
         </div>
@@ -329,13 +365,11 @@ export default function DealsPage() {
       {/* AFFILIATE DISCLOSURE */}
       <section className="border-t px-6 py-10">
         <div className="mx-auto max-w-4xl text-center text-sm leading-6 text-slate-500">
-          <p>
-            <strong>Affiliate Disclosure:</strong> NorthSky Reviews may earn
-            commissions when you purchase or sign up through certain links on
-            this website. These commissions help support our website and
-            research. Affiliate relationships do not determine our editorial
-            ratings, recommendations, or opinions.
-          </p>
+          <strong>Affiliate Disclosure:</strong> NorthSky Reviews may earn a
+          commission when you purchase products or services through certain
+          links on this page. These commissions help support our website and
+          research. Affiliate relationships do not determine our editorial
+          ratings or opinions.
         </div>
       </section>
     </main>
