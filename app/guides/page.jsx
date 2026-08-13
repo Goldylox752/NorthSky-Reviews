@@ -1,28 +1,31 @@
 import Link from "next/link";
 import { guides } from "@/app/data/guides";
 
-const siteUrl = "https://north-sky-reviews-f1gr.vercel.app";
+const siteUrl = "https://northsky-reviews.vercel.app";
+const pageUrl = `${siteUrl}/guides`;
 
 export const metadata = {
   title:
     "Technology Guides 2026 | AI, Software & Buying Guides | NorthSky Reviews",
 
   description:
-    "Explore NorthSky Reviews technology guides covering AI tools, software, automation, VPNs, productivity apps, cybersecurity, and technology recommendations.",
+    "Explore NorthSky Reviews technology guides covering AI tools, software, automation, VPNs, productivity, cybersecurity, and technology buying decisions.",
 
   keywords: [
     "AI guides",
     "technology guides",
     "software guides",
-    "AI automation guides",
-    "best software guides",
-    "technology buying guides",
     "AI tool guides",
     "software buying guides",
+    "technology buying guides",
+    "AI software guides",
+    "VPN guides",
+    "cybersecurity guides",
+    "productivity software guides",
   ],
 
   alternates: {
-    canonical: `${siteUrl}/guides`,
+    canonical: pageUrl,
   },
 
   openGraph: {
@@ -30,9 +33,9 @@ export const metadata = {
       "Technology Guides 2026 | AI, Software & Buying Guides | NorthSky Reviews",
 
     description:
-      "Expert technology guides covering AI tools, software, automation, cybersecurity, productivity, and buying decisions.",
+      "Research-focused guides covering AI tools, software, automation, cybersecurity, VPNs, productivity, and technology buying decisions.",
 
-    url: `${siteUrl}/guides`,
+    url: pageUrl,
     siteName: "NorthSky Reviews",
     locale: "en_CA",
     type: "website",
@@ -41,14 +44,20 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Technology Guides 2026 | NorthSky Reviews",
-
     description:
-      "Expert guides covering AI tools, software, automation, cybersecurity, and technology decisions.",
+      "Explore AI, software, cybersecurity, VPN, productivity, and technology buying guides.",
   },
 
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };
 
@@ -57,8 +66,11 @@ export default function GuidesPage() {
 
   const featuredGuides = [...guideList]
     .sort((a, b) => {
-      if (a.featured === b.featured) return 0;
-      return a.featured ? -1 : 1;
+      if (Boolean(a?.featured) === Boolean(b?.featured)) {
+        return 0;
+      }
+
+      return a?.featured ? -1 : 1;
     })
     .slice(0, 12);
 
@@ -67,12 +79,12 @@ export default function GuidesPage() {
     "@graph": [
       {
         "@type": "CollectionPage",
-        "@id": `${siteUrl}/guides#webpage`,
-        name: "NorthSky Technology Guides",
+        "@id": `${pageUrl}#webpage`,
+        url: pageUrl,
+        name:
+          "Technology Guides 2026 | NorthSky Reviews",
         description:
-          "NorthSky Reviews technology guides and buying recommendations covering AI, software, automation, cybersecurity, productivity, and technology.",
-
-        url: `${siteUrl}/guides`,
+          "Technology guides covering AI tools, software, automation, cybersecurity, VPNs, productivity, and technology buying decisions.",
 
         isPartOf: {
           "@type": "WebSite",
@@ -82,27 +94,31 @@ export default function GuidesPage() {
         },
 
         mainEntity: {
-          "@id": `${siteUrl}/guides#guides`,
+          "@id": `${pageUrl}#guides`,
         },
       },
 
       {
         "@type": "ItemList",
-        "@id": `${siteUrl}/guides#guides`,
+        "@id": `${pageUrl}#guides`,
         name: "NorthSky Technology Guides",
         numberOfItems: featuredGuides.length,
 
-        itemListElement: featuredGuides.map((guide, index) => ({
-          "@type": "ListItem",
-          position: index + 1,
-          name: guide.title,
-          url: `${siteUrl}/guides/${guide.slug}`,
-        })),
+        itemListElement: featuredGuides.map(
+          (guide, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name:
+              guide?.title ||
+              "Technology Guide",
+            url: `${siteUrl}/guides/${guide?.slug || ""}`,
+          })
+        ),
       },
 
       {
         "@type": "BreadcrumbList",
-        "@id": `${siteUrl}/guides#breadcrumb`,
+        "@id": `${pageUrl}#breadcrumb`,
         itemListElement: [
           {
             "@type": "ListItem",
@@ -114,7 +130,7 @@ export default function GuidesPage() {
             "@type": "ListItem",
             position: 2,
             name: "Guides",
-            item: `${siteUrl}/guides`,
+            item: pageUrl,
           },
         ],
       },
@@ -145,9 +161,9 @@ export default function GuidesPage() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-3xl text-xl leading-8 text-slate-300">
-            Expert guides covering AI tools, software, automation,
-            cybersecurity, productivity, VPNs, and smarter technology
-            decisions.
+            Expert guides covering AI tools, software,
+            automation, cybersecurity, productivity,
+            VPNs, and smarter technology decisions.
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
@@ -189,13 +205,17 @@ export default function GuidesPage() {
             </h2>
 
             <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-600">
-              Research-focused guides designed to help you understand
-              technology, compare products, and make better buying decisions.
+              Research-focused guides designed to help
+              you understand technology, compare products,
+              and make better buying decisions.
             </p>
           </div>
 
           <div className="rounded-full bg-blue-50 px-5 py-3 font-bold text-blue-600">
-            {guideList.length} {guideList.length === 1 ? "Guide" : "Guides"}
+            {guideList.length}{" "}
+            {guideList.length === 1
+              ? "Guide"
+              : "Guides"}
           </div>
         </div>
 
@@ -208,7 +228,8 @@ export default function GuidesPage() {
               >
                 <div className="flex items-center justify-between gap-3">
                   <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-black uppercase text-blue-700">
-                    {guide.category || "Technology"}
+                    {guide.category ||
+                      "Technology"}
                   </span>
 
                   {guide.featured && (
@@ -244,15 +265,18 @@ export default function GuidesPage() {
           </div>
         ) : (
           <div className="mt-12 rounded-3xl border border-slate-200 bg-slate-50 p-12 text-center">
-            <div className="text-4xl">📚</div>
+            <div className="text-4xl">
+              📚
+            </div>
 
             <h3 className="mt-5 text-2xl font-black">
               Guides Coming Soon
             </h3>
 
             <p className="mx-auto mt-3 max-w-xl text-slate-600">
-              NorthSky Reviews is building a growing library of technology
-              guides and buying resources.
+              NorthSky Reviews is building a
+              growing library of technology guides
+              and buying resources.
             </p>
           </div>
         )}
@@ -272,8 +296,8 @@ export default function GuidesPage() {
             </h2>
 
             <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
-              Explore guides across the technology categories covered by
-              NorthSky Reviews.
+              Explore guides across the technology
+              categories covered by NorthSky Reviews.
             </p>
           </div>
 
@@ -344,8 +368,9 @@ export default function GuidesPage() {
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-blue-100">
-            Explore NorthSky Reviews for technology guides, software reviews,
-            rankings, and comparisons.
+            Explore NorthSky Reviews for technology
+            guides, software reviews, rankings, and
+            comparisons.
           </p>
 
           <div className="mt-9 flex flex-wrap justify-center gap-4">
@@ -370,8 +395,9 @@ export default function GuidesPage() {
 
       <section className="border-t px-6 py-8">
         <p className="mx-auto max-w-4xl text-center text-xs leading-6 text-slate-500">
-          NorthSky Reviews may earn commissions from affiliate partnerships.
-          Affiliate relationships help support the website and do not determine
+          NorthSky Reviews may earn commissions from
+          affiliate partnerships. Affiliate relationships
+          help support the website and do not determine
           our editorial rankings or opinions.
         </p>
       </section>
@@ -394,7 +420,9 @@ function TopicCard({
       href={href}
       className="group rounded-3xl border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:border-blue-300 hover:shadow-xl"
     >
-      <div className="text-4xl">{icon}</div>
+      <div className="text-4xl">
+        {icon}
+      </div>
 
       <h3 className="mt-5 text-xl font-black group-hover:text-blue-600">
         {title}
@@ -422,7 +450,9 @@ function ValueCard({
 }) {
   return (
     <div className="rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm">
-      <div className="text-4xl">{icon}</div>
+      <div className="text-4xl">
+        {icon}
+      </div>
 
       <h3 className="mt-5 text-xl font-black">
         {title}
