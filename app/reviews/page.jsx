@@ -1,6 +1,8 @@
 import Link from "next/link";
+
 import { tools } from "@/app/data/tools";
 import { comparisons } from "@/app/data/comparisons";
+import { guides } from "@/app/data/guides";
 
 export const dynamic = "force-static";
 
@@ -9,23 +11,22 @@ const PAGE_URL = `${SITE_URL}/reviews`;
 
 export const metadata = {
   title:
-    "AI & Software Reviews 2026 | Technology Reviews | NorthSky Reviews",
+    "AI & Software Reviews 2026 | Best Technology Tools | NorthSky Reviews",
 
   description:
-    "Explore NorthSky Reviews for AI tools, software, SaaS, productivity, automation, VPN, cybersecurity, developer, and business technology reviews. Compare features, pricing, ratings, and alternatives.",
+    "Read NorthSky Reviews for AI, software, VPN, eSIM, ecommerce, productivity, and business technology reviews. Compare features, pricing, ratings, strengths, weaknesses, and alternatives.",
 
   keywords: [
-    "AI software reviews",
+    "AI reviews 2026",
     "AI tool reviews",
-    "software reviews 2026",
+    "software reviews",
     "technology reviews",
     "best AI tools",
     "SaaS reviews",
     "VPN reviews",
-    "cybersecurity reviews",
     "software comparisons",
     "business software reviews",
-    "developer tool reviews",
+    "ecommerce software reviews",
     "technology buying guides",
   ],
 
@@ -38,31 +39,25 @@ export const metadata = {
       "AI & Software Reviews 2026 | NorthSky Reviews",
 
     description:
-      "Explore reviews of AI tools, software, SaaS platforms, cybersecurity products, developer tools, and business technology.",
+      "Independent-style reviews covering AI tools, software, VPNs, ecommerce platforms, productivity tools, and business technology.",
 
     url: PAGE_URL,
-
     siteName: "NorthSky Reviews",
-
     locale: "en_CA",
-
     type: "website",
   },
 
   twitter: {
     card: "summary_large_image",
-
     title:
       "AI & Software Reviews 2026 | NorthSky Reviews",
-
     description:
-      "Explore AI, software, SaaS, cybersecurity, VPN, and technology reviews.",
+      "Explore AI, software, VPN, ecommerce, productivity, and technology reviews.",
   },
 
   robots: {
     index: true,
     follow: true,
-
     googleBot: {
       index: true,
       follow: true,
@@ -74,40 +69,46 @@ export const metadata = {
 };
 
 export default function ReviewsPage() {
-  const safeTools = Array.isArray(tools) ? tools : [];
+  const safeTools = Array.isArray(tools)
+    ? tools.filter(Boolean)
+    : [];
 
   const safeComparisons = Array.isArray(comparisons)
-    ? comparisons
+    ? comparisons.filter(Boolean)
+    : [];
+
+  const safeGuides = Array.isArray(guides)
+    ? guides.filter(Boolean)
     : [];
 
   const featuredReviews = [...safeTools]
-    .filter(Boolean)
     .sort(
       (a, b) =>
-        Number(b?.rating || 0) -
-        Number(a?.rating || 0)
+        Number(b.rating || 0) -
+        Number(a.rating || 0)
     )
     .slice(0, 12);
 
-  const popularComparisons =
-    safeComparisons
-      .filter(Boolean)
-      .slice(0, 6);
+  const categories = [
+    ...new Set(
+      safeTools
+        .map((tool) => tool.category)
+        .filter(Boolean)
+    ),
+  ];
 
-  const itemList = featuredReviews.map(
+  const popularComparisons = safeComparisons.slice(0, 6);
+
+  const featuredGuides = safeGuides
+    .filter((guide) => guide.featured)
+    .slice(0, 6);
+
+  const reviewItems = featuredReviews.map(
     (tool, index) => ({
       "@type": "ListItem",
-
       position: index + 1,
-
-      name:
-        tool?.name ||
-        "Technology Review",
-
-      url:
-        `${SITE_URL}/reviews/${encodeURIComponent(
-          tool?.slug || ""
-        )}`,
+      name: tool.name,
+      url: `${SITE_URL}/reviews/${tool.slug}`,
     })
   );
 
@@ -117,24 +118,17 @@ export default function ReviewsPage() {
     "@graph": [
       {
         "@type": "CollectionPage",
-
         "@id": `${PAGE_URL}#webpage`,
-
         url: PAGE_URL,
-
         name:
           "AI & Software Reviews 2026 | NorthSky Reviews",
-
         description:
-          "NorthSky Reviews covering AI tools, software, SaaS platforms, cybersecurity products, developer tools, VPNs, and business technology.",
+          "NorthSky Reviews technology reviews covering AI tools, software, VPNs, ecommerce, productivity, and business technology.",
 
         isPartOf: {
           "@type": "WebSite",
-
           "@id": `${SITE_URL}#website`,
-
           name: "NorthSky Reviews",
-
           url: SITE_URL,
         },
 
@@ -143,48 +137,32 @@ export default function ReviewsPage() {
         },
 
         mainEntity: {
-          "@id": `${PAGE_URL}#reviews`,
+          "@id": `${PAGE_URL}#review-list`,
         },
       },
 
       {
         "@type": "ItemList",
-
-        "@id": `${PAGE_URL}#reviews`,
-
-        name:
-          "Featured AI and Software Reviews",
-
-        numberOfItems:
-          featuredReviews.length,
-
-        itemListElement:
-          itemList,
+        "@id": `${PAGE_URL}#review-list`,
+        name: "Featured Technology Reviews",
+        numberOfItems: featuredReviews.length,
+        itemListElement: reviewItems,
       },
 
       {
         "@type": "BreadcrumbList",
-
         "@id": `${PAGE_URL}#breadcrumb`,
-
         itemListElement: [
           {
             "@type": "ListItem",
-
             position: 1,
-
             name: "Home",
-
             item: SITE_URL,
           },
-
           {
             "@type": "ListItem",
-
             position: 2,
-
             name: "Reviews",
-
             item: PAGE_URL,
           },
         ],
@@ -200,80 +178,77 @@ export default function ReviewsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html:
-            JSON.stringify(schema),
+          __html: JSON.stringify(schema),
         }}
       />
 
       {/* HERO */}
 
-      <section className="bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 px-6 py-24 text-white">
+      <section className="bg-gradient-to-br from-slate-950 via-indigo-950 to-blue-900 px-6 py-24 text-white">
 
         <div className="mx-auto max-w-6xl text-center">
 
-          <span className="inline-flex rounded-full bg-blue-500/20 px-5 py-2 text-sm font-bold text-blue-300 ring-1 ring-blue-400/20">
-            🔬 NorthSky Technology Reviews
+          <span className="inline-flex rounded-full bg-blue-500/20 px-5 py-2 text-sm font-black text-blue-300 ring-1 ring-blue-400/20">
+            🔬 NorthSky Reviews
           </span>
 
           <h1 className="mt-8 text-5xl font-black tracking-tight md:text-7xl">
             AI & Software Reviews
           </h1>
 
-          <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-slate-300 md:text-xl">
-            Explore detailed reviews of AI tools,
-            SaaS platforms, productivity software,
-            automation tools, VPNs, cybersecurity
-            products, developer software, and business
-            technology.
+          <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-slate-300 md:text-xl">
+            Explore technology reviews covering AI assistants,
+            software, VPNs, travel technology, ecommerce,
+            productivity, and business tools.
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
 
             <Link
-              href="/ai"
-              className="rounded-xl bg-blue-600 px-8 py-4 font-bold transition hover:bg-blue-700"
+              href="/best"
+              className="rounded-xl bg-blue-600 px-8 py-4 font-black transition hover:bg-blue-500"
             >
-              Explore AI Tools →
+              Best Tools →
             </Link>
 
             <Link
               href="/comparisons"
-              className="rounded-xl border border-white/20 px-8 py-4 font-bold transition hover:bg-white/10"
+              className="rounded-xl border border-white/20 px-8 py-4 font-black transition hover:bg-white/10"
             >
-              Compare Software →
+              Compare Tools →
             </Link>
 
             <Link
-              href="/best"
-              className="rounded-xl border border-white/20 px-8 py-4 font-bold transition hover:bg-white/10"
+              href="/guides"
+              className="rounded-xl border border-white/20 px-8 py-4 font-black transition hover:bg-white/10"
             >
-              Best Software →
+              Buying Guides →
             </Link>
 
           </div>
 
           {/* STATS */}
 
-          <div className="mt-16 grid gap-5 sm:grid-cols-2 md:grid-cols-4">
+          <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 
             <Stat
-              value={`${safeTools.length}+`}
+              value={`${safeTools.length}`}
               label="Products Reviewed"
             />
 
             <Stat
-              value={`${safeComparisons.length}+`}
+              value={`${safeComparisons.length}`}
               label="Comparisons"
             />
 
             <Stat
-              value="25+"
-              label="Technology Categories"
+              value={`${safeGuides.length}`}
+              label="Buying Guides"
             />
 
             <Stat
-              value="2026"
-              label="Current Rankings"
+              value={`${categories.length}`}
+              label="Product Categories"
             />
 
           </div>
@@ -282,7 +257,7 @@ export default function ReviewsPage() {
 
       </section>
 
-      {/* FEATURED REVIEWS */}
+      {/* REVIEW DIRECTORY */}
 
       <section className="px-6 py-24">
 
@@ -291,17 +266,17 @@ export default function ReviewsPage() {
           <div className="max-w-3xl">
 
             <p className="text-sm font-black uppercase tracking-widest text-blue-600">
-              Featured Reviews
+              Technology Reviews
             </p>
 
             <h2 className="mt-3 text-4xl font-black tracking-tight md:text-5xl">
-              Technology Reviews
+              Featured Reviews
             </h2>
 
             <p className="mt-5 text-lg leading-8 text-slate-600">
-              Research popular AI platforms, software
-              products, SaaS tools, cybersecurity services,
-              productivity platforms, and business technology.
+              Explore our current selection of technology products
+              and discover how they compare on features, usability,
+              performance, pricing, and overall value.
             </p>
 
           </div>
@@ -312,54 +287,77 @@ export default function ReviewsPage() {
 
               {featuredReviews.map((tool) => (
 
-                <Link
+                <article
                   key={tool.slug}
-                  href={`/reviews/${tool.slug}`}
-                  className="group rounded-3xl border border-slate-200 bg-white p-7 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl"
+                  className="group flex flex-col rounded-3xl border border-slate-200 bg-white p-7 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl"
                 >
 
                   <div className="flex items-center justify-between gap-3">
 
-                    <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-black text-blue-700">
-                      {tool.category ||
-                        "Technology"}
+                    <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-black uppercase text-blue-700">
+                      {tool.category || "Technology"}
                     </span>
 
-                    {tool.rating && (
-                      <span className="font-black text-green-600">
-                        ⭐ {tool.rating}
+                    {tool.rating !== undefined && (
+                      <span className="font-black text-emerald-600">
+                        ⭐ {tool.rating}/10
                       </span>
                     )}
 
                   </div>
 
-                  <h3 className="mt-6 text-2xl font-black group-hover:text-blue-600">
+                  {tool.badge && (
+                    <div className="mt-5 text-xs font-black uppercase tracking-wide text-slate-400">
+                      {tool.badge}
+                    </div>
+                  )}
+
+                  <h3 className="mt-3 text-2xl font-black group-hover:text-blue-600">
                     {tool.name}
                   </h3>
 
-                  <p className="mt-4 line-clamp-3 text-sm leading-7 text-slate-600">
+                  <p className="mt-4 line-clamp-4 text-sm leading-7 text-slate-600">
                     {tool.description ||
-                      `Read our NorthSky Reviews review of ${tool.name}.`}
+                      `Read the NorthSky Reviews review of ${tool.name}.`}
                   </p>
 
-                  <div className="mt-6 flex items-center justify-between gap-3 border-t border-slate-100 pt-5 text-sm">
+                  <div className="mt-6 grid grid-cols-2 gap-3">
 
-                    <span className="font-bold text-slate-500">
-                      {tool.price ||
-                        "Free & Paid"}
+                    <Score
+                      label="Features"
+                      value={tool.featureScore}
+                    />
+
+                    <Score
+                      label="Value"
+                      value={tool.valueScore}
+                    />
+
+                    <Score
+                      label="Ease of Use"
+                      value={tool.easeScore}
+                    />
+
+                    <Score
+                      label="Performance"
+                      value={tool.performanceScore}
+                    />
+
+                  </div>
+
+                  <div className="mt-7 flex items-center justify-between border-t border-slate-100 pt-5">
+
+                    <span className="text-sm font-bold text-slate-500">
+                      {tool.price || "Pricing varies"}
                     </span>
 
-                    <span className="rounded-full bg-slate-100 px-3 py-1 font-bold text-slate-600">
-                      Review
+                    <span className="text-sm font-black text-blue-600">
+                      View Review →
                     </span>
 
                   </div>
 
-                  <span className="mt-7 block font-black text-blue-600">
-                    Read Full Review →
-                  </span>
-
-                </Link>
+                </article>
 
               ))}
 
@@ -367,18 +365,7 @@ export default function ReviewsPage() {
 
           ) : (
 
-            <div className="mt-12 rounded-3xl border border-slate-200 bg-slate-50 p-10 text-center">
-
-              <h3 className="text-2xl font-black">
-                Reviews Coming Soon
-              </h3>
-
-              <p className="mt-3 text-slate-600">
-                New technology reviews are being added
-                regularly.
-              </p>
-
-            </div>
+            <EmptyState />
 
           )}
 
@@ -395,45 +382,65 @@ export default function ReviewsPage() {
           <div className="text-center">
 
             <p className="text-sm font-black uppercase tracking-widest text-blue-600">
-              Technology Categories
+              Browse By Category
             </p>
 
-            <h2 className="mt-3 text-4xl font-black">
+            <h2 className="mt-3 text-4xl font-black md:text-5xl">
               Explore Technology
             </h2>
 
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
-              Find technology reviews by product type,
-              industry, and use case.
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">
+              Find reviews based on the type of technology
+              you're researching.
             </p>
 
           </div>
 
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
 
-            <CategoryLink
-              href="/ai"
-              title="AI Tools"
-              description="AI assistants, generators, research tools, and productivity platforms."
-            />
+            {categories.map((category) => {
 
-            <CategoryLink
-              href="/software"
-              title="Software"
-              description="Business, productivity, ecommerce, and general software reviews."
-            />
+              const categoryToolCount =
+                safeTools.filter(
+                  (tool) =>
+                    tool.category === category
+                ).length;
 
-            <CategoryLink
-              href="/vpn"
-              title="VPN & Security"
-              description="VPN, privacy, security, and online protection reviews."
-            />
+              const categorySlug =
+                safeTools.find(
+                  (tool) =>
+                    tool.category === category
+                )?.categorySlug;
 
-            <CategoryLink
-              href="/comparisons"
-              title="Comparisons"
-              description="Compare competing technology products before choosing."
-            />
+              return (
+                <Link
+                  key={category}
+                  href={
+                    categorySlug
+                      ? `/categories/${categorySlug}`
+                      : "/reviews"
+                  }
+                  className="group rounded-3xl border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl"
+                >
+
+                  <h3 className="text-xl font-black group-hover:text-blue-600">
+                    {category}
+                  </h3>
+
+                  <p className="mt-3 text-sm text-slate-600">
+                    {categoryToolCount}{" "}
+                    {categoryToolCount === 1
+                      ? "review"
+                      : "reviews"}
+                  </p>
+
+                  <span className="mt-5 block font-black text-blue-600">
+                    Explore →
+                  </span>
+
+                </Link>
+              );
+            })}
 
           </div>
 
@@ -441,64 +448,66 @@ export default function ReviewsPage() {
 
       </section>
 
-      {/* COMPARISONS */}
+      {/* BUYING GUIDES */}
 
-      <section className="px-6 py-24">
+      {featuredGuides.length > 0 && (
 
-        <div className="mx-auto max-w-7xl">
+        <section className="px-6 py-24">
 
-          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div className="mx-auto max-w-7xl">
 
-            <div>
+            <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
 
-              <p className="text-sm font-black uppercase tracking-widest text-blue-600">
-                Software Comparisons
-              </p>
+              <div>
 
-              <h2 className="mt-3 text-4xl font-black">
-                Popular Comparisons
-              </h2>
+                <p className="text-sm font-black uppercase tracking-widest text-blue-600">
+                  Research Hub
+                </p>
 
-              <p className="mt-4 max-w-2xl text-lg text-slate-600">
-                Compare features, pricing, capabilities,
-                strengths, weaknesses, and alternatives
-                before choosing your next software platform.
-              </p>
+                <h2 className="mt-3 text-4xl font-black md:text-5xl">
+                  Featured Buying Guides
+                </h2>
+
+                <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-600">
+                  Go beyond individual reviews with guides that
+                  organize the best options for specific use cases.
+                </p>
+
+              </div>
+
+              <Link
+                href="/guides"
+                className="font-black text-blue-600 hover:text-blue-800"
+              >
+                View All Guides →
+              </Link>
 
             </div>
 
-            <Link
-              href="/comparisons"
-              className="font-black text-blue-600 hover:text-blue-800"
-            >
-              View All Comparisons →
-            </Link>
-
-          </div>
-
-          {popularComparisons.length > 0 && (
-
             <div className="mt-12 grid gap-7 md:grid-cols-2 lg:grid-cols-3">
 
-              {popularComparisons.map((item) => (
+              {featuredGuides.map((guide) => (
 
                 <Link
-                  key={item.slug}
-                  href={`/comparisons/${item.slug}`}
-                  className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+                  key={guide.slug}
+                  href={`/guides/${guide.slug}`}
+                  className="group rounded-3xl border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
                 >
 
-                  <h3 className="text-2xl font-black">
-                    {item.title}
+                  <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-black uppercase text-blue-700">
+                    {guide.category || "Technology"}
+                  </span>
+
+                  <h3 className="mt-6 text-2xl font-black leading-tight group-hover:text-blue-600">
+                    {guide.title}
                   </h3>
 
                   <p className="mt-4 line-clamp-3 text-sm leading-7 text-slate-600">
-                    {item.description ||
-                      "Compare these technology products and discover which option may be right for you."}
+                    {guide.description}
                   </p>
 
-                  <span className="mt-7 block font-black text-blue-600">
-                    Read Comparison →
+                  <span className="mt-6 block font-black text-blue-600">
+                    Read Guide →
                   </span>
 
                 </Link>
@@ -507,62 +516,137 @@ export default function ReviewsPage() {
 
             </div>
 
-          )}
+          </div>
 
-        </div>
+        </section>
 
-      </section>
+      )}
+
+      {/* COMPARISONS */}
+
+      {popularComparisons.length > 0 && (
+
+        <section className="bg-slate-50 px-6 py-24">
+
+          <div className="mx-auto max-w-7xl">
+
+            <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+
+              <div>
+
+                <p className="text-sm font-black uppercase tracking-widest text-blue-600">
+                  Compare Before Buying
+                </p>
+
+                <h2 className="mt-3 text-4xl font-black md:text-5xl">
+                  Popular Comparisons
+                </h2>
+
+                <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-600">
+                  Compare competing products to understand their
+                  differences before making a decision.
+                </p>
+
+              </div>
+
+              <Link
+                href="/comparisons"
+                className="font-black text-blue-600 hover:text-blue-800"
+              >
+                View All Comparisons →
+              </Link>
+
+            </div>
+
+            <div className="mt-12 grid gap-7 md:grid-cols-2 lg:grid-cols-3">
+
+              {popularComparisons.map((comparison) => (
+
+                <Link
+                  key={comparison.slug}
+                  href={`/comparisons/${comparison.slug}`}
+                  className="group rounded-3xl border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:shadow-xl"
+                >
+
+                  <h3 className="text-2xl font-black group-hover:text-blue-600">
+                    {comparison.title}
+                  </h3>
+
+                  <p className="mt-4 line-clamp-3 text-sm leading-7 text-slate-600">
+                    {comparison.description ||
+                      "Compare these products and discover which option may be the better fit."}
+                  </p>
+
+                  <span className="mt-6 block font-black text-blue-600">
+                    View Comparison →
+                  </span>
+
+                </Link>
+
+              ))}
+
+            </div>
+
+          </div>
+
+        </section>
+
+      )}
 
       {/* METHODOLOGY */}
 
       <section className="px-6 py-24">
 
-        <div className="mx-auto max-w-5xl rounded-3xl bg-slate-950 p-10 text-center text-white md:p-14">
+        <div className="mx-auto max-w-6xl rounded-3xl bg-slate-950 p-10 text-white md:p-14">
 
-          <p className="text-sm font-black uppercase tracking-widest text-blue-400">
-            Review Methodology
-          </p>
+          <div className="max-w-3xl">
 
-          <h2 className="mt-4 text-4xl font-black">
-            How We Evaluate Technology
-          </h2>
+            <p className="text-sm font-black uppercase tracking-widest text-blue-400">
+              Our Approach
+            </p>
 
-          <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-slate-300 md:text-lg">
-            NorthSky Reviews evaluates products using
-            factors such as features, pricing, usability,
-            integrations, security, performance, support,
-            alternatives, and overall value.
-          </p>
+            <h2 className="mt-4 text-4xl font-black md:text-5xl">
+              How We Review Technology
+            </h2>
 
-          <div className="mt-10 grid gap-4 text-left sm:grid-cols-2 lg:grid-cols-4">
+            <p className="mt-6 text-lg leading-8 text-slate-300">
+              NorthSky Reviews organizes product information around
+              the factors that matter when researching technology:
+              features, pricing, usability, performance, use cases,
+              and overall value.
+            </p>
+
+          </div>
+
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
 
             <Method
               title="Features"
-              description="Capabilities, tools, integrations, and functionality."
+              description="What the product actually offers and which capabilities matter."
             />
 
             <Method
               title="Pricing"
-              description="Plans, costs, limits, and overall pricing structure."
+              description="Plans, costs, limitations, and what users receive."
             />
 
             <Method
-              title="Performance"
-              description="Usability, reliability, speed, and practical experience."
+              title="Usability"
+              description="Ease of use, accessibility, workflows, and user experience."
             />
 
             <Method
               title="Value"
-              description="Overall usefulness compared with competing options."
+              description="How the product compares with available alternatives."
             />
 
           </div>
 
           <Link
             href="/methodology"
-            className="mt-10 inline-block font-black text-blue-400 hover:text-white"
+            className="mt-10 inline-block font-black text-blue-400 transition hover:text-white"
           >
-            Read Our Full Methodology →
+            Read Full Methodology →
           </Link>
 
         </div>
@@ -576,12 +660,13 @@ export default function ReviewsPage() {
         <div className="mx-auto max-w-4xl">
 
           <h2 className="text-4xl font-black md:text-5xl">
-            Find Better Software Faster
+            Research Before You Buy
           </h2>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-blue-100 md:text-xl">
-            Read reviews, compare technology, and explore
-            buying guides before choosing your next tool.
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-blue-100">
+            Use NorthSky Reviews to research software,
+            compare alternatives, and discover technology
+            that fits your needs.
           </p>
 
           <div className="mt-9 flex flex-wrap justify-center gap-4">
@@ -590,14 +675,14 @@ export default function ReviewsPage() {
               href="/best"
               className="rounded-xl bg-white px-8 py-4 font-black text-blue-600 transition hover:bg-slate-100"
             >
-              Best Software →
+              Explore Best Tools →
             </Link>
 
             <Link
               href="/guides"
-              className="rounded-xl border border-white/30 px-8 py-4 font-black text-white transition hover:bg-white/10"
+              className="rounded-xl border border-white/30 px-8 py-4 font-black transition hover:bg-white/10"
             >
-              Buying Guides →
+              Read Buying Guides →
             </Link>
 
           </div>
@@ -606,12 +691,28 @@ export default function ReviewsPage() {
 
       </section>
 
+      {/* DISCLOSURE */}
+
+      <section className="border-t border-slate-200 px-6 py-10">
+
+        <p className="mx-auto max-w-4xl text-center text-xs leading-6 text-slate-500">
+          <strong className="text-slate-700">
+            Affiliate Disclosure:
+          </strong>{" "}
+          NorthSky Reviews may earn commissions from qualifying
+          affiliate partnerships. Affiliate relationships help
+          support the website and do not determine editorial
+          rankings or recommendations.
+        </p>
+
+      </section>
+
     </main>
   );
 }
 
 /* -----------------------------------------
-   COMPONENTS
+   STAT
 ----------------------------------------- */
 
 function Stat({ value, label }) {
@@ -622,7 +723,7 @@ function Stat({ value, label }) {
         {value}
       </p>
 
-      <p className="mt-1 text-sm text-slate-300">
+      <p className="mt-2 text-sm text-slate-300">
         {label}
       </p>
 
@@ -630,46 +731,70 @@ function Stat({ value, label }) {
   );
 }
 
-function CategoryLink({
-  href,
-  title,
-  description,
-}) {
+/* -----------------------------------------
+   SCORE
+----------------------------------------- */
+
+function Score({ label, value }) {
+  if (value === undefined || value === null) {
+    return null;
+  }
+
   return (
-    <Link
-      href={href}
-      className="rounded-2xl border border-slate-200 bg-white p-6 transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
-    >
+    <div className="rounded-xl bg-slate-50 p-3">
 
-      <h3 className="text-xl font-black">
-        {title}
-      </h3>
-
-      <p className="mt-2 text-sm leading-6 text-slate-600">
-        {description}
+      <p className="text-xs font-bold text-slate-500">
+        {label}
       </p>
 
-      <span className="mt-4 block text-sm font-black text-blue-600">
-        Explore →
-      </span>
+      <p className="mt-1 font-black text-slate-900">
+        {value}/10
+      </p>
 
-    </Link>
+    </div>
   );
 }
 
-function Method({
-  title,
-  description,
-}) {
-  return (
-    <div className="rounded-2xl bg-white/5 p-5 ring-1 ring-white/10">
+/* -----------------------------------------
+   METHOD
+----------------------------------------- */
 
-      <p className="font-black text-white">
+function Method({ title, description }) {
+  return (
+    <div className="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10">
+
+      <h3 className="font-black">
         {title}
+      </h3>
+
+      <p className="mt-3 text-sm leading-6 text-slate-400">
+        {description}
       </p>
 
-      <p className="mt-2 text-sm leading-6 text-slate-400">
-        {description}
+    </div>
+  );
+}
+
+/* -----------------------------------------
+   EMPTY STATE
+----------------------------------------- */
+
+function EmptyState() {
+  return (
+    <div className="mt-12 rounded-3xl border border-slate-200 bg-slate-50 p-12 text-center">
+
+      <div className="text-4xl">
+        🔬
+      </div>
+
+      <h3 className="mt-5 text-2xl font-black">
+        Reviews Coming Soon
+      </h3>
+
+      <p className="mx-auto mt-3 max-w-xl text-slate-600">
+        NorthSky Reviews is building a growing library of
+        AI, software, security, productivity, and business
+        technology reviews.
       </p>
 
     </div>
