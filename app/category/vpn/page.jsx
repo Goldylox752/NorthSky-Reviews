@@ -1,347 +1,133 @@
 import Link from "next/link";
 
-import { tools } from "@/app/data/tools";
-
-
-const siteUrl =
-  "https://northsky-reviews.vercel.app";
-
-
+export const dynamic = "force-static";
 
 export const metadata = {
-
-  title:
-    "Best VPNs 2026 | VPN Reviews, Rankings & Comparisons | NorthSky Reviews",
-
+  title: "Best VPNs in 2026 | NorthSky Reviews",
   description:
-    "Discover the best VPN services in 2026. Compare NordVPN, ExpressVPN, Surfshark, Proton VPN, and more with expert reviews covering privacy, security, speed, streaming, and value.",
+    "Compare VPN services, privacy features, security tools, pricing, and performance with NorthSky Reviews.",
+};
 
-  keywords: [
-
-    "best VPNs 2026",
-    "VPN reviews",
-    "best VPN Canada",
-    "VPN comparison",
-    "best privacy VPN",
-    "best streaming VPN",
-    "NordVPN review",
-    "ExpressVPN review",
-    "Surfshark review",
-    "VPN software"
-
-  ],
-
-
-  alternates: {
-
-    canonical:
-      `${siteUrl}/category/vpn`
-
-  },
-
-
-  openGraph: {
-
-    title:
-      "Best VPN Services 2026 | NorthSky Reviews",
-
+const vpnFeatures = [
+  {
+    title: "Privacy",
     description:
-      "Compare the highest-rated VPN providers for privacy, security, streaming, and online protection.",
+      "A VPN should provide strong privacy protections and clearly explain how user data is handled.",
+  },
+  {
+    title: "Security",
+    description:
+      "Encryption and modern security protocols help protect data while using untrusted networks.",
+  },
+  {
+    title: "Speed",
+    description:
+      "Connection performance matters when streaming, browsing, downloading, or working remotely.",
+  },
+  {
+    title: "Server Network",
+    description:
+      "A broad server network can provide more location options and better access while traveling.",
+  },
+];
 
-    url:
-      `${siteUrl}/category/vpn`,
+export default function VPNCategoryPage() {
+  return (
+    <main className="min-h-screen bg-white text-slate-900">
+      <section className="border-b bg-slate-50">
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <span className="text-sm font-semibold uppercase tracking-wider text-blue-600">
+            VPN
+          </span>
 
-    siteName:
-      "NorthSky Reviews",
+          <h1 className="mt-4 text-4xl font-bold tracking-tight md:text-6xl">
+            Best VPNs in 2026
+          </h1>
 
-    type:
-      "website"
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">
+            Explore VPN technology, privacy features, security considerations,
+            and comparisons to help you choose the right service.
+          </p>
+        </div>
+      </section>
 
-  }
+      <section className="mx-auto max-w-6xl px-6 py-14">
+        <h2 className="text-3xl font-bold">What Makes a Good VPN?</h2>
 
-};
+        <div className="mt-8 grid gap-6 md:grid-cols-2">
+          {vpnFeatures.map((feature) => (
+            <article
+              key={feature.title}
+              className="rounded-2xl border border-slate-200 p-7"
+            >
+              <h3 className="text-2xl font-bold">{feature.title}</h3>
 
+              <p className="mt-3 leading-7 text-slate-600">
+                {feature.description}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
 
+      <section className="border-y bg-slate-50">
+        <div className="mx-auto max-w-6xl px-6 py-14">
+          <h2 className="text-3xl font-bold">VPN Comparisons</h2>
 
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <Link
+              href="/comparisons/vpn-vs-antivirus"
+              className="rounded-2xl border border-slate-200 bg-white p-7 transition hover:shadow-lg"
+            >
+              <h3 className="text-2xl font-bold">
+                VPN vs Antivirus
+              </h3>
 
+              <p className="mt-3 leading-7 text-slate-600">
+                Learn how VPNs and antivirus software protect you in different
+                ways and when you may need each.
+              </p>
 
+              <span className="mt-5 inline-block font-semibold text-blue-600">
+                Read comparison →
+              </span>
+            </Link>
 
+            <Link
+              href="/comparisons/best-esim-providers"
+              className="rounded-2xl border border-slate-200 bg-white p-7 transition hover:shadow-lg"
+            >
+              <h3 className="text-2xl font-bold">
+                Best eSIM Providers
+              </h3>
 
-export default function VPNPage(){
+              <p className="mt-3 leading-7 text-slate-600">
+                Compare connectivity options for travelers who want reliable
+                mobile data abroad.
+              </p>
 
+              <span className="mt-5 inline-block font-semibold text-blue-600">
+                Read comparison →
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
 
+      <section className="mx-auto max-w-4xl px-6 py-16">
+        <h2 className="text-3xl font-bold">
+          Do You Need a VPN?
+        </h2>
 
-const vpnTools =
-
-tools.filter(
-
-(tool)=>
-
-tool.category?.toLowerCase()
-===
-"vpn"
-
-);
-
-
-
-
-
-
-
-const schema = {
-
-
-"@context":
-"https://schema.org",
-
-
-"@type":
-"CollectionPage",
-
-
-name:
-"Best VPN Services 2026",
-
-
-description:
-"VPN reviews, comparisons, rankings, and buying guides.",
-
-
-url:
-`${siteUrl}/category/vpn`,
-
-
-
-publisher: {
-
-"@type":
-"Organization",
-
-name:
-"NorthSky Reviews",
-
-url:
-siteUrl
-
-},
-
-
-
-mainEntity: {
-
-
-"@type":
-"ItemList",
-
-
-itemListElement:
-
-vpnTools.map((tool,index)=>(
-
-{
-
-"@type":
-"ListItem",
-
-position:
-index + 1,
-
-name:
-tool.name,
-
-url:
-`${siteUrl}/reviews/${tool.slug}`
-
+        <p className="mt-6 leading-8 text-slate-600">
+          VPNs can be useful when you want additional privacy on public
+          networks, protect traffic between your device and a VPN server, or
+          access services while traveling. However, a VPN is not a complete
+          cybersecurity solution. Good security practices should also include
+          strong passwords, software updates, account protection, and
+          appropriate device security.
+        </p>
+      </section>
+    </main>
+  );
 }
-
-))
-
-
-}
-
-
-};
-
-
-
-
-
-
-return (
-
-<main className="
-min-h-screen
-bg-white
-text-slate-900
-">
-
-
-
-
-
-<script
-
-type="application/ld+json"
-
-dangerouslySetInnerHTML={{
-
-__html:
-JSON.stringify(schema)
-
-}}
-
-/>
-
-
-
-
-
-
-
-{/* HERO */}
-
-
-<section className="
-bg-gradient-to-br
-from-slate-950
-via-blue-950
-to-indigo-950
-px-6
-py-24
-text-white
-">
-
-
-<div className="
-mx-auto
-max-w-6xl
-text-center
-">
-
-
-
-
-
-<span className="
-inline-flex
-rounded-full
-bg-blue-500/20
-px-5
-py-2
-text-sm
-font-bold
-text-blue-300
-">
-
-🔒 NorthSky VPN Directory
-
-</span>
-
-
-
-
-
-
-
-
-<h1 className="
-mt-8
-text-5xl
-font-black
-leading-tight
-md:text-7xl
-">
-
-Best VPN Services
-& Reviews 2026
-
-</h1>
-
-
-
-
-
-
-
-<p className="
-mx-auto
-mt-6
-max-w-3xl
-text-xl
-leading-8
-text-slate-300
-">
-
-Find the best VPN software for privacy,
-security, streaming, gaming, travel,
-and everyday online protection.
-
-NorthSky Reviews tests and compares
-VPN providers based on speed,
-features, security, pricing, and value.
-
-</p>
-
-
-
-
-
-
-
-
-<div className="
-mt-10
-flex
-flex-wrap
-justify-center
-gap-5
-">
-
-
-<Link
-
-href="/all-tools"
-
-className="
-rounded-xl
-bg-blue-500
-px-8
-py-4
-font-black
-hover:bg-blue-600
-"
-
->
-
-Explore VPNs →
-
-</Link>
-
-
-
-
-
-
-<Link
-
-href="/comparisons/best-vpns"
-
-className="
-rounded-xl
-border
-border-white/30
-px-8
-py-4
-font-bold
-hover:bg-white/10
-"
-
->
-
-Compare VPNs →
-
-</Link>
-
-
-</div>
