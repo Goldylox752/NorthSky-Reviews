@@ -34,7 +34,7 @@ export async function generateMetadata({ params }) {
       `${tool.name} alternatives`,
       `${tool.name} features`,
       `${tool.name} pros and cons`,
-      `${tool.category} reviews`,
+      `${tool.category || "software"} reviews`,
     ],
     alternates: {
       canonical: `${siteUrl}/reviews/${tool.slug}`,
@@ -114,17 +114,21 @@ export default async function ReviewPage({ params }) {
     "Multiple pricing options",
   ];
 
-  const alternatives = tool.alternatives || [];
+  const alternatives = Array.isArray(tool.alternatives)
+    ? tool.alternatives
+    : [];
 
   const faq = [
     {
       question: `Is ${tool.name} worth it in 2026?`,
-      answer: `${tool.name} can be a strong option for users who need ${tool.category?.toLowerCase() || "technology"} capabilities. NorthSky Reviews evaluates it based on features, usability, performance, pricing, and overall value.`,
+      answer: `${tool.name} can be a strong option for users who need ${
+        tool.category?.toLowerCase() || "technology"
+      } capabilities. NorthSky Reviews evaluates it based on features, usability, performance, pricing, and overall value.`,
     },
     {
       question: `How much does ${tool.name} cost?`,
       answer: tool.price
-        ? `${tool.name} currently has pricing listed as ${tool.price}. Check the official website for the latest plans and pricing.`,
+        ? `${tool.name} currently has pricing listed as ${tool.price}. Check the official website for the latest plans and pricing.`
         : `Pricing for ${tool.name} can change. Check the official website for current plans and pricing.`,
     },
     {
@@ -171,7 +175,7 @@ export default async function ReviewPage({ params }) {
           name: tool.name,
           description: tool.description,
           applicationCategory: tool.category || "Software",
-          url: tool.link || undefined,
+          ...(tool.link ? { url: tool.link } : {}),
         },
       },
       {
@@ -213,7 +217,6 @@ export default async function ReviewPage({ params }) {
 
   return (
     <main className="min-h-screen bg-white text-slate-900">
-      {/* STRUCTURED DATA */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -338,6 +341,7 @@ export default async function ReviewPage({ params }) {
                 >
                   <div className="flex justify-between gap-4 font-black">
                     <span>{item.name}</span>
+
                     <span className="text-blue-600">
                       {item.score}/10
                     </span>
@@ -348,7 +352,7 @@ export default async function ReviewPage({ params }) {
                       className="h-2 rounded-full bg-blue-600"
                       style={{
                         width: `${Math.min(
-                          item.score * 10,
+                          Math.max(item.score, 0) * 10,
                           100
                         )}%`,
                       }}
@@ -417,9 +421,9 @@ export default async function ReviewPage({ params }) {
               <p className="mt-5 leading-8 text-slate-700">
                 {tool.name} is worth considering if its features,
                 pricing, and capabilities match your needs. Our
-                overall score of{" "}
-                <strong>{rating}/10</strong> reflects our evaluation
-                of its features, usability, performance, and value.
+                overall score of <strong>{rating}/10</strong> reflects
+                our evaluation of its features, usability, performance,
+                and value.
               </p>
             </div>
 
@@ -473,6 +477,7 @@ export default async function ReviewPage({ params }) {
                 <p className="text-sm font-bold text-slate-500">
                   Category
                 </p>
+
                 <p className="mt-1 font-black">
                   {tool.category || "Software"}
                 </p>
@@ -482,6 +487,7 @@ export default async function ReviewPage({ params }) {
                 <p className="text-sm font-bold text-slate-500">
                   Best For
                 </p>
+
                 <p className="mt-1 font-black">
                   {tool.bestFor || "General users"}
                 </p>
@@ -491,6 +497,7 @@ export default async function ReviewPage({ params }) {
                 <p className="text-sm font-bold text-slate-500">
                   Pricing
                 </p>
+
                 <p className="mt-1 font-black">
                   {tool.price || "Check website"}
                 </p>
