@@ -1,194 +1,168 @@
-"use client";
+import Link from 'next/link';
 
-import { useState } from "react";
-import Link from "next/link";
+export const metadata = {
+  title: 'NorthSky Auto | Automotive Tech, Reviews, Guides & Travel Gear',
+  description:
+    'Independent automotive tech reviews, buying guides, side-by-side comparisons, travel tech, and exclusive deals curated by the NorthSky Team.',
+};
 
-const CATEGORY_HUBS = [
+const PRIMARY_SECTIONS = [
   {
-    key: "ai",
-    name: "AI Tools",
-    href: "/ai",
-    badge: "Updated Weekly",
+    title: 'In-Depth Reviews',
+    href: '/reviews',
+    badge: 'Tested',
     description:
-      "Hands-on reviews of AI writers, coding assistants, workflow builders, and productivity apps.",
-    count: "40+ Reviews",
+      'Hands-on evaluations of dash cams, OBD2 scanners, jump starters, and modern vehicle electronics.',
   },
   {
-    key: "vpn",
-    name: "VPN & Security",
-    href: "/vpn",
-    secondaryHref: "/surfshark",
-    secondaryLabel: "Featured: Surfshark Review →",
-    badge: "Speed Tested",
+    title: 'Best-Of Lists',
+    href: '/best',
+    badge: 'Top Picks',
     description:
-      "Independent no-logs audits, streaming unlocks, WireGuard speed benchmarks, and pricing breakdowns.",
-    count: "25+ Tested",
+      'Ranked recommendations across every budget and vehicle class—updated regularly for reliability.',
   },
   {
-    key: "travel",
-    name: "Travel & Travel Tech",
-    href: "/travel",
-    secondaryHref: "/travel-tech",
-    secondaryLabel: "Explore Travel Tech →",
-    badge: "Field Tested",
+    title: 'Head-to-Head Comparisons',
+    href: '/comparisons',
+    badge: 'Vs.',
     description:
-      "eSIMs, portable routers, GaN chargers, noise-canceling gear, and digital nomad essentials.",
-    count: "30+ Guides",
+      'Side-by-side spec breakdowns and real-world road tests to help you choose between leading models.',
   },
   {
-    key: "all-tools",
-    name: "All Software & Tools",
-    href: "/all-tools",
-    badge: "Full Directory",
+    title: 'Buyer & DIY Guides',
+    href: '/guides',
+    badge: 'How-To',
     description:
-      "Browse our complete searchable index across every software, security, and hardware category.",
-    count: "120+ Listings",
+      'Step-by-step installation walkthroughs, maintenance checklists, and smart buying advice.',
+  },
+  {
+    title: 'Active Deals & Discounts',
+    href: '/deals',
+    badge: 'Save',
+    description:
+      'Verified price drops, seasonal promos, and exclusive partner codes on top-rated auto gear.',
+  },
+  {
+    title: 'Browse All Categories',
+    href: '/categories',
+    badge: 'Directory',
+    description:
+      'Explore our full index of automotive hardware, software, accessories, and connected car systems.',
   },
 ];
 
-const FEATURED_COMPARISONS = [
+const SPECIALTY_HUBS = [
   {
-    title: "Best AI Productivity & Automation Tools (2026)",
-    category: "Best-Of Roundup",
-    href: "/best",
-    readTime: "9 min read",
-    summary:
-      "We tested 18 leading AI assistants on accuracy, pricing, privacy policies, and real-world workflow speed.",
+    title: 'Automotive AI',
+    href: '/ai',
+    tag: 'Next-Gen',
+    description: 'AI-powered diagnostics, smart infotainment, and driver-assistance tools.',
   },
   {
-    title: "Head-to-Head Software & VPN Comparisons",
-    category: "Comparisons",
-    href: "/comparisons",
-    readTime: "7 min read",
-    summary:
-      "Side-by-side feature matrices, speed charts, and clear verdicts so you don't overpay for bloated tiers.",
+    title: 'All Auto Tools',
+    href: '/all-tools',
+    tag: 'Directory',
+    description: 'Complete catalog of diagnostic utilities, calculators, and garage software.',
   },
   {
-    title: "Surfshark VPN Review & Speed Benchmarks",
-    category: "Spotlight Review",
-    href: "/surfshark",
-    readTime: "8 min read",
-    summary:
-      "Full breakdown of unlimited device connections, WireGuard throughput, streaming access, and multi-year pricing.",
-  },
-];
-
-const EDITORIAL_HUBS = [
-  {
-    title: "In-Depth Individual Product Reviews",
-    tag: "Reviews",
-    href: "/reviews",
-    excerpt:
-      "Unfiltered pros, cons, benchmark scores, and long-term testing notes from the NorthSky editorial team.",
+    title: 'Travel Tech',
+    href: '/travel-tech',
+    tag: 'Connected',
+    description: 'Portable power stations, mobile hotspots, GPS trackers, and road-trip electronics.',
   },
   {
-    title: "Buyer’s Guides & Step-by-Step Tutorials",
-    tag: "Guides",
-    href: "/guides",
-    excerpt:
-      "Practical walkthroughs on choosing VPN protocols, configuring AI workflows, and packing smart travel tech.",
+    title: 'Road & Travel',
+    href: '/travel',
+    tag: 'Adventure',
+    description: 'Route planning, overlanding essentials, and long-haul comfort gear.',
   },
   {
-    title: "NorthSky Editorial Blog & Industry News",
-    tag: "Blog",
-    href: "/blog",
-    excerpt:
-      "Latest software updates, cybersecurity alerts, AI releases, and behind-the-scenes testing notes.",
+    title: 'In-Car & Travel VPNs',
+    href: '/vpn',
+    tag: 'Security',
+    description: 'Protect connected infotainment systems and public Wi-Fi on the road.',
+  },
+  {
+    title: 'Category Index',
+    href: '/category',
+    tag: 'Browse',
+    description: 'Filter reviews and articles directly by specific equipment sub-category.',
   },
 ];
 
-const QUICK_TOPICS = [
-  { label: "AI Tools", href: "/ai", highlight: false },
-  { label: "VPNs", href: "/vpn", highlight: false },
-  { label: "Surfshark", href: "/surfshark", highlight: true },
-  { label: "Travel", href: "/travel", highlight: false },
-  { label: "Travel Tech", href: "/travel-tech", highlight: false },
-  { label: "Comparisons", href: "/comparisons", highlight: false },
-  { label: "Best Of", href: "/best", highlight: false },
-  { label: "Blog", href: "/blog", highlight: false },
-  { label: "Active Deals", href: "/deals", highlight: true, emerald: true },
-];
+const FOOTER_LINKS = {
+  explore: [
+    { name: 'Reviews', href: '/reviews' },
+    { name: 'Best Picks', href: '/best' },
+    { name: 'Comparisons', href: '/comparisons' },
+    { name: 'Guides', href: '/guides' },
+    { name: 'Deals', href: '/deals' },
+    { name: 'Search', href: '/search' },
+  ],
+  verticals: [
+    { name: 'Automotive AI', href: '/ai' },
+    { name: 'All Tools', href: '/all-tools' },
+    { name: 'Travel Tech', href: '/travel-tech' },
+    { name: 'Travel', href: '/travel' },
+    { name: 'VPNs for Travel', href: '/vpn' },
+    { name: 'Categories', href: '/categories' },
+    { name: 'Category Archive', href: '/category' },
+  ],
+  company: [
+    { name: 'About NorthSky Auto', href: '/about' },
+    { name: 'NorthSky Editorial Team', href: '/authors/northsky-team' },
+    { name: 'Testing Methodology', href: '/methodology' },
+    { name: 'Contact Us', href: '/contact' },
+  ],
+  legal: [
+    { name: 'Affiliate Disclosure', href: '/affiliate-disclosure' },
+    { name: 'Affiliates', href: '/affiliates' },
+    { name: 'Disclosure Policy', href: '/disclosure' },
+    { name: 'Privacy Policy', href: '/privacy-policy' },
+    { name: 'Privacy Summary', href: '/privacy' },
+    { name: 'Terms of Service', href: '/terms' },
+  ],
+};
 
-export default function NorthSkyReviewsHome() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedFilter, setSelectedFilter] = useState("all");
-
-  const filteredHubs =
-    selectedFilter === "all"
-      ? CATEGORY_HUBS
-      : CATEGORY_HUBS.filter((hub) => hub.key === selectedFilter);
-
+export default function HomePage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 antialiased selection:bg-sky-500/30">
-      {/* Top Disclosure Bar */}
-      <div className="border-b border-slate-800/80 bg-slate-900/90 px-4 py-2 text-center text-xs text-slate-400">
-        Independent testing by{" "}
-        <Link
-          href="/authors"
-          className="font-medium text-slate-200 underline decoration-slate-600 hover:text-sky-400"
-        >
-          our authors
-        </Link>{" "}
-        &amp;{" "}
-        <Link
-          href="/authors/northsky-team"
-          className="font-medium text-slate-200 underline decoration-slate-600 hover:text-sky-400"
-        >
-          The NorthSky Team
-        </Link>
-        . Reader-supported via{" "}
-        <Link
-          href="/affiliate-disclosure"
-          className="font-medium text-slate-200 underline decoration-slate-600 hover:text-sky-400"
-        >
-          affiliate links
-        </Link>{" "}
-        at zero extra cost to you.
-      </div>
-
-      {/* Primary Navigation */}
-      <header className="sticky top-0 z-50 border-b border-slate-800/80 bg-slate-950/90 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
-          <Link href="/" className="flex items-center gap-2.5">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-sky-500 text-sm font-extrabold text-slate-950">
+    <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-sky-500 selection:text-white">
+      {/* Top Navigation */}
+      <header className="sticky top-0 z-50 border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-md">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-sky-400 to-blue-600 font-bold text-slate-950 shadow-lg shadow-sky-500/20">
               NS
-            </span>
-            <span className="text-lg font-bold tracking-tight text-white">
-              NorthSky <span className="text-sky-400">Reviews</span>
-            </span>
+            </div>
+            <div>
+              <span className="text-lg font-bold tracking-tight text-white">
+                NorthSky<span className="text-sky-400">Auto</span>
+              </span>
+            </div>
           </Link>
 
-          <nav
-            aria-label="Primary navigation"
-            className="hidden items-center gap-6 text-sm font-medium text-slate-300 lg:flex"
-          >
-            <Link href="/reviews" className="transition hover:text-white">
+          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+            <Link href="/reviews" className="hover:text-sky-400 transition-colors">
               Reviews
             </Link>
-            <Link href="/best" className="transition hover:text-white">
-              Best Of
+            <Link href="/best" className="hover:text-sky-400 transition-colors">
+              Best
             </Link>
-            <Link href="/comparisons" className="transition hover:text-white">
+            <Link href="/comparisons" className="hover:text-sky-400 transition-colors">
               Comparisons
             </Link>
-            <Link href="/ai" className="transition hover:text-white">
-              AI
-            </Link>
-            <Link href="/vpn" className="transition hover:text-white">
-              VPN
-            </Link>
-            <Link href="/travel-tech" className="transition hover:text-white">
-              Travel Tech
-            </Link>
-            <Link href="/guides" className="transition hover:text-white">
+            <Link href="/guides" className="hover:text-sky-400 transition-colors">
               Guides
             </Link>
-            <Link href="/blog" className="transition hover:text-white">
-              Blog
+            <Link href="/ai" className="hover:text-sky-400 transition-colors">
+              Auto AI
+            </Link>
+            <Link href="/travel-tech" className="hover:text-sky-400 transition-colors">
+              Travel Tech
             </Link>
             <Link
               href="/deals"
-              className="rounded-md bg-emerald-500/15 px-2.5 py-1 text-emerald-300 transition hover:bg-emerald-500/25"
+              className="rounded-full bg-sky-500/10 px-3 py-1 text-sky-400 ring-1 ring-inset ring-sky-500/30 hover:bg-sky-500/20 transition-colors"
             >
               Deals
             </Link>
@@ -197,504 +171,316 @@ export default function NorthSkyReviewsHome() {
           <div className="flex items-center gap-3">
             <Link
               href="/search"
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3.5 py-2 text-xs font-semibold text-slate-200 transition hover:border-slate-600 hover:bg-slate-800"
+              className="inline-flex items-center gap-2 rounded-lg border border-slate-800 bg-slate-900 px-3.5 py-2 text-sm text-slate-300 hover:border-slate-700 hover:text-white transition-colors"
             >
-              Search
-            </Link>
-            <Link
-              href="/all-tools"
-              className="rounded-lg bg-sky-500 px-4 py-2 text-xs font-bold text-slate-950 transition hover:bg-sky-400"
-            >
-              All Tools
+              <svg
+                className="h-4 w-4 text-slate-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                />
+              </svg>
+              <span>Search</span>
             </Link>
           </div>
         </div>
       </header>
 
-      <main>
-        {/* Hero & Search */}
-        <section className="border-b border-slate-800/70 py-16 md:py-24">
-          <div className="mx-auto max-w-5xl px-6 text-center">
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-500/10 px-3.5 py-1 text-xs font-semibold text-sky-300">
-              <span>Independent Tech, AI, VPN &amp; Travel Gear Testing</span>
-            </div>
+      {/* Hero Section */}
+      <section className="relative overflow-hidden border-b border-slate-800/80 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 py-20 sm:py-28">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-500/10 via-transparent to-transparent" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/20 bg-sky-500/10 px-3.5 py-1 text-xs font-medium text-sky-300 mb-6">
+            <span>Independent Testing &amp; Buying Intelligence</span>
+            <span className="text-slate-600">•</span>
+            <Link href="/methodology" className="underline hover:text-white">
+              How We Test
+            </Link>
+          </div>
 
-            <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-6xl">
-              Honest software &amp; tech reviews backed by{" "}
-              <span className="text-sky-400">real-world testing.</span>
-            </h1>
+          <h1 className="mx-auto max-w-4xl text-4xl font-extrabold tracking-tight text-white sm:text-6xl">
+            Smarter Automotive Gear,{' '}
+            <span className="bg-gradient-to-r from-sky-400 to-cyan-300 bg-clip-text text-transparent">
+              Connected Tech &amp; Travel
+            </span>
+          </h1>
 
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-400 sm:text-lg">
-              We benchmark AI tools, VPN providers, and travel tech so you can
-              skip the marketing hype and pick the right tool the first time.
-            </p>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-400">
+            Data-backed reviews, head-to-head comparisons, AI tools, and road-tested travel tech curated by the{' '}
+            <Link href="/authors/northsky-team" className="text-slate-200 underline decoration-sky-500/50 hover:text-sky-400">
+              NorthSky Team
+            </Link>
+            .
+          </p>
 
-            {/* Search Form pointing to /search */}
-            <form
-              action="/search"
-              method="GET"
-              className="mx-auto mt-8 flex max-w-xl flex-col gap-3 sm:flex-row"
+          {/* Search Bar Form routing to /search */}
+          <form
+            action="/search"
+            method="GET"
+            className="mx-auto mt-10 flex max-w-xl items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/90 p-2 shadow-2xl focus-within:border-sky-500/60"
+          >
+            <input
+              type="text"
+              name="q"
+              placeholder="Search dash cams, OBD2 scanners, travel VPNs, AI tools..."
+              className="w-full bg-transparent px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none"
+            />
+            <button
+              type="submit"
+              className="shrink-0 rounded-lg bg-sky-500 px-5 py-2.5 text-sm font-semibold text-slate-950 hover:bg-sky-400 transition-colors"
             >
-              <label htmlFor="site-search" className="sr-only">
-                Search reviews, comparisons, and tools
-              </label>
-              <input
-                id="site-search"
-                type="text"
-                name="q"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search reviews, comparisons, AI tools, Surfshark, VPNs..."
-                className="flex-1 rounded-xl border border-slate-700 bg-slate-900 px-4 py-3.5 text-sm text-white placeholder-slate-500 focus:border-sky-500 focus:outline-none"
-              />
-              <button
-                type="submit"
-                className="rounded-xl bg-sky-500 px-6 py-3.5 text-sm font-bold text-slate-950 shadow-lg shadow-sky-500/20 transition hover:bg-sky-400"
-              >
-                Search Reviews
-              </button>
-            </form>
+              Search
+            </button>
+          </form>
 
-            {/* Quick Topic Pills */}
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-xs">
-              <span className="text-slate-500">Popular hubs:</span>
-              {QUICK_TOPICS.map((topic) => (
-                <Link
-                  key={topic.href}
-                  href={topic.href}
-                  className={`rounded-full border border-slate-800 bg-slate-900 px-3 py-1 transition ${
-                    topic.emerald
-                      ? "text-emerald-300 hover:border-emerald-500/50"
-                      : topic.highlight
-                        ? "text-sky-300 hover:border-sky-500/50 hover:text-white"
-                        : "text-slate-300 hover:border-sky-500/50 hover:text-white"
-                  }`}
-                >
-                  {topic.label}
-                </Link>
-              ))}
-            </div>
+          {/* Quick Pill Links */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-2 text-xs text-slate-400">
+            <span className="font-medium text-slate-500">Popular:</span>
+            <Link href="/best" className="rounded-md bg-slate-900 px-2.5 py-1 hover:bg-slate-800 hover:text-sky-400">
+              Best Picks
+            </Link>
+            <Link href="/comparisons" className="rounded-md bg-slate-900 px-2.5 py-1 hover:bg-slate-800 hover:text-sky-400">
+              Comparisons
+            </Link>
+            <Link href="/all-tools" className="rounded-md bg-slate-900 px-2.5 py-1 hover:bg-slate-800 hover:text-sky-400">
+              All Tools
+            </Link>
+            <Link href="/travel-tech" className="rounded-md bg-slate-900 px-2.5 py-1 hover:bg-slate-800 hover:text-sky-400">
+              Travel Tech
+            </Link>
+            <Link href="/vpn" className="rounded-md bg-slate-900 px-2.5 py-1 hover:bg-slate-800 hover:text-sky-400">
+              Travel VPNs
+            </Link>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Core Category Hubs */}
-        <section className="border-b border-slate-800/70 py-16">
-          <div className="mx-auto max-w-7xl px-6">
-            <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-              <div>
-                <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-                  Explore Coverage Verticals
-                </h2>
-                <p className="mt-1.5 text-sm text-slate-400">
-                  Dive into a dedicated vertical or view{" "}
-                  <Link
-                    href="/categories"
-                    className="text-sky-400 underline hover:text-sky-300"
-                  >
-                    all categories
-                  </Link>{" "}
-                  and{" "}
-                  <Link
-                    href="/category"
-                    className="text-sky-400 underline hover:text-sky-300"
-                  >
-                    category index
-                  </Link>
-                  .
-                </p>
-              </div>
-
-              {/* Interactive Hub Filter */}
-              <div
-                role="group"
-                aria-label="Filter coverage verticals"
-                className="flex flex-wrap gap-2 text-xs"
-              >
-                {[
-                  { id: "all", label: "All Hubs" },
-                  { id: "ai", label: "AI" },
-                  { id: "vpn", label: "VPN" },
-                  { id: "travel", label: "Travel" },
-                ].map((tab) => {
-                  const active = selectedFilter === tab.id;
-                  return (
-                    <button
-                      key={tab.id}
-                      type="button"
-                      aria-pressed={active}
-                      onClick={() => setSelectedFilter(tab.id)}
-                      className={`rounded-lg px-3 py-1.5 font-semibold transition ${
-                        active
-                          ? "bg-sky-500 text-slate-950"
-                          : "border border-slate-800 bg-slate-900 text-slate-300 hover:text-white"
-                      }`}
-                    >
-                      {tab.label}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {filteredHubs.map((hub) => (
-                <article
-                  key={hub.name}
-                  className="flex flex-col justify-between rounded-2xl border border-slate-800 bg-slate-900/60 p-6 transition hover:border-slate-700"
-                >
-                  <div>
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="rounded-md bg-sky-500/10 px-2.5 py-1 text-xs font-semibold text-sky-400">
-                        {hub.badge}
-                      </span>
-                      <span className="text-xs text-slate-500">{hub.count}</span>
-                    </div>
-
-                    <h3 className="mt-4 text-lg font-bold text-white">
-                      <Link href={hub.href} className="hover:text-sky-400">
-                        {hub.name}
-                      </Link>
-                    </h3>
-
-                    <p className="mt-2 text-sm leading-relaxed text-slate-400">
-                      {hub.description}
-                    </p>
-                  </div>
-
-                  <div className="mt-6 space-y-2 border-t border-slate-800/80 pt-4 text-xs font-semibold">
-                    <Link
-                      href={hub.href}
-                      className="block text-sky-400 hover:text-sky-300"
-                    >
-                      Browse {hub.name} →
-                    </Link>
-                    {hub.secondaryHref && (
-                      <Link
-                        href={hub.secondaryHref}
-                        className="block text-slate-300 hover:text-white"
-                      >
-                        {hub.secondaryLabel}
-                      </Link>
-                    )}
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Featured Editorial, Comparisons & Spotlight */}
-        <section className="border-b border-slate-800/70 py-16">
-          <div className="mx-auto max-w-7xl px-6">
-            <div className="flex flex-wrap items-center justify-between gap-4">
+      {/* Main Content Hubs */}
+      <main className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 space-y-20">
+        {/* Core Editorial Sections */}
+        <section>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+            <div>
               <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-                Top Picks, Comparisons &amp; Featured Reviews
+                Core Automotive Coverage
               </h2>
-              <div className="flex items-center gap-5 text-sm font-semibold">
-                <Link
-                  href="/deals"
-                  className="text-emerald-400 hover:text-emerald-300"
-                >
-                  Latest Deals →
-                </Link>
-                <Link href="/reviews" className="text-sky-400 hover:text-sky-300">
-                  View All Reviews →
-                </Link>
-              </div>
+              <p className="mt-1 text-sm text-slate-400">
+                Everything you need before upgrading your vehicle or garage setup.
+              </p>
             </div>
+            <Link
+              href="/categories"
+              className="text-sm font-medium text-sky-400 hover:text-sky-300"
+            >
+              View all categories &rarr;
+            </Link>
+          </div>
 
-            <div className="mt-8 grid gap-6 md:grid-cols-3">
-              {FEATURED_COMPARISONS.map((item) => (
-                <Link
-                  key={item.title}
-                  href={item.href}
-                  className="group flex flex-col justify-between rounded-2xl border border-slate-800 bg-slate-900/60 p-7 transition hover:border-sky-500/40 hover:bg-slate-900"
-                >
-                  <div>
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="font-bold uppercase tracking-wider text-sky-400">
-                        {item.category}
-                      </span>
-                      <span className="text-slate-500">{item.readTime}</span>
-                    </div>
-                    <h3 className="mt-3 text-xl font-bold text-white group-hover:text-sky-400">
-                      {item.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-slate-400">
-                      {item.summary}
-                    </p>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {PRIMARY_SECTIONS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group relative flex flex-col justify-between rounded-2xl border border-slate-800 bg-slate-900/50 p-6 hover:border-sky-500/50 hover:bg-slate-900 transition-all"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="inline-flex items-center rounded-md bg-sky-500/10 px-2.5 py-1 text-xs font-medium text-sky-400 ring-1 ring-inset ring-sky-500/20">
+                      {item.badge}
+                    </span>
+                    <span className="text-slate-600 group-hover:text-sky-400 group-hover:translate-x-0.5 transition-all">
+                      &rarr;
+                    </span>
                   </div>
+                  <h3 className="text-lg font-semibold text-white group-hover:text-sky-400 transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-400">
+                    {item.description}
+                  </p>
+                </div>
+                <div className="mt-6 pt-4 border-t border-slate-800/80 text-xs font-mono text-slate-500">
+                  northskyauto.com{item.href}
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
 
-                  <span className="mt-6 inline-block text-xs font-bold text-slate-200 group-hover:text-sky-400">
-                    Read Full Breakdown →
-                  </span>
-                </Link>
-              ))}
-            </div>
+        {/* Specialty Verticals & Tools */}
+        <section>
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+              Tech, AI &amp; Travel Verticals
+            </h2>
+            <p className="mt-1 text-sm text-slate-400">
+              Specialized tools, digital security, and connected gear for modern drivers.
+            </p>
+          </div>
 
-            {/* Guides, Reviews & Blog Strip */}
-            <div className="mt-8 grid gap-6 md:grid-cols-3">
-              {EDITORIAL_HUBS.map((hub) => (
-                <Link
-                  key={hub.title}
-                  href={hub.href}
-                  className="rounded-2xl border border-slate-800/80 bg-slate-900/30 p-6 transition hover:border-slate-700"
-                >
-                  <span className="text-xs font-semibold text-emerald-400">
-                    {hub.tag}
-                  </span>
-                  <h3 className="mt-2 text-base font-bold text-white">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {SPECIALTY_HUBS.map((hub) => (
+              <Link
+                key={hub.href}
+                href={hub.href}
+                className="group rounded-xl border border-slate-800/90 bg-slate-900/30 p-5 hover:border-slate-700 hover:bg-slate-900/80 transition-all"
+              >
+                <div className="flex items-center justify-between">
+                  <h3 className="font-semibold text-white group-hover:text-sky-400 transition-colors">
                     {hub.title}
                   </h3>
-                  <p className="mt-2 text-xs leading-relaxed text-slate-400">
-                    {hub.excerpt}
-                  </p>
-                </Link>
-              ))}
-            </div>
+                  <span className="rounded bg-slate-800 px-2 py-0.5 text-[11px] font-medium text-slate-300">
+                    {hub.tag}
+                  </span>
+                </div>
+                <p className="mt-2 text-sm text-slate-400">{hub.description}</p>
+              </Link>
+            ))}
           </div>
         </section>
 
-        {/* Editorial Standards & Methodology Trust Banner */}
-        <section className="py-16">
-          <div className="mx-auto max-w-7xl px-6">
-            <div className="rounded-3xl border border-slate-800 bg-slate-900/70 p-8 md:p-12">
-              <div className="grid items-center gap-8 lg:grid-cols-3">
-                <div className="lg:col-span-2">
-                  <span className="text-xs font-bold uppercase tracking-widest text-sky-400">
-                    Editorial Independence
-                  </span>
-                  <h2 className="mt-2 text-2xl font-bold text-white sm:text-3xl">
-                    How the NorthSky Team tests &amp; scores every product
-                  </h2>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-400 sm:text-base">
-                    No vendor can pay to alter our ratings or comparison rankings.
-                    Every tool goes through standardized benchmarks for speed,
-                    privacy, usability, and real-world value before earning a
-                    spot in our recommendations.
-                  </p>
-                </div>
-
-                <div className="flex flex-col gap-3">
-                  <Link
-                    href="/methodology"
-                    className="rounded-xl bg-sky-500 px-5 py-3 text-center text-sm font-bold text-slate-950 transition hover:bg-sky-400"
-                  >
-                    Read Our Testing Methodology
-                  </Link>
-                  <Link
-                    href="/authors"
-                    className="rounded-xl border border-slate-700 bg-slate-800 px-5 py-3 text-center text-sm font-semibold text-white transition hover:bg-slate-700"
-                  >
-                    Meet Our Authors &amp; Editorial Team
-                  </Link>
-                  <Link
-                    href="/about"
-                    className="rounded-xl border border-slate-800 bg-slate-950/60 px-5 py-2.5 text-center text-xs font-medium text-slate-300 transition hover:text-white"
-                  >
-                    About NorthSky Reviews
-                  </Link>
-                </div>
-              </div>
+        {/* Editorial Standards Banner */}
+        <section className="rounded-2xl border border-slate-800 bg-gradient-to-r from-slate-900 to-slate-900/60 p-8 sm:p-10">
+          <div className="grid gap-8 lg:grid-cols-3 lg:items-center">
+            <div className="lg:col-span-2">
+              <h2 className="text-2xl font-bold text-white">
+                Transparent Testing &amp; Reader-First Disclosures
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-slate-400">
+                NorthSky Auto is built on verifiable data and clear editorial independence. Learn how our team evaluates products, how we fund our testing through affiliate partnerships, and how we protect your privacy.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3 lg:justify-end">
+              <Link
+                href="/methodology"
+                className="rounded-lg bg-white px-4 py-2.5 text-sm font-semibold text-slate-950 hover:bg-slate-200 transition-colors"
+              >
+                Our Methodology
+              </Link>
+              <Link
+                href="/affiliate-disclosure"
+                className="rounded-lg border border-slate-700 bg-slate-800/60 px-4 py-2.5 text-sm font-medium text-slate-200 hover:bg-slate-800 transition-colors"
+              >
+                Affiliate Disclosure
+              </Link>
             </div>
           </div>
         </section>
       </main>
 
-      {/* Comprehensive Site Footer with All Routes */}
-      <footer className="border-t border-slate-800/80 bg-slate-950 py-14">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      {/* Comprehensive Site Footer */}
+      <footer className="border-t border-slate-800 bg-slate-950 pt-16 pb-12">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
             {/* Brand Column */}
-            <div>
-              <Link href="/" className="flex items-center gap-2.5">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-500 text-xs font-extrabold text-slate-950">
+            <div className="lg:col-span-1">
+              <Link href="/" className="flex items-center gap-2">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-500 font-bold text-slate-950">
                   NS
-                </span>
-                <span className="text-base font-bold text-white">
-                  NorthSky Reviews
+                </div>
+                <span className="text-lg font-bold text-white">
+                  NorthSky<span className="text-sky-400">Auto</span>
                 </span>
               </Link>
               <p className="mt-4 text-xs leading-relaxed text-slate-400">
-                Independent reviews, side-by-side comparisons, and buying
-                guides for AI software, VPN security, and modern travel tech.
+                Independent automotive technology reviews, comparisons, AI utilities, and road-travel guides.
+              </p>
+              <p className="mt-4 text-xs text-slate-500">
+                Reader-supported. When you buy through links on our site, we may earn an affiliate commission.{' '}
+                <Link href="/disclosure" className="underline hover:text-slate-300">
+                  Learn more
+                </Link>
+                .
               </p>
             </div>
 
-            {/* Categories & Spotlights Column */}
+            {/* Explore Links */}
             <div>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-white">
-                Categories &amp; Spotlights
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-300">
+                Explore
               </h3>
-              <ul className="mt-4 space-y-2.5 text-xs text-slate-400">
-                <li>
-                  <Link href="/ai" className="hover:text-white">
-                    AI Tools &amp; Software
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/vpn" className="hover:text-white">
-                    VPN &amp; Privacy
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/surfshark" className="hover:text-white">
-                    Surfshark VPN Review
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/travel" className="hover:text-white">
-                    Travel
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/travel-tech" className="hover:text-white">
-                    Travel Tech
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/categories" className="hover:text-white">
-                    All Categories
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/category" className="hover:text-white">
-                    Category Directory
-                  </Link>
-                </li>
+              <ul className="mt-4 space-y-2.5 text-sm text-slate-400">
+                {FOOTER_LINKS.explore.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="hover:text-sky-400 transition-colors">
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
-            {/* Reviews, Blog & Tools Column */}
+            {/* Verticals & Tools */}
             <div>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-white">
-                Reviews, Blog &amp; Tools
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-300">
+                Tech &amp; Travel
               </h3>
-              <ul className="mt-4 space-y-2.5 text-xs text-slate-400">
-                <li>
-                  <Link href="/reviews" className="hover:text-white">
-                    Latest Reviews
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/best" className="hover:text-white">
-                    Best-Of Lists
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/comparisons" className="hover:text-white">
-                    Head-to-Head Comparisons
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/guides" className="hover:text-white">
-                    How-To Guides
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/blog" className="hover:text-white">
-                    Editorial Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/deals" className="hover:text-white">
-                    Verified Deals
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/all-tools" className="hover:text-white">
-                    All Tools Index
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/search" className="hover:text-white">
-                    Search Site
-                  </Link>
-                </li>
+              <ul className="mt-4 space-y-2.5 text-sm text-slate-400">
+                {FOOTER_LINKS.verticals.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="hover:text-sky-400 transition-colors">
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
-            {/* Company & Disclosures Column */}
+            {/* Editorial & Company */}
             <div>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-white">
-                Company &amp; Policies
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-300">
+                Editorial
               </h3>
-              <ul className="mt-4 space-y-2.5 text-xs text-slate-400">
-                <li>
-                  <Link href="/about" className="hover:text-white">
-                    About Us
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/authors" className="hover:text-white">
-                    All Authors
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/authors/northsky-team" className="hover:text-white">
-                    NorthSky Editorial Team
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/methodology" className="hover:text-white">
-                    Testing Methodology
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/contact" className="hover:text-white">
-                    Contact Us
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/affiliate-disclosure" className="hover:text-white">
-                    Affiliate Disclosure
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/affiliates" className="hover:text-white">
-                    Affiliates &amp; Partners
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/disclosure" className="hover:text-white">
-                    Editorial Disclosure
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/privacy-policy" className="hover:text-white">
-                    Privacy Policy
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/privacy" className="hover:text-white">
-                    Privacy Summary
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/terms" className="hover:text-white">
-                    Terms of Use
-                  </Link>
-                </li>
+              <ul className="mt-4 space-y-2.5 text-sm text-slate-400">
+                {FOOTER_LINKS.company.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="hover:text-sky-400 transition-colors">
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Legal & Compliance */}
+            <div>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-300">
+                Policies &amp; Legal
+              </h3>
+              <ul className="mt-4 space-y-2.5 text-sm text-slate-400">
+                {FOOTER_LINKS.legal.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="hover:text-sky-400 transition-colors">
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
 
-          <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-800/80 pt-8 text-xs text-slate-500 sm:flex-row">
-            <p>© {new Date().getFullYear()} NorthSky Reviews. All rights reserved.</p>
-            <p>
-              Independent reviews • See our{" "}
-              <Link
-                href="/affiliate-disclosure"
-                className="underline hover:text-slate-300"
-              >
-                Affiliate Disclosure
-              </Link>{" "}
-              &amp;{" "}
-              <Link href="/methodology" className="underline hover:text-slate-300">
-                Methodology
+          <div className="mt-12 border-t border-slate-900 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+            <p>&copy; {new Date().getFullYear()} NorthSky Auto. All rights reserved.</p>
+            <div className="flex flex-wrap gap-4">
+              <Link href="/privacy-policy" className="hover:text-slate-300">
+                Privacy Policy
               </Link>
-              .
-            </p>
+              <Link href="/terms" className="hover:text-slate-300">
+                Terms
+              </Link>
+              <Link href="/affiliate-disclosure" className="hover:text-slate-300">
+                Affiliate Disclosure
+              </Link>
+              <Link href="/contact" className="hover:text-slate-300">
+                Contact
+              </Link>
+            </div>
           </div>
         </div>
       </footer>
