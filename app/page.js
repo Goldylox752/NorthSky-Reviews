@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 const CATEGORY_HUBS = [
   {
+    key: "ai",
     name: "AI Tools",
     href: "/ai",
     badge: "Updated Weekly",
@@ -12,6 +14,7 @@ const CATEGORY_HUBS = [
     count: "40+ Reviews",
   },
   {
+    key: "vpn",
     name: "VPN & Security",
     href: "/vpn",
     secondaryHref: "/surfshark",
@@ -22,6 +25,7 @@ const CATEGORY_HUBS = [
     count: "25+ Tested",
   },
   {
+    key: "travel",
     name: "Travel & Travel Tech",
     href: "/travel",
     secondaryHref: "/travel-tech",
@@ -32,6 +36,7 @@ const CATEGORY_HUBS = [
     count: "30+ Guides",
   },
   {
+    key: "all-tools",
     name: "All Software & Tools",
     href: "/all-tools",
     badge: "Full Directory",
@@ -92,6 +97,18 @@ const EDITORIAL_HUBS = [
   },
 ];
 
+const QUICK_TOPICS = [
+  { label: "AI Tools", href: "/ai", highlight: false },
+  { label: "VPNs", href: "/vpn", highlight: false },
+  { label: "Surfshark", href: "/surfshark", highlight: true },
+  { label: "Travel", href: "/travel", highlight: false },
+  { label: "Travel Tech", href: "/travel-tech", highlight: false },
+  { label: "Comparisons", href: "/comparisons", highlight: false },
+  { label: "Best Of", href: "/best", highlight: false },
+  { label: "Blog", href: "/blog", highlight: false },
+  { label: "Active Deals", href: "/deals", highlight: true, emerald: true },
+];
+
 export default function NorthSkyReviewsHome() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("all");
@@ -99,102 +116,97 @@ export default function NorthSkyReviewsHome() {
   const filteredHubs =
     selectedFilter === "all"
       ? CATEGORY_HUBS
-      : CATEGORY_HUBS.filter((hub) =>
-          hub.href.toLowerCase().includes(selectedFilter)
-        );
+      : CATEGORY_HUBS.filter((hub) => hub.key === selectedFilter);
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 antialiased selection:bg-sky-500/30">
       {/* Top Disclosure Bar */}
       <div className="border-b border-slate-800/80 bg-slate-900/90 px-4 py-2 text-center text-xs text-slate-400">
         Independent testing by{" "}
-        <a
+        <Link
           href="/authors"
           className="font-medium text-slate-200 underline decoration-slate-600 hover:text-sky-400"
         >
           our authors
-        </a>{" "}
+        </Link>{" "}
         &amp;{" "}
-        <a
+        <Link
           href="/authors/northsky-team"
           className="font-medium text-slate-200 underline decoration-slate-600 hover:text-sky-400"
         >
           The NorthSky Team
-        </a>
+        </Link>
         . Reader-supported via{" "}
-        <a
+        <Link
           href="/affiliate-disclosure"
           className="font-medium text-slate-200 underline decoration-slate-600 hover:text-sky-400"
         >
           affiliate links
-        </a>{" "}
+        </Link>{" "}
         at zero extra cost to you.
       </div>
 
       {/* Primary Navigation */}
       <header className="sticky top-0 z-50 border-b border-slate-800/80 bg-slate-950/90 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
-          <a href="/" className="flex items-center gap-2.5">
+          <Link href="/" className="flex items-center gap-2.5">
             <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-sky-500 text-sm font-extrabold text-slate-950">
               NS
             </span>
             <span className="text-lg font-bold tracking-tight text-white">
               NorthSky <span className="text-sky-400">Reviews</span>
             </span>
-          </a>
+          </Link>
 
-          <nav className="hidden items-center gap-5 text-sm font-medium text-slate-300 xl:flex">
-            <a href="/reviews" className="transition hover:text-white">
+          <nav
+            aria-label="Primary navigation"
+            className="hidden items-center gap-6 text-sm font-medium text-slate-300 lg:flex"
+          >
+            <Link href="/reviews" className="transition hover:text-white">
               Reviews
-            </a>
-            <a href="/best" className="transition hover:text-white">
+            </Link>
+            <Link href="/best" className="transition hover:text-white">
               Best Of
-            </a>
-            <a href="/comparisons" className="transition hover:text-white">
+            </Link>
+            <Link href="/comparisons" className="transition hover:text-white">
               Comparisons
-            </a>
-            <a href="/ai" className="transition hover:text-white">
+            </Link>
+            <Link href="/ai" className="transition hover:text-white">
               AI
-            </a>
-            <a href="/vpn" className="transition hover:text-white">
+            </Link>
+            <Link href="/vpn" className="transition hover:text-white">
               VPN
-            </a>
-            <a href="/surfshark" className="transition hover:text-white">
-              Surfshark
-            </a>
-            <a href="/travel" className="transition hover:text-white">
-              Travel
-            </a>
-            <a href="/travel-tech" className="transition hover:text-white">
+            </Link>
+            <Link href="/travel-tech" className="transition hover:text-white">
               Travel Tech
-            </a>
-            <a href="/guides" className="transition hover:text-white">
+            </Link>
+            <Link href="/guides" className="transition hover:text-white">
               Guides
-            </a>
-            <a href="/blog" className="transition hover:text-white">
+            </Link>
+            <Link href="/blog" className="transition hover:text-white">
               Blog
-            </a>
-            <a
+            </Link>
+            <Link
               href="/deals"
               className="rounded-md bg-emerald-500/15 px-2.5 py-1 text-emerald-300 transition hover:bg-emerald-500/25"
             >
               Deals
-            </a>
+            </Link>
           </nav>
 
           <div className="flex items-center gap-3">
-            <a
+            <Link
               href="/search"
               className="rounded-lg border border-slate-700 bg-slate-900 px-3.5 py-2 text-xs font-semibold text-slate-200 transition hover:border-slate-600 hover:bg-slate-800"
             >
               Search
-            </a>
-            <a
+            </Link>
+            <Link
               href="/all-tools"
               className="rounded-lg bg-sky-500 px-4 py-2 text-xs font-bold text-slate-950 transition hover:bg-sky-400"
             >
               All Tools
-            </a>
+            </Link>
           </div>
         </div>
       </header>
@@ -223,7 +235,11 @@ export default function NorthSkyReviewsHome() {
               method="GET"
               className="mx-auto mt-8 flex max-w-xl flex-col gap-3 sm:flex-row"
             >
+              <label htmlFor="site-search" className="sr-only">
+                Search reviews, comparisons, and tools
+              </label>
               <input
+                id="site-search"
                 type="text"
                 name="q"
                 value={searchQuery}
@@ -242,60 +258,21 @@ export default function NorthSkyReviewsHome() {
             {/* Quick Topic Pills */}
             <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-xs">
               <span className="text-slate-500">Popular hubs:</span>
-              <a
-                href="/ai"
-                className="rounded-full border border-slate-800 bg-slate-900 px-3 py-1 text-slate-300 hover:border-sky-500/50 hover:text-white"
-              >
-                AI Tools
-              </a>
-              <a
-                href="/vpn"
-                className="rounded-full border border-slate-800 bg-slate-900 px-3 py-1 text-slate-300 hover:border-sky-500/50 hover:text-white"
-              >
-                VPNs
-              </a>
-              <a
-                href="/surfshark"
-                className="rounded-full border border-slate-800 bg-slate-900 px-3 py-1 text-sky-300 hover:border-sky-500/50 hover:text-white"
-              >
-                Surfshark
-              </a>
-              <a
-                href="/travel"
-                className="rounded-full border border-slate-800 bg-slate-900 px-3 py-1 text-slate-300 hover:border-sky-500/50 hover:text-white"
-              >
-                Travel
-              </a>
-              <a
-                href="/travel-tech"
-                className="rounded-full border border-slate-800 bg-slate-900 px-3 py-1 text-slate-300 hover:border-sky-500/50 hover:text-white"
-              >
-                Travel Tech
-              </a>
-              <a
-                href="/comparisons"
-                className="rounded-full border border-slate-800 bg-slate-900 px-3 py-1 text-slate-300 hover:border-sky-500/50 hover:text-white"
-              >
-                Comparisons
-              </a>
-              <a
-                href="/best"
-                className="rounded-full border border-slate-800 bg-slate-900 px-3 py-1 text-slate-300 hover:border-sky-500/50 hover:text-white"
-              >
-                Best Of
-              </a>
-              <a
-                href="/blog"
-                className="rounded-full border border-slate-800 bg-slate-900 px-3 py-1 text-slate-300 hover:border-sky-500/50 hover:text-white"
-              >
-                Blog
-              </a>
-              <a
-                href="/deals"
-                className="rounded-full border border-slate-800 bg-slate-900 px-3 py-1 text-emerald-300 hover:border-emerald-500/50"
-              >
-                Active Deals
-              </a>
+              {QUICK_TOPICS.map((topic) => (
+                <Link
+                  key={topic.href}
+                  href={topic.href}
+                  className={`rounded-full border border-slate-800 bg-slate-900 px-3 py-1 transition ${
+                    topic.emerald
+                      ? "text-emerald-300 hover:border-emerald-500/50"
+                      : topic.highlight
+                        ? "text-sky-300 hover:border-sky-500/50 hover:text-white"
+                        : "text-slate-300 hover:border-sky-500/50 hover:text-white"
+                  }`}
+                >
+                  {topic.label}
+                </Link>
+              ))}
             </div>
           </div>
         </section>
@@ -310,50 +287,58 @@ export default function NorthSkyReviewsHome() {
                 </h2>
                 <p className="mt-1.5 text-sm text-slate-400">
                   Dive into a dedicated vertical or view{" "}
-                  <a
+                  <Link
                     href="/categories"
                     className="text-sky-400 underline hover:text-sky-300"
                   >
                     all categories
-                  </a>{" "}
+                  </Link>{" "}
                   and{" "}
-                  <a
+                  <Link
                     href="/category"
                     className="text-sky-400 underline hover:text-sky-300"
                   >
                     category index
-                  </a>
+                  </Link>
                   .
                 </p>
               </div>
 
               {/* Interactive Hub Filter */}
-              <div className="flex flex-wrap gap-2 text-xs">
+              <div
+                role="group"
+                aria-label="Filter coverage verticals"
+                className="flex flex-wrap gap-2 text-xs"
+              >
                 {[
                   { id: "all", label: "All Hubs" },
                   { id: "ai", label: "AI" },
                   { id: "vpn", label: "VPN" },
                   { id: "travel", label: "Travel" },
-                ].map((tab) => (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    onClick={() => setSelectedFilter(tab.id)}
-                    className={`rounded-lg px-3 py-1.5 font-semibold transition ${
-                      selectedFilter === tab.id
-                        ? "bg-sky-500 text-slate-950"
-                        : "border border-slate-800 bg-slate-900 text-slate-300 hover:text-white"
-                    }`}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
+                ].map((tab) => {
+                  const active = selectedFilter === tab.id;
+                  return (
+                    <button
+                      key={tab.id}
+                      type="button"
+                      aria-pressed={active}
+                      onClick={() => setSelectedFilter(tab.id)}
+                      className={`rounded-lg px-3 py-1.5 font-semibold transition ${
+                        active
+                          ? "bg-sky-500 text-slate-950"
+                          : "border border-slate-800 bg-slate-900 text-slate-300 hover:text-white"
+                      }`}
+                    >
+                      {tab.label}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {filteredHubs.map((hub) => (
-                <div
+                <article
                   key={hub.name}
                   className="flex flex-col justify-between rounded-2xl border border-slate-800 bg-slate-900/60 p-6 transition hover:border-slate-700"
                 >
@@ -366,9 +351,9 @@ export default function NorthSkyReviewsHome() {
                     </div>
 
                     <h3 className="mt-4 text-lg font-bold text-white">
-                      <a href={hub.href} className="hover:text-sky-400">
+                      <Link href={hub.href} className="hover:text-sky-400">
                         {hub.name}
-                      </a>
+                      </Link>
                     </h3>
 
                     <p className="mt-2 text-sm leading-relaxed text-slate-400">
@@ -377,22 +362,22 @@ export default function NorthSkyReviewsHome() {
                   </div>
 
                   <div className="mt-6 space-y-2 border-t border-slate-800/80 pt-4 text-xs font-semibold">
-                    <a
+                    <Link
                       href={hub.href}
                       className="block text-sky-400 hover:text-sky-300"
                     >
                       Browse {hub.name} →
-                    </a>
+                    </Link>
                     {hub.secondaryHref && (
-                      <a
+                      <Link
                         href={hub.secondaryHref}
                         className="block text-slate-300 hover:text-white"
                       >
                         {hub.secondaryLabel}
-                      </a>
+                      </Link>
                     )}
                   </div>
-                </div>
+                </article>
               ))}
             </div>
           </div>
@@ -406,24 +391,21 @@ export default function NorthSkyReviewsHome() {
                 Top Picks, Comparisons &amp; Featured Reviews
               </h2>
               <div className="flex items-center gap-5 text-sm font-semibold">
-                <a
+                <Link
                   href="/deals"
                   className="text-emerald-400 hover:text-emerald-300"
                 >
                   Latest Deals →
-                </a>
-                <a
-                  href="/reviews"
-                  className="text-sky-400 hover:text-sky-300"
-                >
+                </Link>
+                <Link href="/reviews" className="text-sky-400 hover:text-sky-300">
                   View All Reviews →
-                </a>
+                </Link>
               </div>
             </div>
 
             <div className="mt-8 grid gap-6 md:grid-cols-3">
               {FEATURED_COMPARISONS.map((item) => (
-                <a
+                <Link
                   key={item.title}
                   href={item.href}
                   className="group flex flex-col justify-between rounded-2xl border border-slate-800 bg-slate-900/60 p-7 transition hover:border-sky-500/40 hover:bg-slate-900"
@@ -446,14 +428,14 @@ export default function NorthSkyReviewsHome() {
                   <span className="mt-6 inline-block text-xs font-bold text-slate-200 group-hover:text-sky-400">
                     Read Full Breakdown →
                   </span>
-                </a>
+                </Link>
               ))}
             </div>
 
             {/* Guides, Reviews & Blog Strip */}
             <div className="mt-8 grid gap-6 md:grid-cols-3">
               {EDITORIAL_HUBS.map((hub) => (
-                <a
+                <Link
                   key={hub.title}
                   href={hub.href}
                   className="rounded-2xl border border-slate-800/80 bg-slate-900/30 p-6 transition hover:border-slate-700"
@@ -467,7 +449,7 @@ export default function NorthSkyReviewsHome() {
                   <p className="mt-2 text-xs leading-relaxed text-slate-400">
                     {hub.excerpt}
                   </p>
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -494,24 +476,24 @@ export default function NorthSkyReviewsHome() {
                 </div>
 
                 <div className="flex flex-col gap-3">
-                  <a
+                  <Link
                     href="/methodology"
                     className="rounded-xl bg-sky-500 px-5 py-3 text-center text-sm font-bold text-slate-950 transition hover:bg-sky-400"
                   >
                     Read Our Testing Methodology
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/authors"
                     className="rounded-xl border border-slate-700 bg-slate-800 px-5 py-3 text-center text-sm font-semibold text-white transition hover:bg-slate-700"
                   >
                     Meet Our Authors &amp; Editorial Team
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/about"
                     className="rounded-xl border border-slate-800 bg-slate-950/60 px-5 py-2.5 text-center text-xs font-medium text-slate-300 transition hover:text-white"
                   >
                     About NorthSky Reviews
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -525,14 +507,14 @@ export default function NorthSkyReviewsHome() {
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {/* Brand Column */}
             <div>
-              <a href="/" className="flex items-center gap-2.5">
+              <Link href="/" className="flex items-center gap-2.5">
                 <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-500 text-xs font-extrabold text-slate-950">
                   NS
                 </span>
                 <span className="text-base font-bold text-white">
                   NorthSky Reviews
                 </span>
-              </a>
+              </Link>
               <p className="mt-4 text-xs leading-relaxed text-slate-400">
                 Independent reviews, side-by-side comparisons, and buying
                 guides for AI software, VPN security, and modern travel tech.
@@ -546,39 +528,39 @@ export default function NorthSkyReviewsHome() {
               </h3>
               <ul className="mt-4 space-y-2.5 text-xs text-slate-400">
                 <li>
-                  <a href="/ai" className="hover:text-white">
+                  <Link href="/ai" className="hover:text-white">
                     AI Tools &amp; Software
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/vpn" className="hover:text-white">
+                  <Link href="/vpn" className="hover:text-white">
                     VPN &amp; Privacy
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/surfshark" className="hover:text-white">
+                  <Link href="/surfshark" className="hover:text-white">
                     Surfshark VPN Review
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/travel" className="hover:text-white">
+                  <Link href="/travel" className="hover:text-white">
                     Travel
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/travel-tech" className="hover:text-white">
+                  <Link href="/travel-tech" className="hover:text-white">
                     Travel Tech
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/categories" className="hover:text-white">
+                  <Link href="/categories" className="hover:text-white">
                     All Categories
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/category" className="hover:text-white">
+                  <Link href="/category" className="hover:text-white">
                     Category Directory
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -590,44 +572,44 @@ export default function NorthSkyReviewsHome() {
               </h3>
               <ul className="mt-4 space-y-2.5 text-xs text-slate-400">
                 <li>
-                  <a href="/reviews" className="hover:text-white">
+                  <Link href="/reviews" className="hover:text-white">
                     Latest Reviews
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/best" className="hover:text-white">
+                  <Link href="/best" className="hover:text-white">
                     Best-Of Lists
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/comparisons" className="hover:text-white">
+                  <Link href="/comparisons" className="hover:text-white">
                     Head-to-Head Comparisons
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/guides" className="hover:text-white">
+                  <Link href="/guides" className="hover:text-white">
                     How-To Guides
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/blog" className="hover:text-white">
+                  <Link href="/blog" className="hover:text-white">
                     Editorial Blog
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/deals" className="hover:text-white">
+                  <Link href="/deals" className="hover:text-white">
                     Verified Deals
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/all-tools" className="hover:text-white">
+                  <Link href="/all-tools" className="hover:text-white">
                     All Tools Index
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/search" className="hover:text-white">
+                  <Link href="/search" className="hover:text-white">
                     Search Site
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -639,59 +621,59 @@ export default function NorthSkyReviewsHome() {
               </h3>
               <ul className="mt-4 space-y-2.5 text-xs text-slate-400">
                 <li>
-                  <a href="/about" className="hover:text-white">
+                  <Link href="/about" className="hover:text-white">
                     About Us
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/authors" className="hover:text-white">
+                  <Link href="/authors" className="hover:text-white">
                     All Authors
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/authors/northsky-team" className="hover:text-white">
+                  <Link href="/authors/northsky-team" className="hover:text-white">
                     NorthSky Editorial Team
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/methodology" className="hover:text-white">
+                  <Link href="/methodology" className="hover:text-white">
                     Testing Methodology
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/contact" className="hover:text-white">
+                  <Link href="/contact" className="hover:text-white">
                     Contact Us
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/affiliate-disclosure" className="hover:text-white">
+                  <Link href="/affiliate-disclosure" className="hover:text-white">
                     Affiliate Disclosure
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/affiliates" className="hover:text-white">
+                  <Link href="/affiliates" className="hover:text-white">
                     Affiliates &amp; Partners
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/disclosure" className="hover:text-white">
+                  <Link href="/disclosure" className="hover:text-white">
                     Editorial Disclosure
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/privacy-policy" className="hover:text-white">
+                  <Link href="/privacy-policy" className="hover:text-white">
                     Privacy Policy
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/privacy" className="hover:text-white">
+                  <Link href="/privacy" className="hover:text-white">
                     Privacy Summary
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/terms" className="hover:text-white">
+                  <Link href="/terms" className="hover:text-white">
                     Terms of Use
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -701,16 +683,16 @@ export default function NorthSkyReviewsHome() {
             <p>© {new Date().getFullYear()} NorthSky Reviews. All rights reserved.</p>
             <p>
               Independent reviews • See our{" "}
-              <a
+              <Link
                 href="/affiliate-disclosure"
                 className="underline hover:text-slate-300"
               >
                 Affiliate Disclosure
-              </a>{" "}
+              </Link>{" "}
               &amp;{" "}
-              <a href="/methodology" className="underline hover:text-slate-300">
+              <Link href="/methodology" className="underline hover:text-slate-300">
                 Methodology
-              </a>
+              </Link>
               .
             </p>
           </div>
